@@ -16,6 +16,8 @@ Isi repo
   BACA-DULU.txt      berkas ini
   pasang.bat         pemasang otomatis Windows
   install-adb.ps1    skrip yang dijalankan pasang.bat
+  pasang-adzan.bat   pemasang suara adzan otomatis (Windows)
+  pasang-adzan.ps1   skrip yang dijalankan pasang-adzan.bat
   screenshots/       contoh tampilan
 
 Unduh paket siap pakai
