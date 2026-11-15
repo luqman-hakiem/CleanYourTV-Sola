@@ -32,8 +32,41 @@ Tambahan di fork ini:
   <img src="screenshots/dock.png" alt="Dock aplikasi" width="880">
 </p>
 
-**[Cara pasang (bahasa Indonesia)](PASANG.md)** · **[Unduh APK](../../releases/latest)** ·
-**[Panduan singkat](BACA-DULU.txt)**
+**[Cara pasang (bahasa Indonesia)](PASANG.md)** · **[Panduan singkat](BACA-DULU.txt)** ·
+**[Unduh rilis terbaru](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest)**
+
+### Unduh dan pasang
+
+Rilis terbaru: **3.33-stats-sejajar** (versionCode 43).
+
+| Berkas | Isi |
+|---|---|
+| [`CleanYourTV-Sola-3.33-stats-sejajar.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.33-stats-sejajar.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.33-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.33-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+
+Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
+menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang
+suara adzan tanpa root). Panduan langkah demi langkah: [PASANG.md](PASANG.md).
+
+> APK memakai tanda tangan debug. Kalau TV sudah memakai CleanYourTV resmi
+> (tanda tangan berbeda), hapus dulu versi itu sebelum memasang; data aplikasi
+> lain tidak tersentuh.
+
+### Bangun sendiri
+
+```sh
+cd launcher
+./gradlew assembleRelease
+```
+
+Butuh JDK 17, Android SDK platform 34, dan build-tools 34.0.0. Pengaturan tampilan
+ada di `launcher/app/src/main/res/values/config.xml`.
+
+> Catatan asal-usul: repo ini fork dari CleanYourTV. Launcher di sini memakai
+> versi widget (sebelum upstream menulis ulang launcher-nya menjadi 3.5), jadi
+> `examples/`, `docs/`, dan `themes/` mengikuti salinan saat fork dibuat. Untuk
+> daftar TV dan launcher terbaru, lihat
+> [repo aslinya](https://github.com/Gathin23/cleanyourtv).
 
 Semua di bawah ini adalah README asli CleanYourTV, untuk debloat TV dan dokumentasi launcher-nya.
 

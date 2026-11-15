@@ -18,11 +18,14 @@ Isi repo
   install-adb.ps1    skrip yang dijalankan pasang.bat
   screenshots/       contoh tampilan
 
-Unduh APK siap pakai
---------------------
-  Buka tab "Releases" repo ini, unduh APK terbaru
-  (CleanYourTV-Sola-3.33-stats-sejajar.apk). Kalau memakai pasang.bat,
-  taruh APK itu di folder yang sama dengan pasang.bat.
+Unduh paket siap pakai
+----------------------
+  Buka tab "Releases" repo ini. Ada dua berkas:
+    CleanYourTV-Sola-3.33-stats-sejajar.apk   APK saja
+    CleanYourTV-Sola-3.33-pasang.zip          paket lengkap
+  Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
+  screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
+  lalu taruh APK di folder yang sama dengan pasang.bat.
 
 Fitur tambahan dibanding CleanYourTV biasa
 ------------------------------------------
