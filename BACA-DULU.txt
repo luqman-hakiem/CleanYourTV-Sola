@@ -1,0 +1,93 @@
+CleanYourTV Sola - build khusus
+===============================
+
+Fork pribadi CleanYourTV (MIT, karya Gathin) dengan beberapa perubahan tampilan
+dan fitur. Semua kode sumber ada di repo ini, jadi siapa pun bisa build sendiri.
+
+Isi repo
+--------
+  launcher/          kode launcher Android (Java + Gradle), sumber APK
+  addons/            aplikasi kartu tambahan (mis. jadwal sholat)
+  tools/             alat ADB dan skrip dari CleanYourTV
+  docs/              dokumentasi CleanYourTV
+  examples/, themes/ daftar TV yang sudah dicoba dan tema
+  tests/             tes milik repo asli
+  PASANG.md          panduan pemasangan lengkap (HP/Termux atau komputer)
+  BACA-DULU.txt      berkas ini
+  pasang.bat         pemasang otomatis Windows
+  install-adb.ps1    skrip yang dijalankan pasang.bat
+  screenshots/       contoh tampilan
+
+Unduh APK siap pakai
+--------------------
+  Buka tab "Releases" repo ini, unduh APK terbaru
+  (CleanYourTV-Sola-3.33-stats-sejajar.apk). Kalau memakai pasang.bat,
+  taruh APK itu di folder yang sama dengan pasang.bat.
+
+Fitur tambahan dibanding CleanYourTV biasa
+------------------------------------------
+  - Kartu jadwal sholat dan jadwal bola di bawah jam, gaya kaca permanen
+  - Cuaca hari ini + kualitas udara (AQI) di bawah tanggal, ikon berwarna
+  - Grafik CPU / RAM / Disk berupa tiga batang, sejajar kartu jadwal sholat
+  - Timer tidur di samping Setelan (butuh Android 9+)
+  - Nama Wi-Fi lengkap di pil atas; sapaan + nama diatur di config.xml
+  - Tanggal Minggu: hanya tanggal yang merah, nama bulan tetap putih
+  - pasang.bat: pasang, jadikan Home, reboot, lalu memeriksa hasilnya sendiri
+
+Cara pasang cepat (Windows)
+---------------------------
+  1. Unduh APK dari Releases, taruh satu folder dengan pasang.bat
+  2. Klik 2x pasang.bat
+  3. Masukkan IP TV (misalnya 192.168.1.20)
+  4. Jawab pertanyaan: hapus versi resmi? reboot sekarang?
+  5. Skrip memasang, menjadikan Home, reboot, lalu menulis OK/CEK per baris
+     dan menyimpan screenshot home-setelah-reboot.png
+
+Cara manual: ikuti PASANG.md.
+
+Build sendiri
+-------------
+  Butuh JDK 17 dan Android SDK 34 (platform 34, build-tools 34.0.0).
+
+    cd launcher
+    gradlew.bat assembleRelease        (Windows)
+    ./gradlew assembleRelease          (Linux/macOS)
+
+  APK hasil build: launcher/app/build/outputs/apk/release/app-release.apk
+  APK ditandatangani kunci debug komputer itu. Untuk update di tempat, pakai
+  build dengan kunci yang sama; versi resmi CleanYourTV harus dihapus dulu.
+
+Riwayat build (ringkas)
+-----------------------
+  3.33  grafik digeser sejajar kartu jadwal sholat; pemasang uji reboot
+  3.32  label RAM/Disk tidak terpotong (grafik 720 px)
+  3.31  label RAM/Disk, grafik 680 px
+  3.30  grafik 840 px, jarak antarkolom dirapatkan
+  3.29  teks grafik 10/11sp, batang 4dp
+  3.28  teks grafik dirapikan, angka penyimpanan lebih pendek
+  3.27  baris teks CPU/memori/penyimpanan jadi tiga grafik batang
+  3.26  tanggal Minggu merah, nama bulan putih
+  3.25  warna seluruh baris tanggal saat Minggu (versi awal)
+  3.23  ikon cuaca sejajar dengan teks
+  3.22  ikon paru-paru untuk "Sangat Tidak Sehat"
+  3.21  ikon udara sesuai kategori
+  3.20  kartu widget muncul lagi setelah sempat hilang
+  3.19  ikon udara di depan teks AQI
+  3.18  kualitas udara (AQI), tanpa suhu terendah/tertinggi
+  3.17  ikon cuaca berwarna
+  3.15  ukuran semua ikon cuaca disamakan
+  3.14  ikon cuaca di baris cuaca
+  3.13  baris cuaca di bawah tanggal
+  3.12  tampilan kartu kaca permanen
+  3.11  tombol atas ringkas, nama Wi-Fi lengkap
+  3.9   baris info sistem di bawah jam
+  3.8   hitung mundur pertandingan terdekat
+
+Catatan
+-------
+  - Lisensi MIT, sama seperti CleanYourTV. Kredit untuk Gathin:
+    https://github.com/Gathin23/cleanyourtv
+  - Data jadwal bola dari FotMob (API tidak resmi); cuaca dari Open-Meteo.
+    Keduanya bisa berhenti kapan saja.
+  - Saat membuat issue atau screenshot, sembunyikan nama Wi-Fi, IP, dan nama
+    orang.
