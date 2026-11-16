@@ -14,6 +14,7 @@ Tambahan di fork ini:
 - **Grafik CPU / RAM / Disk** tiga batang di bawah jam, sejajar dengan tepi kartu jadwal sholat
 - **Tanggal Minggu**: hanya angka tanggal yang merah, nama bulan tetap putih
 - **Timer tidur** di samping Setelan (butuh Android 9+), tombol atas ikon saja
+- **Kecepatan internet** kecil di samping Setelan: unduh dan unggah dalam Mbps, diperbarui tiap detik
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -32,17 +33,21 @@ Tambahan di fork ini:
   <img src="screenshots/dock.png" alt="Dock aplikasi" width="880">
 </p>
 
+<p align="center">
+  <img src="screenshots/netspeed.png" alt="Kecepatan unduh dan unggah di samping Setelan" width="505">
+</p>
+
 **[Cara pasang (bahasa Indonesia)](PASANG.md)** · **[Panduan singkat](BACA-DULU.txt)** ·
 **[Unduh rilis terbaru](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest)**
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.33-stats-sejajar** (versionCode 43).
+Rilis terbaru: **3.36-netspeed** (versionCode 46).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.33-stats-sejajar.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.33-stats-sejajar.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.33-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.33-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.36-netspeed.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.36-netspeed.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.36-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.36-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

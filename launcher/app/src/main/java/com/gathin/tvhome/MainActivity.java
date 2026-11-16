@@ -37,6 +37,7 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.net.Uri;
+import android.net.TrafficStats;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -111,6 +112,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private boolean rtlAppGrid;
     private static final long MINUTE_MS = 60_000L;
     private static final long STATS_MS = 10_000L;
+    /** How often the small download/upload pill samples TrafficStats while Home is resumed. */
+    private static final long NET_SPEED_MS = 1_000L;
     /**
      * 2025-01-01. TVs without a clock battery boot at the epoch (08:00 in China) and keep it until network
      * time arrives; the clock, date and greeting stay hidden before then.
@@ -182,6 +185,10 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     /** config show_inputs_pill: false keeps the Inputs pill hidden even when the TV has inputs. */
     private boolean showInputsPill = true;
     private TextView btnWifi;
+    /** Read-only download/upload speed pill beside Settings (config.xml, show_net_speed). */
+    private TextView netSpeed;
+    /** TrafficStats byte counters and the elapsedRealtime of the previous speed sample. */
+    private long netRxAt, netTxAt, netSampleAt;
     /** Auto-off timer pill (SleepTimer); its label carries the time left while a timer runs. */
     private TextView btnTimer;
     /** The network pill's icon as last set, so a refresh that changes nothing does not lay the top bar out again. */
@@ -345,6 +352,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private RecyclerView.OnScrollListener pendingFocusScroll;
 
     private final Handler handler = new Handler(Looper.getMainLooper());
+    /** Re-samples the download/upload speed once a second; it only runs while Home is resumed. */
+    private final Runnable netSpeedTick = this::updateNetSpeed;
     /** Refreshes the network pill when the connection changes: at boot Wi-Fi often connects after Home is shown. */
     private final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
         @Override
@@ -546,6 +555,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             clockRow.addOnLayoutChangeListener(centerGreeting);
         }
         btnWifi = findViewById(R.id.btnWifi);
+        netSpeed = findViewById(R.id.btnNetSpeed);
+        if (!getResources().getBoolean(R.bool.show_net_speed)) netSpeed.setVisibility(View.GONE);
         shamsiDate = findViewById(R.id.shamsiDate);
         stats = findViewById(R.id.stats);
         raceCalendar = cfg.raceCalendar;
@@ -1105,6 +1116,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             pillsShown = true;
         }
         updateTimerPill();
+        startNetSpeed();
         if (showStats) startStats();
         if (gameDay != null) gameDay.start();
         sky.update();
@@ -1291,6 +1303,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         handler.removeCallbacks(openWhenOnline);
         startPending = null;   // leaving Home before the network came back: the boot's app stays closed
         stopStats();
+        stopNetSpeed();
         if (gameDay != null) gameDay.stop();
         handler.removeCallbacks(turnTick);
         if (lamp != null) lamp.stop();
@@ -2930,6 +2943,65 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
                 btnWifi.setCompoundDrawableTintList(tint);
             }
         }
+    }
+
+    /**
+     * Starts the small download/upload pill: takes a TrafficStats baseline now, shows 0 Mbps, then samples
+     * once a second while Home is resumed. The counters include every app on the TV and all interfaces, so
+     * it reads as the TV's internet speed, not just the launcher's (which never uses the network itself).
+     */
+    private void startNetSpeed() {
+        if (netSpeed == null || !getResources().getBoolean(R.bool.show_net_speed)) return;
+        netSpeed.setVisibility(View.VISIBLE);
+        netRxAt = Math.max(0, TrafficStats.getTotalRxBytes());
+        netTxAt = Math.max(0, TrafficStats.getTotalTxBytes());
+        netSampleAt = SystemClock.elapsedRealtime();
+        setNetSpeedText(0, 0);
+        handler.removeCallbacks(netSpeedTick);
+        handler.postDelayed(netSpeedTick, NET_SPEED_MS);
+    }
+
+    private void stopNetSpeed() {
+        handler.removeCallbacks(netSpeedTick);
+    }
+
+    private void updateNetSpeed() {
+        if (!resumed || netSpeed == null || netSpeed.getVisibility() != View.VISIBLE) return;
+        long now = SystemClock.elapsedRealtime();
+        long rx = Math.max(0, TrafficStats.getTotalRxBytes());
+        long tx = Math.max(0, TrafficStats.getTotalTxBytes());
+        long elapsed = now - netSampleAt;
+        if (elapsed > 0) {
+            // A counter that went backwards (a reboot of the network stack) reads as 0, not a huge negative.
+            long rxDelta = rx >= netRxAt ? rx - netRxAt : 0;
+            long txDelta = tx >= netTxAt ? tx - netTxAt : 0;
+            setNetSpeedText(rxDelta * 1000.0 / elapsed, txDelta * 1000.0 / elapsed);
+            netRxAt = rx;
+            netTxAt = tx;
+            netSampleAt = now;
+        }
+        handler.postDelayed(netSpeedTick, NET_SPEED_MS);
+    }
+
+    /** Renders bytes per second as megabits per second, the unit internet packages are sold in. */
+    private void setNetSpeedText(double rxBytesPerSecond, double txBytesPerSecond) {
+        double rx = rxBytesPerSecond * 8 / 1_000_000;
+        double tx = txBytesPerSecond * 8 / 1_000_000;
+        String text = String.format(Locale.getDefault(), "↓ %.1f   ↑ %.1f Mbps", rx, tx);
+        if (TextUtils.equals(netSpeed.getText(), text)) return;
+        SpannableString label = new SpannableString(text);
+        int down = text.indexOf('↓');
+        int up = text.indexOf('↑');
+        if (down >= 0) {
+            label.setSpan(new ForegroundColorSpan(0xFF7FE0A0), down, down + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        if (up >= 0) {
+            label.setSpan(new ForegroundColorSpan(0xFF8EC5FF), up, up + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        netSpeed.setText(label);
+        netSpeed.setContentDescription(getString(R.string.net_speed_description,
+                String.format(Locale.getDefault(), "%.1f", rx),
+                String.format(Locale.getDefault(), "%.1f", tx)));
     }
 
     /** config.xml icon_only_buttons. */

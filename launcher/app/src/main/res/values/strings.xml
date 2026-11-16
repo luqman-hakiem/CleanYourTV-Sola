@@ -185,4 +185,7 @@
     <string name="sleep_timer_unavailable">The sleep service is not available on this TV</string>
     <string name="sleep_service_label">Sleep timer</string>
     <string name="sleep_service_description">Puts the TV to sleep when the auto-off timer ends. It reads nothing on the screen.</string>
+
+    <!-- Read-aloud description of the download/upload speed pill beside Settings. -->
+    <string name="net_speed_description">Download %1$s Mbps, upload %2$s Mbps</string>
 </resources>
