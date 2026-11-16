@@ -8,7 +8,8 @@ Launcher Android TV / Google TV bergaya Apple TV, berbasis [CleanYourTV](https:/
 - **Timer tidur** di samping tombol Setelan (TV mati sendiri, ada banner peringatan 1 menit sebelum mati). Kalau layanan pembantu belum aktif saat waktunya habis, timer mencoba ulang otomatis tiap 15 detik sampai 6 menit, jadi tidak gagal diam-diam
 - Kartu jadwal sholat dan jadwal bola dibuat **lebih besar**; kartu kalender disembunyikan secara bawaan (bisa dimunculkan lagi di Setelan)
 - Kartu bergaya **kaca bening (tembus pandang)**: wallpaper tetap terlihat di balik latar buram, dengan kilau tipis di atas, tepi terang, dan teks putih tebal yang mudah dibaca dari sofa
-- **Cuaca hari ini** tepat di bawah tanggal, dengan ikon yang berubah mengikuti kondisi (mis. `Gerimis · 28°C · 26°–29°`), mengikuti lokasi jadwal sholat
+- **Cuaca hari ini** tepat di bawah tanggal, dengan ikon yang berubah mengikuti kondisi (mis. `Gerimis · 28°C · 26°–29°`), mengikuti lokasi jadwal sholat. Saat jam berjalan berisi hujan (minimal 0,1 mm), teks dan ikon mengikuti data per jam, jadi gerimis tidak lagi tertulis "Berawan"
+- **Baris statistik** kecil di bawah jam: CPU, RAM dan penyimpanan yang sedang dipakai (build 3.27-3.34), dengan ikon dan teks yang disejajarkan
 
 Butuh TV Android 8 ke atas, dan sebuah HP Android (pakai Termux) atau komputer untuk menjalankan adb. Cukup sekali saat memasang.
 
@@ -111,16 +112,20 @@ Yang terakhir untuk **timer tidur**: dengan izin ini launcher bisa menyalakan se
 
 ## 6. Suara adzan (opsional)
 
-Launcher ini **tidak menyertakan** suara adzan. Siapkan file MP3 adzan pilihanmu sendiri, beri nama `adzan.mp3`, lalu:
+Paket ini sudah membawa `adzan.mp3` (3 menit 20 detik). Cara termudah: klik 2x **`pasang-adzan.bat`**, masukkan IP TV. Skripnya mengirim file ke folder launcher lewat content provider bawaan launcher, jadi **tidak perlu root**, lalu memeriksa checksum-nya.
+
+Kalau mau suara lain, timpa `adzan.mp3` di folder ini lalu jalankan `pasang-adzan.bat` lagi. Atau kerjakan manual:
 
 ```
-adb push ~/storage/downloads/adzan.mp3 /data/local/tmp/adzan.mp3
-adb shell 'content write --uri content://com.gathin.tvhome.theme/adzan.mp3 < /data/local/tmp/adzan.mp3; rm /data/local/tmp/adzan.mp3'
+adb push adzan.mp3 /sdcard/Download/adzan.mp3
+adb shell 'content write --uri content://com.gathin.tvhome.theme/adzan.mp3 < /sdcard/Download/adzan.mp3'
 ```
 
 Mau adzan khusus Subuh? Ulangi dengan nama `adzan_subuh.mp3`. Kalau tidak ada, Subuh memakai `adzan.mp3`.
 
-Supaya ringan, kecilkan dulu file-nya (misalnya jadi mono 48 kbps, sekitar 1,5 MB untuk adzan 4 menit).
+Terakhir, di TV: buka **Setelan → Pengingat adzan**, tekan baris itu sampai tertulis **Banner + suara adzan**, lalu pastikan di bawahnya muncul **File adzan.mp3 ditemukan.** Tekan **Tes pengingat sekarang** untuk mencoba; tekan **Home** untuk berhenti.
+
+Supaya ringan, kecilkan dulu file-nya (misalnya jadi mono 48 kbps) — file bawaan paket ini sekitar 1 MB.
 
 ## 7. Atur di TV
 
