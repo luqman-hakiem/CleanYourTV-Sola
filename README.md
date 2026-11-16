@@ -14,7 +14,7 @@ Tambahan di fork ini:
 - **Grafik CPU / RAM / Disk** tiga batang di bawah jam, sejajar dengan tepi kartu jadwal sholat
 - **Tanggal Minggu**: hanya angka tanggal yang merah, nama bulan tetap putih
 - **Timer tidur** di samping Setelan (butuh Android 9+), tombol atas ikon saja
-- **Kecepatan internet** kecil di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik
+- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -42,12 +42,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.37-netspeed-kiri** (versionCode 47).
+Rilis terbaru: **3.38-netspeed-tebal** (versionCode 48).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.37-netspeed-kiri.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.37-netspeed-kiri.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.37-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.37-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.38-netspeed-tebal.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.38-netspeed-tebal.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.38-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.38-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

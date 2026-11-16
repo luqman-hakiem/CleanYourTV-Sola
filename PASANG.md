@@ -9,8 +9,8 @@ Launcher Android TV / Google TV bergaya Apple TV, berbasis [CleanYourTV](https:/
 - Kartu jadwal sholat dan jadwal bola dibuat **lebih besar**; kartu kalender disembunyikan secara bawaan (bisa dimunculkan lagi di Setelan)
 - Kartu bergaya **kaca bening (tembus pandang)**: wallpaper tetap terlihat di balik latar buram, dengan kilau tipis di atas, tepi terang, dan teks putih tebal yang mudah dibaca dari sofa
 - **Cuaca hari ini** tepat di bawah tanggal, dengan ikon yang berubah mengikuti kondisi (mis. `Gerimis · 28°C · 26°–29°`), mengikuti lokasi jadwal sholat. Saat jam berjalan berisi hujan (minimal 0,1 mm), teks dan ikon mengikuti data per jam, jadi gerimis tidak lagi tertulis "Berawan"
-- **Baris statistik** kecil di bawah jam: CPU, RAM dan penyimpanan yang sedang dipakai (build 3.27-3.37), dengan ikon dan teks yang disejajarkan
-- **Kecepatan internet** kecil di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik selama Home tampil (build 3.36-3.37)
+- **Baris statistik** kecil di bawah jam: CPU, RAM dan penyimpanan yang sedang dipakai (build 3.27-3.38), dengan ikon dan teks yang disejajarkan
+- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik selama Home tampil (build 3.36-3.38)
 - **Tombol mic di remote** membuka suara Google (build 3.35). Di TV SDMC/AX810 tombol itu dulu tidak bereaksi karena aplikasi suara Google-nya dimatikan; build ini menyalakannya lagi dan menambahkan jembatan kecil di launcher
 
 Butuh TV Android 8 ke atas, dan sebuah HP Android (pakai Termux) atau komputer untuk menjalankan adb. Cukup sekali saat memasang.
@@ -40,7 +40,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.37-netspeed-kiri.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.38-netspeed-tebal.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -78,7 +78,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.37-netspeed-kiri.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.38-netspeed-tebal.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -94,7 +94,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.37-netspeed-kiri.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.38-netspeed-tebal.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
