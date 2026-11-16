@@ -16,23 +16,22 @@ Isi repo
   BACA-DULU.txt      berkas ini
   pasang.bat         pemasang otomatis Windows
   install-adb.ps1    skrip yang dijalankan pasang.bat
-  pasang-adzan.bat   pemasang suara adzan otomatis (Windows)
-  pasang-adzan.ps1   skrip yang dijalankan pasang-adzan.bat
+  SHA256SUMS.txt     checksum APK terbaru
   screenshots/       contoh tampilan
 
-Unduh paket siap pakai
-----------------------
-  Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.33-stats-sejajar.apk   APK saja
-    CleanYourTV-Sola-3.33-pasang.zip          paket lengkap
-  Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
-  screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
-  lalu taruh APK di folder yang sama dengan pasang.bat.
+Unduh APK siap pakai
+--------------------
+  Buka tab "Releases" repo ini, lalu unduh:
+    CleanYourTV-Sola-3.34-hujan.apk   APK siap pasang
+    SHA256SUMS.txt                    checksum APK itu
+  APK ditandatangani kunci debug, jadi berbeda dari APK resmi CleanYourTV.
+  Kalau memakai pasang.bat, taruh APK di folder yang sama dengan pasang.bat.
 
 Fitur tambahan dibanding CleanYourTV biasa
 ------------------------------------------
   - Kartu jadwal sholat dan jadwal bola di bawah jam, gaya kaca permanen
-  - Cuaca hari ini + kualitas udara (AQI) di bawah tanggal, ikon berwarna
+  - Cuaca hari ini + kualitas udara (AQI) di bawah tanggal, ikon berwarna;
+    saat jam berjalan berisi hujan, teks ikut data per jam (Gerimis/Hujan)
   - Grafik CPU / RAM / Disk berupa tiga batang, sejajar kartu jadwal sholat
   - Timer tidur di samping Setelan (butuh Android 9+)
   - Nama Wi-Fi lengkap di pil atas; sapaan + nama diatur di config.xml
@@ -64,6 +63,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.34  cuaca ikut data hujan per jam, tidak lagi "Berawan" saat gerimis
   3.33  grafik digeser sejajar kartu jadwal sholat; pemasang uji reboot
   3.32  label RAM/Disk tidak terpotong (grafik 720 px)
   3.31  label RAM/Disk, grafik 680 px

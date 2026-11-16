@@ -12,6 +12,7 @@ import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
@@ -162,15 +163,50 @@ final class WeatherSource {
                 + String.format(Locale.US, "%.4f", lat)
                 + "&longitude=" + String.format(Locale.US, "%.4f", lon)
                 + "&current=temperature_2m,weather_code"
+                + "&hourly=weather_code,precipitation"
                 + "&timezone=" + URLEncoder.encode("Asia/Jakarta", "UTF-8")
                 + "&forecast_days=1";
         JSONObject reply = new JSONObject(HomeWidgets.get(url));
         JSONObject current = reply.optJSONObject("current");
         if (current == null || !current.has("temperature_2m")) throw new Exception("no current weather");
         int code = current.optInt("weather_code", -1);
+        // The "current" block smooths a drizzle into its cloud: 18:30 with 0.3 mm in the 18:00 row
+        // comes back as code 3 (overcast). When the hour that holds now says rain, say rain.
+        int hourly = rainingThisHour(reply);
+        if (hourly >= 0 && isRain(hourly) && !isRain(code)) code = hourly;
         String text = describe(code)
                 + " \u00b7 " + Math.round(current.getDouble("temperature_2m")) + "\u00b0C";
         return new Reading(text, code, fetchAqi(lat, lon));
+    }
+
+    /**
+     * The hourly code for the hour that holds now, when that hour carries at least 0.1 mm of rain; -1
+     * when the hour is dry or the reply has no hourly block. Times are in the requested timezone:
+     * hourly "2026-11-16T18:00", current "2026-11-16T18:30".
+     */
+    private static int rainingThisHour(JSONObject reply) {
+        JSONObject hourly = reply.optJSONObject("hourly");
+        JSONObject current = reply.optJSONObject("current");
+        if (hourly == null || current == null) return -1;
+        JSONArray times = hourly.optJSONArray("time");
+        JSONArray codes = hourly.optJSONArray("weather_code");
+        JSONArray rain = hourly.optJSONArray("precipitation");
+        String now = current.optString("time", "");
+        if (times == null || codes == null || rain == null || now.length() < 13) return -1;
+        String hour = now.substring(0, 13);
+        int n = Math.min(times.length(), Math.min(codes.length(), rain.length()));
+        for (int i = 0; i < n; i++) {
+            String at = times.optString(i, "");
+            if (!at.startsWith(hour)) continue;
+            if (rain.optDouble(i, 0) < 0.1) return -1;
+            return codes.optInt(i, -1);
+        }
+        return -1;
+    }
+
+    /** WMO codes that mean water is falling: drizzle, rain, freezing rain and thunderstorms. */
+    private static boolean isRain(int code) {
+        return (code >= 51 && code <= 67) || (code >= 80 && code <= 82) || code >= 95;
     }
 
     /** The air quality is a bonus: when it cannot be read, the line keeps the weather without it. */

@@ -9,7 +9,6 @@ Launcher Android TV / Google TV bergaya Apple TV, berbasis [CleanYourTV](https:/
 - Kartu jadwal sholat dan jadwal bola dibuat **lebih besar**; kartu kalender disembunyikan secara bawaan (bisa dimunculkan lagi di Setelan)
 - Kartu bergaya **kaca bening (tembus pandang)**: wallpaper tetap terlihat di balik latar buram, dengan kilau tipis di atas, tepi terang, dan teks putih tebal yang mudah dibaca dari sofa
 - **Cuaca hari ini** tepat di bawah tanggal, dengan ikon yang berubah mengikuti kondisi (mis. `Gerimis · 28°C · 26°–29°`), mengikuti lokasi jadwal sholat
-- **Baris statistik** kecil di bawah jam: CPU, RAM dan penyimpanan yang sedang dipakai (build 3.27-3.33), dengan ikon dan teks yang disejajarkan
 
 Butuh TV Android 8 ke atas, dan sebuah HP Android (pakai Termux) atau komputer untuk menjalankan adb. Cukup sekali saat memasang.
 
@@ -38,7 +37,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.33-stats-sejajar.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.34-hujan.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -76,7 +75,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.33-stats-sejajar.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.34-hujan.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -92,7 +91,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.33-stats-sejajar.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.34-hujan.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
@@ -112,20 +111,16 @@ Yang terakhir untuk **timer tidur**: dengan izin ini launcher bisa menyalakan se
 
 ## 6. Suara adzan (opsional)
 
-Paket ini sudah membawa `adzan.mp3` (3 menit 20 detik). Cara termudah: klik 2x **`pasang-adzan.bat`**, masukkan IP TV. Skripnya mengirim file ke folder launcher lewat content provider bawaan launcher, jadi **tidak perlu root**, lalu memeriksa checksum-nya.
-
-Kalau mau suara lain, timpa `adzan.mp3` di folder ini lalu jalankan `pasang-adzan.bat` lagi. Atau kerjakan manual:
+Launcher ini **tidak menyertakan** suara adzan. Siapkan file MP3 adzan pilihanmu sendiri, beri nama `adzan.mp3`, lalu:
 
 ```
-adb push adzan.mp3 /sdcard/Download/adzan.mp3
-adb shell 'content write --uri content://com.gathin.tvhome.theme/adzan.mp3 < /sdcard/Download/adzan.mp3'
+adb push ~/storage/downloads/adzan.mp3 /data/local/tmp/adzan.mp3
+adb shell 'content write --uri content://com.gathin.tvhome.theme/adzan.mp3 < /data/local/tmp/adzan.mp3; rm /data/local/tmp/adzan.mp3'
 ```
 
 Mau adzan khusus Subuh? Ulangi dengan nama `adzan_subuh.mp3`. Kalau tidak ada, Subuh memakai `adzan.mp3`.
 
-Terakhir, di TV: buka **Setelan → Pengingat adzan**, tekan baris itu sampai tertulis **Banner + suara adzan**, lalu pastikan di bawahnya muncul **File adzan.mp3 ditemukan.** Tekan **Tes pengingat sekarang** untuk mencoba; tekan **Home** untuk berhenti.
-
-Supaya ringan, kecilkan dulu file-nya (misalnya jadi mono 48 kbps) — file bawaan paket ini sekitar 1 MB.
+Supaya ringan, kecilkan dulu file-nya (misalnya jadi mono 48 kbps, sekitar 1,5 MB untuk adzan 4 menit).
 
 ## 7. Atur di TV
 
