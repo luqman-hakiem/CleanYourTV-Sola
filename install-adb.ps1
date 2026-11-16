@@ -106,6 +106,22 @@ if ($grantWifi -match 'Error|Exception') {
     Write-Host "Izin diberikan (lokasi, untuk membaca nama Wi-Fi yang tersambung)."
 }
 
+Step "Mengaktifkan kembali suara Google (tombol mic di remote)"
+foreach ($voicePkg in @('com.google.android.katniss', 'com.google.android.tts')) {
+    $listed = Invoke-Adb @('shell', 'pm', 'list', 'packages', $voicePkg)
+    if ($listed -notmatch "package:$([regex]::Escape($voicePkg))") {
+        Write-Host "Lewati ${voicePkg}: tidak ada di TV ini." -ForegroundColor Yellow
+        continue
+    }
+    $enable = Invoke-Adb @('shell', 'pm', 'enable', $voicePkg)
+    if ($enable -match 'Error|Exception') {
+        Write-Host "Peringatan: ${voicePkg} tidak bisa diaktifkan otomatis." -ForegroundColor Yellow
+        Write-Host "Aktifkan manual di TV: Setelan -> Aplikasi -> lihat semua -> Google -> Aktifkan."
+    } else {
+        Write-Host "OK    ${voicePkg} aktif, tombol mic di remote membuka suara Google." -ForegroundColor Green
+    }
+}
+
 Step "Menjadikan CleanYourTV sebagai Home"
 $setHome = Invoke-Adb @('shell', 'cmd', 'package', 'set-home-activity', '--user', '0', $homeActivity)
 if ($setHome) { Write-Host $setHome }
@@ -229,6 +245,7 @@ Write-Host ""
 Write-Host "Langkah berikutnya di TV:"
 Write-Host "  1. Buka Setelan di kartu Home, atur lokasi sholat dan tim bola favorit."
 Write-Host "  2. Coba tombol Timer di samping Setelan."
+Write-Host "  3. Tekan tombol mic (ikon mikrofon) di remote untuk membuka suara Google."
 Write-Host ""
 Write-Host "Untuk kembali ke launcher bawaan:"
 if ($stock) { Write-Host "  adb -s $Device shell pm enable $stock" }

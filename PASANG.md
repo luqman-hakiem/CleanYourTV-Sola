@@ -9,7 +9,8 @@ Launcher Android TV / Google TV bergaya Apple TV, berbasis [CleanYourTV](https:/
 - Kartu jadwal sholat dan jadwal bola dibuat **lebih besar**; kartu kalender disembunyikan secara bawaan (bisa dimunculkan lagi di Setelan)
 - Kartu bergaya **kaca bening (tembus pandang)**: wallpaper tetap terlihat di balik latar buram, dengan kilau tipis di atas, tepi terang, dan teks putih tebal yang mudah dibaca dari sofa
 - **Cuaca hari ini** tepat di bawah tanggal, dengan ikon yang berubah mengikuti kondisi (mis. `Gerimis · 28°C · 26°–29°`), mengikuti lokasi jadwal sholat. Saat jam berjalan berisi hujan (minimal 0,1 mm), teks dan ikon mengikuti data per jam, jadi gerimis tidak lagi tertulis "Berawan"
-- **Baris statistik** kecil di bawah jam: CPU, RAM dan penyimpanan yang sedang dipakai (build 3.27-3.34), dengan ikon dan teks yang disejajarkan
+- **Baris statistik** kecil di bawah jam: CPU, RAM dan penyimpanan yang sedang dipakai (build 3.27-3.35), dengan ikon dan teks yang disejajarkan
+- **Tombol mic di remote** membuka suara Google (build 3.35). Di TV SDMC/AX810 tombol itu dulu tidak bereaksi karena aplikasi suara Google-nya dimatikan; build ini menyalakannya lagi dan menambahkan jembatan kecil di launcher
 
 Butuh TV Android 8 ke atas, dan sebuah HP Android (pakai Termux) atau komputer untuk menjalankan adb. Cukup sekali saat memasang.
 
@@ -38,7 +39,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.34-hujan.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.35-suara.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -76,7 +77,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.34-hujan.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.35-suara.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -92,7 +93,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.34-hujan.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.35-suara.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
@@ -104,9 +105,13 @@ adb shell appops set com.gathin.tvhome SYSTEM_ALERT_WINDOW allow
 adb shell appops set com.gathin.tvhome SCHEDULE_EXACT_ALARM allow
 adb shell appops set com.gathin.tvhome APP_AUTO_START allow
 adb shell pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS
+adb shell pm enable com.google.android.katniss
+adb shell pm enable com.google.android.tts
 ```
 
 Tiga yang pertama supaya banner adzan bisa tampil di atas aplikasi lain, tepat waktu, dan launcher ikut menyala setelah TV restart (di sebagian TV perintah `APP_AUTO_START` tidak dikenal; abaikan saja kalau error).
+
+Dua yang terakhir menyalakan kembali **suara Google** (`katniss`) dan mesin bacaannya (`tts`). Di sebagian TV SDMC/AX810 keduanya dimatikan, jadi tombol mic di remote tidak bereaksi; setelah diaktifkan, tombol itu membuka layar voice search. Kalau perintahnya error karena paketnya memang tidak ada di TV, abaikan saja.
 
 Yang terakhir untuk **timer tidur**: dengan izin ini launcher bisa menyalakan sendiri layanan aksesibilitasnya, sehingga TV benar-benar mati saat timer habis tanpa perlu mengutak-atik Setelan TV. Tanpa izin ini timer tetap berjalan dan bannernya tetap muncul, tetapi TV tidak akan terkunci sendiri (bisa diaktifkan manual di **Setelan → Aksesibilitas**).
 

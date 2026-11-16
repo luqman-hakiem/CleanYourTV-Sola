@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.34-hujan.apk   APK saja
-    CleanYourTV-Sola-3.34-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.35-suara.apk   APK saja
+    CleanYourTV-Sola-3.35-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -38,6 +38,8 @@ Fitur tambahan dibanding CleanYourTV biasa
     (Gerimis / Hujan Ringan), tidak lagi "Berawan"
   - Grafik CPU / RAM / Disk berupa tiga batang, sejajar kartu jadwal sholat
   - Timer tidur di samping Setelan (butuh Android 9+)
+  - Tombol mic di remote membuka suara Google; pemasang menyalakan lagi
+    aplikasi suara Google yang dimatikan TV (SDMC/AX810)
   - Nama Wi-Fi lengkap di pil atas; sapaan + nama diatur di config.xml
   - Tanggal Minggu: hanya tanggal yang merah, nama bulan tetap putih
   - pasang.bat: pasang, jadikan Home, reboot, lalu memeriksa hasilnya sendiri
@@ -67,7 +69,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
-  3.34  cuaca ikut data hujan per jam; gerimis tampil "Gerimis", bukan "Berawan"
+  3.35  tombol mic remote membuka suara Google; aplikasi suara diaktifkan lagi
   3.33  grafik digeser sejajar kartu jadwal sholat; pemasang uji reboot
   3.32  label RAM/Disk tidak terpotong (grafik 720 px)
   3.31  label RAM/Disk, grafik 680 px

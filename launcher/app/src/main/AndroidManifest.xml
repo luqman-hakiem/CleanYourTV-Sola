@@ -109,6 +109,21 @@
             </intent-filter>
         </activity>
 
+        <!-- AX810 (SDMC) remote voice key: its GlobalKey receiver starts
+             com.sdmc.bluetoothconnect.START_BTSETUP, which no app on the set handles, so the mic button
+             did nothing. Answer that action and open the Assistant instead. Other sets never send it. -->
+        <activity
+            android:name=".RemoteVoiceActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="com.sdmc.bluetoothconnect.START_BTSETUP" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".LauncherSettingsActivity"
             android:exported="false"
