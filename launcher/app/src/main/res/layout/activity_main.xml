@@ -851,6 +851,11 @@
                     android:nextFocusDown="@+id/grid" />
 
                 <TextView
+                    android:id="@+id/btnNetSpeed"
+                    style="@style/TopInfo"
+                    android:visibility="gone" />
+
+                <TextView
                     android:id="@+id/btnWifi"
                     style="@style/TopButton"
                     android:maxWidth="180dp"
@@ -889,11 +894,6 @@
                     android:text="@string/sleep_timer"
                     android:drawableStart="@drawable/ic_timer"
                     android:nextFocusDown="@+id/grid" />
-
-                <TextView
-                    android:id="@+id/btnNetSpeed"
-                    style="@style/TopInfo"
-                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/btnSettings"
