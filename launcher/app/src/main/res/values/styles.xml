@@ -26,8 +26,8 @@
     </style>
     <style name="TopButton" parent="TopButtonBase" />
 
-    <!-- Small read-only pill before the Wi-Fi pill: the internet download/upload speed. Not focusable, so the
-         remote's D-pad skips it: Inputs goes straight to Wi-Fi, the last button straight to Settings. -->
+    <!-- Small pill before the Wi-Fi pill: the internet download/upload speed. Selecting it runs a speed test, and
+         its dark scrim keeps the white figures readable over a bright wallpaper. -->
     <style name="TopInfo" parent="TopButtonBase">
         <item name="android:paddingStart">14dp</item>
         <item name="android:paddingEnd">14dp</item>
@@ -35,7 +35,8 @@
         <item name="android:fontFamily">@string/font_medium</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">#D9FFFFFF</item>
+        <item name="android:textColor">#F2FFFFFF</item>
+        <item name="android:background">@drawable/pill_speed_bg</item>
         <item name="android:focusable">false</item>
         <item name="android:clickable">false</item>
         <item name="android:singleLine">true</item>

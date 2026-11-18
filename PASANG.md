@@ -10,7 +10,7 @@ Launcher Android TV / Google TV bergaya Apple TV, berbasis [CleanYourTV](https:/
 - Kartu bergaya **kaca bening (tembus pandang)**: wallpaper tetap terlihat di balik latar buram, dengan kilau tipis di atas, tepi terang, dan teks putih tebal yang mudah dibaca dari sofa
 - **Cuaca hari ini** tepat di bawah tanggal, dengan ikon yang berubah mengikuti kondisi (mis. `Gerimis · 28°C · 26°–29°`), mengikuti lokasi jadwal sholat. Saat jam berjalan berisi hujan (minimal 0,1 mm), teks dan ikon mengikuti data per jam, jadi gerimis tidak lagi tertulis "Berawan"
 - **Baris statistik** kecil di bawah jam: CPU, RAM dan penyimpanan yang sedang dipakai (build 3.27-3.38), dengan ikon dan teks yang disejajarkan
-- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik selama Home tampil. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik (build 3.36-3.39)
+- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik selama Home tampil. Pil ini berlatar gelap tembus pandang supaya angkanya terbaca di wallpaper terang. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik (build 3.36-3.39)
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**. Baris Bluetooth membuka layar "Tambahkan aksesori" bawaan TV, karena Setelan TV SDMC/AX810 tidak punya layar Bluetooth sendiri (build 3.39)
 - **Tombol mic di remote** membuka suara Google (build 3.35). Di TV SDMC/AX810 tombol itu dulu tidak bereaksi karena aplikasi suara Google-nya dimatikan; build ini menyalakannya lagi dan menambahkan jembatan kecil di launcher
 
@@ -41,7 +41,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.39-speedtest.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.40-pil-terbaca.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -79,7 +79,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.39-speedtest.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.40-pil-terbaca.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -95,7 +95,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.39-speedtest.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.40-pil-terbaca.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
