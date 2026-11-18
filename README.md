@@ -14,7 +14,7 @@ Tambahan di fork ini:
 - **Grafik CPU / RAM / Disk** tiga batang di bawah jam, sejajar dengan tepi kartu jadwal sholat
 - **Tanggal Minggu**: hanya angka tanggal yang merah, nama bulan tetap putih
 - **Timer tidur** di samping Setelan (butuh Android 9+), tombol atas ikon saja
-- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi, dengan latar gelap tembus pandang supaya angkanya terbaca di wallpaper terang: unduh dan unggah dalam Mbps, diperbarui tiap detik. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik
+- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik. Pilnya bening seperti pil lain saat diam, dan baru menjadi gelap tembus pandang selama uji kecepatan berjalan supaya angkanya terbaca. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
@@ -36,7 +36,7 @@ Tambahan di fork ini:
 
 <p align="center">
   <img src="screenshots/netspeed.png" alt="Kecepatan unduh dan unggah di kiri nama Wi-Fi" width="890"><br>
-  <img src="screenshots/pil-gelap-3.40.png" alt="Pil kecepatan dengan latar gelap transparan" width="300"><br>
+  <img src="screenshots/pil-transparan-3.41.png" alt="Pil kecepatan: bening saat diam, gelap saat uji kecepatan" width="440"><br>
   <img src="screenshots/speedtest-3.39.png" alt="Kartu uji kecepatan: Ping, Unduh, Unggah" width="430">
 </p>
 
@@ -45,12 +45,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.40-pil-terbaca** (versionCode 50).
+Rilis terbaru: **3.41-pil-tes-gelap** (versionCode 51).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.40-pil-terbaca.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.40-pil-terbaca.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.40-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.40-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.41-pil-tes-gelap.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.41-pil-tes-gelap.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.41-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.41-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

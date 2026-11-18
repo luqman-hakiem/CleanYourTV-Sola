@@ -7,8 +7,8 @@
             <corners android:radius="21dp" />
         </shape>
     </item>
-    <!-- The speed pill sits over a bright wallpaper, where a white scrim left the white figures hard to read.
-         A dark scrim still lets the wallpaper through but keeps the numbers legible from the sofa. -->
+    <!-- Only while a speed test runs (MainActivity.setSpeedPillDark): a dark scrim so the live figures stand out
+         from the wallpaper. At rest the pill keeps the usual glass background, like the pills beside it. -->
     <item>
         <shape android:shape="rectangle">
             <gradient android:angle="270" android:startColor="#99000000" android:endColor="#73000000" />

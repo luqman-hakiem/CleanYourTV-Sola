@@ -3069,6 +3069,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         speedUpMbps = 0;
         netSpeedHoldUntil = 0;
         setSpeedPill(getString(R.string.speed_test_running));
+        setSpeedPillDark(true);
         new Thread(() -> test.run(new SpeedTest.Listener() {
             @Override
             public void onPhase(int phase) {
@@ -3109,6 +3110,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
                     if (run != speedTestRun) return;
                     speedTesting = false;
                     speedTest = null;
+                    setSpeedPillDark(false);
                     if (speedStatus != null) speedStatus.setText(ok ? R.string.speed_test_done : R.string.speed_test_failed);
                     if (ok && speedDownMbps > 0) {
                         setSpeedPill(getString(R.string.speed_test_pill, mbpsText(speedDownMbps), mbpsText(speedUpMbps)));
@@ -3129,6 +3131,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             speedTest = null;
             speedTesting = false;
             netSpeedHoldUntil = 0;
+            setSpeedPillDark(false);
         }
         speedPopup = null;
     }
@@ -3151,6 +3154,12 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         if (netSpeed == null) return;
         netSpeed.setText(speedSpans(text));
         netSpeed.setContentDescription(text);
+    }
+
+    /** At rest the pill is a glass pill like the ones beside it; only a running test darkens it. */
+    private void setSpeedPillDark(boolean dark) {
+        if (netSpeed == null) return;
+        netSpeed.setBackgroundResource(dark ? R.drawable.pill_speed_bg : R.drawable.pill_bg);
     }
 
     /** The arrows in the pill keep the colours the live figures use: green down, blue up. */
