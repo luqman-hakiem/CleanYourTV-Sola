@@ -16,6 +16,7 @@ Tambahan di fork ini:
 - **Timer tidur** di samping Setelan (butuh Android 9+), tombol atas ikon saja
 - **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik. Pilnya bening seperti pil lain saat diam, dan baru menjadi gelap tembus pandang selama uji kecepatan berjalan supaya angkanya terbaca. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
+- **Dock tanpa nama**: deretan ikon aplikasi di bawah tidak lagi menampilkan nama besar aplikasi di atasnya
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -31,7 +32,7 @@ Tambahan di fork ini:
 
 <p align="center">
   <img src="screenshots/kartu.png" alt="Kartu jadwal sholat dan jadwal bola" width="880"><br>
-  <img src="screenshots/dock.png" alt="Dock aplikasi" width="880">
+  <img src="screenshots/dock-tanpa-nama-3.42.png" alt="Dock aplikasi tanpa nama di atas ikon" width="880">
 </p>
 
 <p align="center">
@@ -45,12 +46,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.41-pil-tes-gelap** (versionCode 51).
+Rilis terbaru: **3.42-tanpa-nama-dock** (versionCode 52).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.41-pil-tes-gelap.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.41-pil-tes-gelap.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.41-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.41-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.42-tanpa-nama-dock.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.42-tanpa-nama-dock.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.42-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.42-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang
