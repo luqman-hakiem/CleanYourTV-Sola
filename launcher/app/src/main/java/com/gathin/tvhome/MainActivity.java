@@ -526,6 +526,10 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         appGlow = cfg.appGlow;
         if (!ambientGlow) ambient.setVisibility(View.GONE);
         heroName = findViewById(R.id.heroName);
+        // This fork: the dock shows icons only, so the focused app's big name above it never draws. INVISIBLE
+        // rather than GONE keeps the name's height, so the shelf still reserves the dock's place (dock_title true)
+        // and the dock does not ride up the screen.
+        heroName.setVisibility(View.INVISIBLE);
         hero = findViewById(R.id.hero);
         // The hero is now a group (name, and the cinematic lines): without this every fade of the default
         // shelf would render it through an offscreen buffer first, as the glow above notes.

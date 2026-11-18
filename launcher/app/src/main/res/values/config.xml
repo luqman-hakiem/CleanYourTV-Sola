@@ -383,8 +383,9 @@
     <integer name="rows_below_dock">0</integer>
 
     <!-- The focused dock app's name in large type above the dock. false keeps only the glow, which leaves room
-         for bigger tiles when rows_below_dock is 2 or 3. This fork keeps it off: the dock shows icons only. -->
-    <bool name="dock_title">false</bool>
+         for bigger tiles when rows_below_dock is 2 or 3. This fork keeps it true so the shelf's height still
+         reserves the dock's place, and hides the name itself in MainActivity. -->
+    <bool name="dock_title">true</bool>
 
     <!-- Tiles per row in the grid; the dock always has this many slots. Tiles are 180dp wide at 4 columns and
          shrink to fit from 5 up (about 144dp at 5, 117dp at 6 on a 1080p TV). -->
