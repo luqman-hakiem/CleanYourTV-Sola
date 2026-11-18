@@ -14,7 +14,8 @@ Tambahan di fork ini:
 - **Grafik CPU / RAM / Disk** tiga batang di bawah jam, sejajar dengan tepi kartu jadwal sholat
 - **Tanggal Minggu**: hanya angka tanggal yang merah, nama bulan tetap putih
 - **Timer tidur** di samping Setelan (butuh Android 9+), tombol atas ikon saja
-- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik
+- **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik
+- **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -34,7 +35,8 @@ Tambahan di fork ini:
 </p>
 
 <p align="center">
-  <img src="screenshots/netspeed.png" alt="Kecepatan unduh dan unggah di kiri nama Wi-Fi" width="890">
+  <img src="screenshots/netspeed.png" alt="Kecepatan unduh dan unggah di kiri nama Wi-Fi" width="890"><br>
+  <img src="screenshots/speedtest-3.39.png" alt="Kartu uji kecepatan: Ping, Unduh, Unggah" width="430">
 </p>
 
 **[Cara pasang (bahasa Indonesia)](PASANG.md)** · **[Panduan singkat](BACA-DULU.txt)** ·
@@ -42,12 +44,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.38-netspeed-tebal** (versionCode 48).
+Rilis terbaru: **3.39-speedtest** (versionCode 49).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.38-netspeed-tebal.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.38-netspeed-tebal.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.38-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.38-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.39-speedtest.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.39-speedtest.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.39-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.39-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

@@ -185,10 +185,23 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     /** config show_inputs_pill: false keeps the Inputs pill hidden even when the TV has inputs. */
     private boolean showInputsPill = true;
     private TextView btnWifi;
-    /** Read-only download/upload speed pill beside Settings (config.xml, show_net_speed). */
+    /** Download/upload speed pill before Wi-Fi (config.xml, show_net_speed); selecting it runs a speed test. */
     private TextView netSpeed;
     /** TrafficStats byte counters and the elapsedRealtime of the previous speed sample. */
     private long netRxAt, netTxAt, netSampleAt;
+    /** A speed test owns the pill and its popup; the live TrafficStats sampling stands aside meanwhile. */
+    private boolean speedTesting;
+    /** After a test the result stays on the pill until this elapsedRealtime, then sampling resumes. */
+    private long netSpeedHoldUntil;
+    /** The running test and its popup; both null when none is running. */
+    private SpeedTest speedTest;
+    private PopupWindow speedPopup;
+    /** The popup's status line and its three figures. */
+    private TextView speedStatus, speedPingValue, speedDownValue, speedUpValue;
+    /** The last download and upload figures, so the pill can repeat them without parsing its own text. */
+    private double speedDownMbps, speedUpMbps;
+    /** Counts test runs so a late callback from a cancelled one changes nothing. */
+    private int speedTestRun;
     /** Auto-off timer pill (SleepTimer); its label carries the time left while a timer runs. */
     private TextView btnTimer;
     /** The network pill's icon as last set, so a refresh that changes nothing does not lay the top bar out again. */
@@ -556,7 +569,14 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         }
         btnWifi = findViewById(R.id.btnWifi);
         netSpeed = findViewById(R.id.btnNetSpeed);
-        if (!getResources().getBoolean(R.bool.show_net_speed)) netSpeed.setVisibility(View.GONE);
+        if (!getResources().getBoolean(R.bool.show_net_speed)) {
+            netSpeed.setVisibility(View.GONE);
+        } else {
+            // The live figure is only a sample of what is happening now; selecting the pill measures the line.
+            netSpeed.setFocusable(true);
+            netSpeed.setClickable(true);
+            netSpeed.setOnClickListener(v -> showSpeedTest());
+        }
         shamsiDate = findViewById(R.id.shamsiDate);
         stats = findViewById(R.id.stats);
         raceCalendar = cfg.raceCalendar;
@@ -827,7 +847,9 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         btnTimer.setOnClickListener(v -> showTimerMenu());
         btnVpn.setOnClickListener(v -> openVpnPill());
         btnWifi.setOnLongClickListener(v -> {
-            open(systemIntent(Settings.ACTION_WIFI_SETTINGS));
+            // Hold opens the network menu: Wi-Fi, and the Bluetooth pairing screen this TV keeps behind
+            // Settings > Remote & accessories (its Settings has no BLUETOOTH_SETTINGS screen of its own).
+            showNetworkMenu();
             return true;
         });
         launcherSettingsButton = cfg.launcherSettingsButton;
@@ -870,6 +892,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             showInputsPill = false;
             btnInputs.setVisibility(View.GONE);
             btnWifi.setVisibility(View.GONE);
+            netSpeed.setVisibility(View.GONE);
             ((TextView) btnSettings).setText(R.string.settings);
             ((TextView) btnSettings).setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_settings, 0, 0, 0);
             if (!iconOnlyButtons) makeIconOnly((TextView) btnSettings);
@@ -1304,6 +1327,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         startPending = null;   // leaving Home before the network came back: the boot's app stays closed
         stopStats();
         stopNetSpeed();
+        cancelSpeedTest();
         if (gameDay != null) gameDay.stop();
         handler.removeCallbacks(turnTick);
         if (lamp != null) lamp.stop();
@@ -2949,14 +2973,15 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
      * Starts the small download/upload pill: takes a TrafficStats baseline now, shows 0 Mbps, then samples
      * once a second while Home is resumed. The counters include every app on the TV and all interfaces, so
      * it reads as the TV's internet speed, not just the launcher's (which never uses the network itself).
+     * Selecting the pill runs a real speed test; its result stays on the pill for a few seconds.
      */
     private void startNetSpeed() {
-        if (netSpeed == null || !getResources().getBoolean(R.bool.show_net_speed)) return;
+        if (netSpeed == null || topMenu || !getResources().getBoolean(R.bool.show_net_speed)) return;
         netSpeed.setVisibility(View.VISIBLE);
         netRxAt = Math.max(0, TrafficStats.getTotalRxBytes());
         netTxAt = Math.max(0, TrafficStats.getTotalTxBytes());
         netSampleAt = SystemClock.elapsedRealtime();
-        setNetSpeedText(0, 0);
+        if (!speedTesting && SystemClock.elapsedRealtime() >= netSpeedHoldUntil) setNetSpeedText(0, 0);
         handler.removeCallbacks(netSpeedTick);
         handler.postDelayed(netSpeedTick, NET_SPEED_MS);
     }
@@ -2970,6 +2995,15 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         long now = SystemClock.elapsedRealtime();
         long rx = Math.max(0, TrafficStats.getTotalRxBytes());
         long tx = Math.max(0, TrafficStats.getTotalTxBytes());
+        if (speedTesting || now < netSpeedHoldUntil) {
+            // The test (or its result) owns the pill. Keep the baseline moving, so the first live sample
+            // afterwards is not the test's own traffic.
+            netRxAt = rx;
+            netTxAt = tx;
+            netSampleAt = now;
+            handler.postDelayed(netSpeedTick, NET_SPEED_MS);
+            return;
+        }
         long elapsed = now - netSampleAt;
         if (elapsed > 0) {
             // A counter that went backwards (a reboot of the network stack) reads as 0, not a huge negative.
@@ -2983,12 +3017,144 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         handler.postDelayed(netSpeedTick, NET_SPEED_MS);
     }
 
-    /** Renders bytes per second as megabits per second, the unit internet packages are sold in. */
-    private void setNetSpeedText(double rxBytesPerSecond, double txBytesPerSecond) {
-        double rx = rxBytesPerSecond * 8 / 1_000_000;
-        double tx = txBytesPerSecond * 8 / 1_000_000;
-        String text = String.format(Locale.getDefault(), "↓ %.1f   ↑ %.1f Mbps", rx, tx);
-        if (TextUtils.equals(netSpeed.getText(), text)) return;
+    /** The speed pill's menu: measures ping, download and upload, then leaves the figures on screen. */
+    private void showSpeedTest() {
+        if (speedTesting || (speedPopup != null && speedPopup.isShowing())) return;
+        View panel = getLayoutInflater().inflate(R.layout.popup_inputs, root, false);
+        LinearLayout rows = panel.findViewById(R.id.rows);
+        PopupWindow popup = glassPopup(panel, (int) (300 * density));
+        speedPopup = popup;
+        popup.setOnDismissListener(() -> {
+            if (openPopup == popup) openPopup = null;
+            if (speedPopup == popup) speedPopup = null;
+            cancelSpeedTest();
+        });
+
+        speedStatus = addInfoRow(rows, R.drawable.ic_wifi, getString(R.string.speed_test),
+                getString(R.string.speed_test_ping_phase)).findViewById(R.id.status);
+        addSeparator(rows);
+        speedPingValue = addSpeedValueRow(rows, getString(R.string.speed_test_ping));
+        speedDownValue = addSpeedValueRow(rows, getString(R.string.speed_test_download));
+        speedUpValue = addSpeedValueRow(rows, getString(R.string.speed_test_upload));
+        addSeparator(rows);
+        View close = addInputRow(rows, popup, 0, getString(R.string.speed_test_close), -1, popup::dismiss);
+
+        panel.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        popup.setWidth(Math.max((int) (300 * density), Math.min(panel.getMeasuredWidth(), (int) (420 * density))));
+        dropIn(popup, panel, netSpeed, getResources().getBoolean(R.bool.rtl_menu_bar) ? Gravity.START : Gravity.END);
+        close.requestFocus();
+
+        if (!hasInternet()) {
+            speedStatus.setText(R.string.speed_test_offline);
+            return;
+        }
+        startSpeedTest();
+    }
+
+    /** A speed test row: a label on the left, its figure on the right, updated in place. */
+    private TextView addSpeedValueRow(LinearLayout rows, String title) {
+        View row = addInfoRow(rows, 0, title, "—");
+        TextView value = row.findViewById(R.id.status);
+        value.setTextColor(0xFFFFFFFF);
+        return value;
+    }
+
+    /** Runs the test off the UI thread; every figure lands in the popup and on the pill. */
+    private void startSpeedTest() {
+        final int run = ++speedTestRun;
+        final SpeedTest test = new SpeedTest();
+        speedTest = test;
+        speedTesting = true;
+        speedDownMbps = 0;
+        speedUpMbps = 0;
+        netSpeedHoldUntil = 0;
+        setSpeedPill(getString(R.string.speed_test_running));
+        new Thread(() -> test.run(new SpeedTest.Listener() {
+            @Override
+            public void onPhase(int phase) {
+                handler.post(() -> {
+                    if (run != speedTestRun || speedStatus == null) return;
+                    speedStatus.setText(phase == SpeedTest.PHASE_PING ? R.string.speed_test_ping_phase
+                            : phase == SpeedTest.PHASE_DOWNLOAD ? R.string.speed_test_download_phase
+                            : R.string.speed_test_upload_phase);
+                });
+            }
+
+            @Override
+            public void onProgress(int phase, double value) {
+                handler.post(() -> {
+                    if (run != speedTestRun) return;
+                    setSpeedFigure(phase, value);
+                    if (phase == SpeedTest.PHASE_DOWNLOAD) {
+                        setSpeedPill(getString(R.string.speed_test_pill, mbpsText(value), mbpsText(0)));
+                    } else if (phase == SpeedTest.PHASE_UPLOAD) {
+                        setSpeedPill(getString(R.string.speed_test_pill, mbpsText(speedDownMbps), mbpsText(value)));
+                    }
+                });
+            }
+
+            @Override
+            public void onResult(int phase, double value) {
+                handler.post(() -> {
+                    if (run != speedTestRun) return;
+                    if (phase == SpeedTest.PHASE_DOWNLOAD) speedDownMbps = value;
+                    else if (phase == SpeedTest.PHASE_UPLOAD) speedUpMbps = value;
+                    setSpeedFigure(phase, value);
+                });
+            }
+
+            @Override
+            public void onFinished(boolean ok) {
+                handler.post(() -> {
+                    if (run != speedTestRun) return;
+                    speedTesting = false;
+                    speedTest = null;
+                    if (speedStatus != null) speedStatus.setText(ok ? R.string.speed_test_done : R.string.speed_test_failed);
+                    if (ok && speedDownMbps > 0) {
+                        setSpeedPill(getString(R.string.speed_test_pill, mbpsText(speedDownMbps), mbpsText(speedUpMbps)));
+                    } else {
+                        setSpeedPill(getString(R.string.speed_test_pill_failed));
+                    }
+                    netSpeedHoldUntil = SystemClock.elapsedRealtime() + 10_000L;
+                });
+            }
+        }), "speed-test").start();
+    }
+
+    /** Stops a running test (Back, leaving Home, or a second run) and hands the pill back to live sampling. */
+    private void cancelSpeedTest() {
+        speedTestRun++;
+        if (speedTest != null) {
+            speedTest.cancel();
+            speedTest = null;
+            speedTesting = false;
+            netSpeedHoldUntil = 0;
+        }
+        speedPopup = null;
+    }
+
+    private void setSpeedFigure(int phase, double value) {
+        TextView target = phase == SpeedTest.PHASE_PING ? speedPingValue
+                : phase == SpeedTest.PHASE_DOWNLOAD ? speedDownValue : speedUpValue;
+        if (target == null) return;
+        target.setText(phase == SpeedTest.PHASE_PING
+                ? getString(R.string.speed_test_ms, String.format(Locale.getDefault(), "%.0f", value))
+                : getString(R.string.speed_test_mbps, String.format(Locale.getDefault(), "%.1f", value)));
+    }
+
+    private static String mbpsText(double value) {
+        return String.format(Locale.getDefault(), "%.1f", value);
+    }
+
+    /** The pill's text while a test runs and after it: plain, since the arrows are part of the words. */
+    private void setSpeedPill(String text) {
+        if (netSpeed == null) return;
+        netSpeed.setText(speedSpans(text));
+        netSpeed.setContentDescription(text);
+    }
+
+    /** The arrows in the pill keep the colours the live figures use: green down, blue up. */
+    private static CharSequence speedSpans(String text) {
         SpannableString label = new SpannableString(text);
         int down = text.indexOf('↓');
         int up = text.indexOf('↑');
@@ -2998,7 +3164,23 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         if (up >= 0) {
             label.setSpan(new ForegroundColorSpan(0xFF8EC5FF), up, up + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-        netSpeed.setText(label);
+        return label;
+    }
+
+    private boolean hasInternet() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network net = cm != null ? cm.getActiveNetwork() : null;
+        NetworkCapabilities caps = net != null ? cm.getNetworkCapabilities(net) : null;
+        return caps != null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+    }
+
+    /** Renders bytes per second as megabits per second, the unit internet packages are sold in. */
+    private void setNetSpeedText(double rxBytesPerSecond, double txBytesPerSecond) {
+        double rx = rxBytesPerSecond * 8 / 1_000_000;
+        double tx = txBytesPerSecond * 8 / 1_000_000;
+        String text = String.format(Locale.getDefault(), "↓ %.1f   ↑ %.1f Mbps", rx, tx);
+        if (TextUtils.equals(netSpeed.getText(), text)) return;
+        netSpeed.setText(speedSpans(text));
         netSpeed.setContentDescription(getString(R.string.net_speed_description,
                 String.format(Locale.getDefault(), "%.1f", rx),
                 String.format(Locale.getDefault(), "%.1f", tx)));
@@ -3122,6 +3304,43 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private void openNetworkPill() {
         Intent i = vpnPill ? null : vpnAppIntent();
         open(i != null ? i : systemIntent(Settings.ACTION_WIFI_SETTINGS));
+    }
+
+    /** Hold on the network pill: Wi-Fi settings, and Bluetooth, which this TV hides under Remote & accessories. */
+    private void showNetworkMenu() {
+        View panel = getLayoutInflater().inflate(R.layout.popup_inputs, root, false);
+        LinearLayout rows = panel.findViewById(R.id.rows);
+        PopupWindow popup = glassPopup(panel, (int) (300 * density));
+        addInputRow(rows, popup, R.drawable.ic_wifi, getString(R.string.wifi), -1, this::openNetworkPill);
+        addInputRow(rows, popup, R.drawable.ic_bluetooth, getString(R.string.quick_bluetooth), -1,
+                this::openBluetoothSettings);
+        panel.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        popup.setWidth(Math.max((int) (300 * density), Math.min(panel.getMeasuredWidth(), (int) (420 * density))));
+        dropIn(popup, panel, btnWifi, getResources().getBoolean(R.bool.rtl_menu_bar) ? Gravity.START : Gravity.END);
+        // The popup's views are attached a moment after showAsDropDown returns, so focus is asked for then.
+        panel.post(() -> rows.getChildAt(0).requestFocus());
+    }
+
+    /**
+     * The Bluetooth pairing screen. Android TV Settings on this board has no BLUETOOTH_SETTINGS screen: the
+     * action resolves to nothing, so a shortcut built on it silently does nothing, and the list lives behind
+     * Settings > Remote & accessories. That screen's activity is opened directly, and the standard action is
+     * only the fallback for other TVs.
+     */
+    private void openBluetoothSettings() {
+        Intent accessories = new Intent()
+                .setComponent(new ComponentName("com.android.tv.settings",
+                        "com.android.tv.settings.accessories.AddAccessoryActivity"));
+        if (accessories.resolveActivity(getPackageManager()) != null) {
+            open(accessories);
+            return;
+        }
+        Intent standard = systemIntent(Settings.ACTION_BLUETOOTH_SETTINGS);
+        if (standard.resolveActivity(getPackageManager()) != null) {
+            open(standard);
+            return;
+        }
+        open(systemIntent(Settings.ACTION_SETTINGS));
     }
 
     /** vpn_app's launch intent, or null when none is set or it is not installed. */
