@@ -935,7 +935,11 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             if (event.getAction() != KeyEvent.ACTION_DOWN) return false;
             if (keyCode == KeyEvent.KEYCODE_DPAD_UP) return true;
             if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-                // Back to the dock tile Up came from, not wherever the focus finder lands.
+                // The BitChord card sits just under the top bar: DOWN reaches it first, so the remote can
+                // play/pause straight from Home. Otherwise back to the dock tile Up came from.
+                View music = findViewById(R.id.bitchordBar);
+                if (music != null && music.getVisibility() == View.VISIBLE
+                        && music.requestFocus()) return true;
                 focusTile(singleRow ? lastFocused : lastFocused % COLUMNS);
                 return true;
             }

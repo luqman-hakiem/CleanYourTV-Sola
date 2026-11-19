@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.38-netspeed-tebal.apk   APK saja
-    CleanYourTV-Sola-3.38-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.47-bitchord-remote.apk   APK saja
+    CleanYourTV-Sola-3.47-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -44,6 +44,10 @@ Fitur tambahan dibanding CleanYourTV biasa
   - Tombol mic di remote membuka suara Google; pemasang menyalakan lagi
     aplikasi suara Google yang dimatikan TV (SDMC/AX810)
   - Nama Wi-Fi lengkap di pil atas; sapaan + nama diatur di config.xml
+  - Kontrol BitChord glass mini di bawah jadwal sholat: sampul + judul lagu
+    dan tombol Aa (buka BitChord untuk lirik), ▶/⏸ (putar/jeda), ⏭ (next).
+    Bisa diklik remot: DPAD Bawah dari bar atas atau Atas dari grid, lalu OK
+    memutar/jeda langsung di Home tanpa membuka aplikasi
   - Tanggal Minggu: hanya tanggal yang merah, nama bulan tetap putih
   - pasang.bat: pasang, jadikan Home, reboot, lalu memeriksa hasilnya sendiri
 
@@ -72,6 +76,11 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.47  kontrol BitChord bisa diputar langsung dari Home lewat remot (Down/Up + OK)
+  3.46  kontrol BitChord glass mini: tombol lirik, putar/jeda, lagu berikutnya
+  3.45  kartu BitChord "NOW PLAYING" di bawah jadwal sholat, bisa diklik remote
+  3.44  kontrol BitChord ringkas di Home (play/pause lewat sesi media)
+  3.43  dock tanpa nama, posisi tidak bergeser
   3.38  huruf pil kecepatan ditebalkan
   3.37  pil kecepatan internet dipindah ke kiri nama Wi-Fi
   3.36  pil kecepatan internet (unduh/unggah) di samping Setelan

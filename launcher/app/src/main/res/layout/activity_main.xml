@@ -602,6 +602,123 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- BitChord control, directly below the prayer card. Styled like the other glass widgets. Reads
+         the BitChord media session so the remote can play/pause, skip, or open lyrics from Home. -->
+    <LinearLayout
+        android:id="@+id/bitchordBar"
+        android:layout_width="248dp"
+        android:layout_height="36dp"
+        android:layout_gravity="top|left"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/widget_card_bg"
+        android:paddingStart="8dp"
+        android:paddingEnd="6dp"
+        android:visibility="gone"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:descendantFocusability="beforeDescendants"
+        android:nextFocusUp="@id/btnWifi"
+        android:nextFocusDown="@+id/grid"
+        android:nextFocusLeft="@id/bitchordNext"
+        android:nextFocusRight="@id/bitchordLyrics"
+        android:contentDescription="@string/bitchord_widget">
+
+        <ImageView
+            android:id="@+id/bitchordArt"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@null" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bitchordLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="@string/bitchord_name"
+                android:textColor="#F2FFFFFF"
+                android:textSize="10sp"
+                android:fontFamily="@string/font_medium" />
+
+            <TextView
+                android:id="@+id/bitchordSub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#B3FFFFFF"
+                android:textSize="8.5sp"
+                android:fontFamily="@string/font_regular" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bitchordLyrics"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:gravity="center"
+            android:text="Aa"
+            android:textColor="#F2FFFFFF"
+            android:textSize="9sp"
+            android:fontFamily="@string/font_medium"
+            android:background="@drawable/widget_card_bg"
+            android:focusable="true"
+            android:clickable="true"
+            android:nextFocusUp="@id/bitchordBar"
+            android:nextFocusDown="@+id/grid"
+            android:nextFocusLeft="@id/bitchordNext"
+            android:nextFocusRight="@id/bitchordPlay"
+            android:contentDescription="@string/bitchord_lyrics" />
+
+        <TextView
+            android:id="@+id/bitchordPlay"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:gravity="center"
+            android:text="▶"
+            android:textColor="#FFFFFFFF"
+            android:textSize="10sp"
+            android:fontFamily="@string/font_medium"
+            android:background="@drawable/widget_card_bg"
+            android:focusable="true"
+            android:clickable="true"
+            android:nextFocusUp="@id/bitchordBar"
+            android:nextFocusDown="@+id/grid"
+            android:nextFocusLeft="@id/bitchordLyrics"
+            android:nextFocusRight="@id/bitchordNext"
+            android:contentDescription="@string/bitchord_widget" />
+
+        <TextView
+            android:id="@+id/bitchordNext"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:gravity="center"
+            android:text="⏭"
+            android:textColor="#FFFFFFFF"
+            android:textSize="10sp"
+            android:fontFamily="@string/font_medium"
+            android:background="@drawable/widget_card_bg"
+            android:focusable="true"
+            android:clickable="true"
+            android:nextFocusUp="@id/bitchordBar"
+            android:nextFocusDown="@+id/grid"
+            android:nextFocusLeft="@id/bitchordPlay"
+            android:nextFocusRight="@id/bitchordLyrics"
+            android:contentDescription="@string/bitchord_next" />
+    </LinearLayout>
+
     <!-- Cinematic top shelf: darkens the edge behind the shelf and the lower half, so the text and the
          dock stay readable over the artwork. -->
     <View
@@ -848,7 +965,7 @@
                     style="@style/TopButton"
                     android:text="@string/inputs"
                     android:drawableStart="@drawable/ic_input"
-                    android:nextFocusDown="@+id/grid" />
+                    android:nextFocusDown="@id/bitchordBar" />
 
                 <TextView
                     android:id="@+id/btnNetSpeed"
@@ -863,7 +980,7 @@
                     android:ellipsize="end"
                     android:text="@string/wifi"
                     android:drawableStart="@drawable/ic_wifi"
-                    android:nextFocusDown="@+id/grid" />
+                    android:nextFocusDown="@id/bitchordBar" />
 
                 <TextView
                     android:id="@+id/btnVpn"
@@ -871,14 +988,14 @@
                     android:visibility="gone"
                     android:singleLine="true"
                     android:text="@string/vpn"
-                    android:nextFocusDown="@+id/grid" />
+                    android:nextFocusDown="@id/bitchordBar" />
 
                 <TextView
                     android:id="@+id/btnReorder"
                     style="@style/TopButtonIcon"
                     android:contentDescription="@string/reorder"
                     android:drawableStart="@drawable/ic_swap_vert"
-                    android:nextFocusDown="@+id/grid" />
+                    android:nextFocusDown="@id/bitchordBar" />
 
                 <TextView
                     android:id="@+id/btnLibraryTop"
@@ -886,21 +1003,21 @@
                     android:visibility="gone"
                     android:contentDescription="@string/app_library"
                     android:drawableStart="@drawable/ic_apps_pill"
-                    android:nextFocusDown="@+id/grid" />
+                    android:nextFocusDown="@id/bitchordBar" />
 
                 <TextView
                     android:id="@+id/btnTimer"
                     style="@style/TopButton"
                     android:text="@string/sleep_timer"
                     android:drawableStart="@drawable/ic_timer"
-                    android:nextFocusDown="@+id/grid" />
+                    android:nextFocusDown="@id/bitchordBar" />
 
                 <TextView
                     android:id="@+id/btnSettings"
                     style="@style/TopButton"
                     android:text="@string/settings"
                     android:drawableStart="@drawable/ic_settings"
-                    android:nextFocusDown="@+id/grid" />
+                    android:nextFocusDown="@id/bitchordBar" />
             </LinearLayout>
         </RelativeLayout>
 

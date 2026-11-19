@@ -87,6 +87,8 @@ final class HomeWidgets {
     private final TextView[] ballDates = new TextView[4], ballOpponents = new TextView[4], ballTags = new TextView[4];
     private final android.widget.ImageView[] ballLogos = new android.widget.ImageView[4];
     private final View calCard, prayerCard, ballCard;
+    /** Compact BitChord control under the prayer card; null when BitChord is not installed. */
+    private final BitchordWidget music;
 
     /** The widget row, or null when home_widgets is off. */
     static HomeWidgets create(Activity activity) {
@@ -99,6 +101,8 @@ final class HomeWidgets {
         if (!res.getBoolean(R.bool.home_widgets) || !any) {
             // Every card switched off: no row at all, and the dock sits where the original launcher has it.
             row.setVisibility(View.GONE);
+            View bar = activity.findViewById(R.id.bitchordBar);
+            if (bar != null) bar.setVisibility(View.GONE);
             return null;
         }
         return new HomeWidgets(activity, row);
@@ -147,13 +151,17 @@ final class HomeWidgets {
         shadowTexts(row, density);
         // Glass from the very first frame: the wallpaper snapshot, once it reads, only sets its tone.
         String style = prefs.getString(WidgetStyle.PREF_STYLE, WidgetStyle.BLUR);
+        int shade = prefs.getInt(WidgetStyle.PREF_SHADE, 1);
         if (WidgetStyle.BLUR.equals(style) || WidgetStyle.AUTO.equals(style)) {
-            int shade = prefs.getInt(WidgetStyle.PREF_SHADE, 1);
             for (View card : new View[]{prayerCard, calCard, ballCard}) {
                 card.setBackground(WidgetStyle.plainGlass(card, shade));
             }
         }
         row.setVisibility(View.VISIBLE);
+        music = BitchordWidget.create(activity);
+        if (music != null && (WidgetStyle.BLUR.equals(style) || WidgetStyle.AUTO.equals(style))) {
+            music.view().setBackground(WidgetStyle.plainGlass(music.view(), shade));
+        }
     }
 
     /** Called on every return to Home and once a minute with the clock. */
@@ -294,7 +302,8 @@ final class HomeWidgets {
         Bitmap backdrop = glass ? backdropBitmap : null;   // a failed read keeps the last glass
         int[] rootAt = new int[2];
         root.getLocationInWindow(rootAt);
-        View[] cards = {prayerCard, calCard, ballCard};
+        View[] cards = music == null ? new View[]{prayerCard, calCard, ballCard}
+                : new View[]{prayerCard, calCard, ballCard, music.view()};
         RectF[] where = new RectF[cards.length];
         StringBuilder key = new StringBuilder(style).append('|').append(shade)
                 .append('|').append(glass ? backdropKey : "-").append('|').append(backdropVersion);
@@ -353,6 +362,10 @@ final class HomeWidgets {
         faded = away;
         row.animate().cancel();
         row.animate().alpha(away ? 0f : 1f).setDuration(160).start();
+        if (music != null) {
+            music.view().animate().cancel();
+            music.view().animate().alpha(away ? 0f : 1f).setDuration(160).start();
+        }
     }
 
     /** Where the row's bottom edge sits, in root coordinates, once it is placed under the header. */
@@ -368,6 +381,11 @@ final class HomeWidgets {
         header.getLocationInWindow(h);
         float y = h[1] - r[1] + header.getHeight() + 14 * density;
         if (Math.abs(row.getY() - y) > 0.5f) row.setY(y);
+        if (music != null) {
+            music.placeUnder(prayerCard, root);
+            // The card gets its final width one layout pass after the row is moved.
+            row.post(() -> music.placeUnder(prayerCard, root));
+        }
     }
 
     /** The row's height in px, for the grid's top padding before it is laid out. */
@@ -378,6 +396,7 @@ final class HomeWidgets {
     void shutdown() {
         io.shutdownNow();
         main.removeCallbacksAndMessages(null);
+        if (music != null) music.shutdown();
     }
 
     // ---- prayer -----------------------------------------------------------------------------------
