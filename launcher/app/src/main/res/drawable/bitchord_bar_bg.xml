@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BitChord control card: brighter with a solid white rim when the remote focuses the player. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true" android:drawable="@drawable/bitchord_bar_focused" />
+    <item android:drawable="@drawable/widget_card_bg" />
+</selector>
