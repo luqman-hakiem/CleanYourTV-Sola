@@ -42,7 +42,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.48-bitchord-focus.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.49-bitchord-pulse.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -80,7 +80,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.48-bitchord-focus.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.49-bitchord-pulse.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -96,7 +96,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.48-bitchord-focus.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.49-bitchord-pulse.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.

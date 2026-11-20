@@ -719,6 +719,18 @@
             android:contentDescription="@string/bitchord_next" />
     </LinearLayout>
 
+    <!-- Moving line directly under the BitChord card. BitchordWidget positions it with the card and
+         animates it only while BitChord reports STATE_PLAYING. -->
+    <com.gathin.tvhome.BitchordPulseView
+        android:id="@+id/bitchordPulse"
+        android:layout_width="248dp"
+        android:layout_height="3dp"
+        android:layout_gravity="top|left"
+        android:visibility="gone"
+        android:clickable="false"
+        android:focusable="false"
+        android:importantForAccessibility="no" />
+
     <!-- Cinematic top shelf: darkens the edge behind the shelf and the lower half, so the text and the
          dock stay readable over the artwork. -->
     <View

@@ -35,6 +35,7 @@ final class BitchordWidget {
 
     private final Activity activity;
     private final View bar;
+    private final BitchordPulseView pulse;
     private final ImageView art;
     private final TextView label, sub, play, next, lyrics;
     private final Intent launch;
@@ -57,6 +58,8 @@ final class BitchordWidget {
         if (launch == null) launch = pm.getLaunchIntentForPackage(PKG);
         if (launch == null) {
             bar.setVisibility(View.GONE);
+            View pulse = activity.findViewById(R.id.bitchordPulse);
+            if (pulse != null) pulse.setVisibility(View.GONE);
             return null;
         }
         return new BitchordWidget(activity, bar, launch);
@@ -65,6 +68,7 @@ final class BitchordWidget {
     private BitchordWidget(Activity activity, View bar, Intent launch) {
         this.activity = activity;
         this.bar = bar;
+        this.pulse = activity.findViewById(R.id.bitchordPulse);
         this.launch = launch;
         this.density = activity.getResources().getDisplayMetrics().density;
         art = bar.findViewById(R.id.bitchordArt);
@@ -82,6 +86,11 @@ final class BitchordWidget {
         next.setOnClickListener(v -> skipNext());
         lyrics.setOnClickListener(v -> open());
         bar.setVisibility(View.VISIBLE);
+        if (pulse != null) {
+            pulse.setVisibility(View.VISIBLE);
+            pulse.bringToFront();
+            pulse.setElevation(1f);
+        }
         // The main content layer is declared after this bar in the XML and would otherwise cover it:
         // bring it to the front so the remote's focus reaches the controls.
         bar.bringToFront();
@@ -170,6 +179,7 @@ final class BitchordWidget {
         PlaybackState st = controller == null ? null : controller.getPlaybackState();
         playing = st != null && st.getState() == PlaybackState.STATE_PLAYING;
         play.setText(playing ? "\u23F8" : "\u25B6");
+        if (pulse != null) pulse.setPlaying(playing);
     }
 
     private static String text(String s) {
@@ -266,10 +276,18 @@ final class BitchordWidget {
             bar.setX(x);
             bar.setY(y);
         }
+        if (pulse != null) {
+            float py = y + bar.getHeight() + 2 * density;
+            if (Math.abs(pulse.getX() - x) > 0.5f || Math.abs(pulse.getY() - py) > 0.5f) {
+                pulse.setX(x);
+                pulse.setY(py);
+            }
+        }
     }
 
     void shutdown() {
         destroyed = true;
+        if (pulse != null) pulse.setPlaying(false);
         handler.removeCallbacksAndMessages(null);
         if (controller != null) {
             try {
