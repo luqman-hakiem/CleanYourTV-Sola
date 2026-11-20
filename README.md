@@ -17,7 +17,7 @@ Tambahan di fork ini:
 - **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik. Pilnya bening seperti pil lain saat diam, dan baru menjadi gelap tembus pandang selama uji kecepatan berjalan supaya angkanya terbaca. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Dock tanpa nama**: deretan ikon aplikasi di bawah tidak menampilkan nama besar aplikasi di atasnya, dan posisi dock tetap seperti semula
-- **Kontrol BitChord** di bawah jadwal sholat: kartu glass mini berisi sampul, judul lagu, dan tiga tombol — **Aa** (buka BitChord untuk lirik), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
+- **Kontrol BitChord** di bawah jadwal sholat: kartu glass mini selebar kartu sholat, berisi sampul, judul lagu, dan empat tombol — **Aa** (buka BitChord untuk lirik), **⏮** (lagu sebelumnya), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
 - **Pratinjau CCTV Reception** di samping kanan jadwal bola: kartu glass satu kamera dengan **ukuran sama persis** dengan kartu jadwal sholat dan bola (266 × 178 dp), menampilkan gambar terbaru dari jembatan CCTV di PC (snapshot JPEG tiap dua detik), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Sudut gambar dipangkas mengikuti tepi glass sehingga tidak ada garis yang menonjol. Bisa difokus dengan remot: dari bar atas tekan **Bawah**, atau dari grid tekan **Atas** dua kali; tepi kartu menyala saat difokus dan **OK** langsung menampilkan gambar **full layar** di launcher (tanpa membuka aplikasi lain). **OK** atau **BACK** untuk kembali. Kartu ini punya pengaturan sendiri di **Launcher settings → Widget Home → Kartu CCTV** (Tampil/Sembunyi), terpisah dari kartu jadwal bola. Saat disembunyikan, fokus remot dari pil atas langsung jatuh ke kartu BitChord dan kartu tidak memuat gambar. Tidak ada kata sandi yang disimpan di launcher
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
@@ -36,6 +36,7 @@ Tambahan di fork ini:
   <img src="screenshots/kartu.png" alt="Kartu jadwal sholat dan jadwal bola" width="880"><br>
   <img src="screenshots/cctv-aligned-3.54.png" alt="Pratinjau CCTV Reception seukuran jadwal sholat dan bola" width="880"><br>
   <img src="screenshots/widget-setting-3.55.png" alt="Pengaturan Widget Home dengan baris Kartu CCTV" width="880"><br>
+  <img src="screenshots/bitchord-prev-3.56.png" alt="Kartu BitChord selebar jadwal sholat dengan tombol lagu sebelumnya" width="880"><br>
   <img src="screenshots/dock-tanpa-nama-3.43.png" alt="Dock aplikasi tanpa nama di atas ikon" width="880">
 </p>
 
@@ -50,12 +51,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.55-cctv-widget-setting** (versionCode 65).
+Rilis terbaru: **3.56-bitchord-prev** (versionCode 66).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.55-cctv-widget-setting.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.55-cctv-widget-setting.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.55-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.55-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.56-bitchord-prev.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.56-bitchord-prev.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.56-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.56-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

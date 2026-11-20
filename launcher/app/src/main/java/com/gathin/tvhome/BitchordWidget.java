@@ -23,8 +23,8 @@ import android.widget.TextView;
 
 /**
  * Compact glass control for BitChord TV, placed under the prayer card. It reads BitChord's own media
- * session so the remote can play/pause, skip to the next track, or open the app from Home. "Lyrics"
- * opens BitChord, which is where lyrics are shown (the session exposes no lyric intent).
+ * session so the remote can play/pause, skip to the previous or next track, or open the app from Home.
+ * "Lyrics" opens BitChord, which is where lyrics are shown (the session exposes no lyric intent).
  *
  * <p>Platform MediaBrowser/MediaController are used on purpose: no new library and no extra permission.
  */
@@ -37,7 +37,7 @@ final class BitchordWidget {
     private final View bar;
     private final BitchordEqualizerView equalizer;
     private final ImageView art;
-    private final TextView label, sub, play, next, lyrics;
+    private final TextView label, sub, play, prev, next, lyrics;
     private final Intent launch;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final float density;
@@ -73,14 +73,16 @@ final class BitchordWidget {
         label = bar.findViewById(R.id.bitchordLabel);
         sub = bar.findViewById(R.id.bitchordSub);
         play = bar.findViewById(R.id.bitchordPlay);
+        prev = bar.findViewById(R.id.bitchordPrev);
         next = bar.findViewById(R.id.bitchordNext);
         lyrics = bar.findViewById(R.id.bitchordLyrics);
-        for (TextView t : new TextView[]{label, sub, play, next, lyrics}) {
+        for (TextView t : new TextView[]{label, sub, play, prev, next, lyrics}) {
             if (t != null) t.setShadowLayer(3 * density, 0, 1f * density, 0x99000000);
         }
         // The whole card is the primary remote target: focus lands here and OK plays/pauses in Home.
         bar.setOnClickListener(v -> toggle());
         play.setOnClickListener(v -> toggle());
+        prev.setOnClickListener(v -> skipPrevious());
         next.setOnClickListener(v -> skipNext());
         lyrics.setOnClickListener(v -> open());
         bar.setVisibility(View.VISIBLE);
@@ -221,6 +223,20 @@ final class BitchordWidget {
             }
         }
         dispatchMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+        retries = 0;
+        connect();
+    }
+
+    /** Go back to the previous track. */
+    private void skipPrevious() {
+        if (controller != null) {
+            try {
+                controller.getTransportControls().skipToPrevious();
+                return;
+            } catch (RuntimeException ignored) {
+            }
+        }
+        dispatchMediaKey(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
         retries = 0;
         connect();
     }

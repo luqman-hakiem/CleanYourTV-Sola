@@ -25,6 +25,7 @@
     <string name="bitchord_widget">BitChord music control</string>
     <string name="bitchord_now_playing">NOW PLAYING</string>
     <string name="bitchord_name">BitChord</string>
+    <string name="bitchord_prev">Lagu sebelumnya</string>
     <string name="bitchord_next">Lagu berikutnya</string>
     <string name="bitchord_lyrics">Tampilkan lirik</string>
     <string name="cctv_widget">Pratinjau CCTV Reception</string>

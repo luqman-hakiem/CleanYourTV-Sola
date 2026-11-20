@@ -177,14 +177,15 @@ final class HomeWidgets {
     /**
      * The BitChord card is a remote target, so its glass needs a visible focused state. A plain
      * selector misses the moment focus moves between the card and its child buttons; watching all
-     * four views keeps the whole card bright while the remote is anywhere on the player.
+     * five views keeps the whole card bright while the remote is anywhere on the player.
      */
     private static void markBitchordFocus(View bar) {
         final Drawable normal = bar.getBackground();
         final Drawable focused = bar.getResources().getDrawable(R.drawable.bitchord_bar_focused, null);
         View.OnFocusChangeListener listener = (v, hasFocus) -> bar.setBackground(hasFocus ? focused : normal);
         bar.setOnFocusChangeListener(listener);
-        for (int id : new int[]{R.id.bitchordLyrics, R.id.bitchordPlay, R.id.bitchordNext}) {
+        for (int id : new int[]{R.id.bitchordLyrics, R.id.bitchordPrev, R.id.bitchordPlay,
+                R.id.bitchordNext}) {
             View button = bar.findViewById(id);
             if (button != null) button.setOnFocusChangeListener(listener);
         }

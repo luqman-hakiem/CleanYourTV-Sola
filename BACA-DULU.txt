@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.55-cctv-widget-setting.apk   APK saja
-    CleanYourTV-Sola-3.55-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.56-bitchord-prev.apk   APK saja
+    CleanYourTV-Sola-3.56-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -44,8 +44,9 @@ Fitur tambahan dibanding CleanYourTV biasa
   - Tombol mic di remote membuka suara Google; pemasang menyalakan lagi
     aplikasi suara Google yang dimatikan TV (SDMC/AX810)
   - Nama Wi-Fi lengkap di pil atas; sapaan + nama diatur di config.xml
-  - Kontrol BitChord glass mini di bawah jadwal sholat: sampul + judul lagu
-    dan tombol Aa (buka BitChord untuk lirik), ▶/⏸ (putar/jeda), ⏭ (next).
+  - Kontrol BitChord glass mini di bawah jadwal sholat, kini selebar kartu
+    sholat: sampul + judul lagu dan tombol Aa (buka BitChord untuk lirik),
+    ⏮ (lagu sebelumnya), ▶/⏸ (putar/jeda), ⏭ (lagu berikutnya).
     Bisa diklik remot: DPAD Bawah dari bar atas atau Atas dari grid, lalu OK
     memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan
     ke kartu, tepinya menyala putih dan tombol yang difokus berubah biru terang
@@ -88,6 +89,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.56  kartu BitChord selebar jadwal sholat, tombol ⏮ lagu sebelumnya
   3.55  kartu CCTV bisa ditampil/disembunyikan di Setelan → Widget Home
   3.54  kartu CCTV seukuran jadwal sholat/bola, sudut tepi dirapikan
   3.53  kartu CCTV di samping jadwal bola, OK tampilkan gambar full layar

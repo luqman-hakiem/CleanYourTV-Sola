@@ -603,11 +603,11 @@
     </LinearLayout>
 
     <!-- BitChord control, directly below the prayer card. Styled like the other glass widgets. Reads
-         the BitChord media session so the remote can play/pause, skip, or open lyrics from Home.
-         The equalizer sits at the top of this same glass frame, above the artwork and buttons. -->
+         the BitChord media session so the remote can play/pause, go back or forward a track, or open
+         lyrics from Home. The equalizer sits at the top of this same glass frame, above the controls. -->
     <LinearLayout
         android:id="@+id/bitchordBar"
-        android:layout_width="248dp"
+        android:layout_width="266dp"
         android:layout_height="58dp"
         android:layout_gravity="top|left"
         android:orientation="vertical"
@@ -696,8 +696,27 @@
                 android:nextFocusUp="@id/bitchordBar"
                 android:nextFocusDown="@+id/grid"
                 android:nextFocusLeft="@id/bitchordNext"
-                android:nextFocusRight="@id/bitchordPlay"
+                android:nextFocusRight="@id/bitchordPrev"
                 android:contentDescription="@string/bitchord_lyrics" />
+
+            <TextView
+                android:id="@+id/bitchordPrev"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:text="⏮"
+                android:textColor="#FFF2FFFF"
+                android:textSize="10sp"
+                android:fontFamily="@string/font_medium"
+                android:background="@drawable/bitchord_button_bg"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusUp="@id/bitchordBar"
+                android:nextFocusDown="@+id/grid"
+                android:nextFocusLeft="@id/bitchordLyrics"
+                android:nextFocusRight="@id/bitchordPlay"
+                android:contentDescription="@string/bitchord_prev" />
 
             <TextView
                 android:id="@+id/bitchordPlay"
@@ -714,7 +733,7 @@
                 android:clickable="true"
                 android:nextFocusUp="@id/bitchordBar"
                 android:nextFocusDown="@+id/grid"
-                android:nextFocusLeft="@id/bitchordLyrics"
+                android:nextFocusLeft="@id/bitchordPrev"
                 android:nextFocusRight="@id/bitchordNext"
                 android:contentDescription="@string/bitchord_widget" />
 

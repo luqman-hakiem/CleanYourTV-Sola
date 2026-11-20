@@ -11,8 +11,8 @@ android {
         applicationId providers.gradleProperty('launcherApplicationId').getOrElse('com.gathin.tvhome')
         minSdk 26
         targetSdk 34
-        versionCode 65
-        versionName '3.55-cctv-widget-setting'
+        versionCode 66
+        versionName '3.56-bitchord-prev'
     }
 
     buildTypes {
