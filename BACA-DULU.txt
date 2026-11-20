@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.54-cctv-aligned.apk   APK saja
-    CleanYourTV-Sola-3.54-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.55-cctv-widget-setting.apk   APK saja
+    CleanYourTV-Sola-3.55-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -57,8 +57,9 @@ Fitur tambahan dibanding CleanYourTV biasa
     MENUNGGU CCTV… bila jembatan belum jalan. Sudut gambar dipangkas mengikuti
     tepi glass, tidak ada garis yang menonjol. Fokus remot menyalakan tepi
     kartu; OK langsung menampilkan gambar full layar di launcher, OK/BACK untuk
-    kembali. Kartu ikut tersembunyi saat jadwal bola dimatikan. Tidak ada kata
-    sandi yang disimpan di launcher
+    kembali. Kartu bisa ditampilkan atau disembunyikan lewat Setelan → Widget
+    Home → Kartu CCTV, terpisah dari jadwal bola. Tidak ada kata sandi yang
+    disimpan di launcher
   - Tanggal Minggu: hanya tanggal yang merah, nama bulan tetap putih
   - pasang.bat: pasang, jadikan Home, reboot, lalu memeriksa hasilnya sendiri
 
@@ -87,6 +88,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.55  kartu CCTV bisa ditampil/disembunyikan di Setelan → Widget Home
   3.54  kartu CCTV seukuran jadwal sholat/bola, sudut tepi dirapikan
   3.53  kartu CCTV di samping jadwal bola, OK tampilkan gambar full layar
   3.52  pratinjau CCTV Reception di bawah jadwal bola, OK buka HiLook

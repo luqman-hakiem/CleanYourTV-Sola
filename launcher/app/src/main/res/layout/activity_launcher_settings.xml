@@ -175,6 +175,10 @@
             style="@style/SettingsRow"
             android:layout_marginTop="10dp" />
         <TextView
+            android:id="@+id/showCctvChoice"
+            style="@style/SettingsRow"
+            android:layout_marginTop="10dp" />
+        <TextView
             android:id="@+id/widgetStretchChoice"
             style="@style/SettingsRow"
             android:layout_marginTop="10dp" />

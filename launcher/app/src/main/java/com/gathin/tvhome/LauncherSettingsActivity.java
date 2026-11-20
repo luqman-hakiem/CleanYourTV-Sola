@@ -319,6 +319,7 @@ public final class LauncherSettingsActivity extends Activity {
         cardSwitch(R.id.showPrayerChoice, HomeWidgets.PREF_SHOW_PRAYER, "Kartu jadwal sholat", true);
         cardSwitch(R.id.calendarChoice, HomeWidgets.PREF_SHOW_CALENDAR, "Kartu kalender", false);
         cardSwitch(R.id.showFootballChoice, HomeWidgets.PREF_SHOW_FOOTBALL, "Kartu jadwal bola", true);
+        cardSwitch(R.id.showCctvChoice, HomeWidgets.PREF_SHOW_CCTV, "Kartu CCTV", true);
 
         TextView stretch = findViewById(R.id.widgetStretchChoice);
         TextView align = findViewById(R.id.widgetAlignChoice);

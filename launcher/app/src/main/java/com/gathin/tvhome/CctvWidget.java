@@ -112,7 +112,7 @@ final class CctvWidget {
 
     private void tick() {
         if (destroyed) return;
-        io.execute(this::load);
+        if (card.getVisibility() == View.VISIBLE) io.execute(this::load);
         handler.postDelayed(this::tick, REFRESH_MS);
     }
 
@@ -164,13 +164,17 @@ final class CctvWidget {
         }
     }
 
-    /** Same size as the football card: align its top edge and use the same 14dp gap as the other cards. */
-    void placeBeside(View football, View root) {
+    /** Occupies the right-hand slot of the widget row, beside the football card when it is shown. */
+    void placeInSlot(View row, View root) {
         int[] r = new int[2];
         int[] f = new int[2];
         root.getLocationInWindow(r);
-        football.getLocationInWindow(f);
-        float x = f[0] - r[0] + football.getWidth() + 14 * density;
+        row.getLocationInWindow(f);
+        int gap = (int) (14 * density);
+        int rowWidth = row.getWidth() > 0 ? row.getWidth()
+                : activity.getResources().getDisplayMetrics().widthPixels - (int) (132 * density);
+        int slot = Math.max(0, (rowWidth - 2 * gap) / 3);
+        float x = f[0] - r[0] + 2f * (slot + gap);
         float y = f[1] - r[1];
         if (Math.abs(card.getX() - x) > 0.5f || Math.abs(card.getY() - y) > 0.5f) {
             card.setX(x);

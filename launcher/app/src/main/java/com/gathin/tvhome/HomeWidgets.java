@@ -90,7 +90,7 @@ final class HomeWidgets {
     private final View calCard, prayerCard, ballCard;
     /** Compact BitChord control under the prayer card; null when BitChord is not installed. */
     private final BitchordWidget music;
-    /** Reception camera preview under the football card; null when the layout has no CCTV card. */
+    /** Reception camera preview beside the football card; null when the layout has no CCTV card. */
     private final CctvWidget cctv;
 
     /** The widget row, or null when home_widgets is off. */
@@ -100,7 +100,7 @@ final class HomeWidgets {
         if (row == null) return null;
         SharedPreferences p = activity.getSharedPreferences(Config.SETTINGS_NAME, Context.MODE_PRIVATE);
         boolean any = p.getBoolean(PREF_SHOW_PRAYER, true) || p.getBoolean(PREF_SHOW_CALENDAR, false)
-                || p.getBoolean(PREF_SHOW_FOOTBALL, true);
+                || p.getBoolean(PREF_SHOW_FOOTBALL, true) || p.getBoolean(PREF_SHOW_CCTV, true);
         if (!res.getBoolean(R.bool.home_widgets) || !any) {
             // Every card switched off: no row at all, and the dock sits where the original launcher has it.
             row.setVisibility(View.GONE);
@@ -195,9 +195,10 @@ final class HomeWidgets {
         ZonedDateTime now = ZonedDateTime.now();
         boolean prayer = prefs.getBoolean(PREF_SHOW_PRAYER, true);
         boolean football = prefs.getBoolean(PREF_SHOW_FOOTBALL, true);
+        boolean cctvOn = prefs.getBoolean(PREF_SHOW_CCTV, true);
         prayerCard.setVisibility(prayer ? View.VISIBLE : View.GONE);
         ballCard.setVisibility(football ? View.VISIBLE : View.GONE);
-        if (cctv != null) cctv.setVisible(football);
+        if (cctv != null) cctv.setVisible(cctvOn);
         if (prayer) {
             try {
                 updatePrayer(now);
@@ -221,6 +222,7 @@ final class HomeWidgets {
 
     static final String PREF_SHOW_PRAYER = "widget_prayer";
     static final String PREF_SHOW_FOOTBALL = "widget_football";
+    static final String PREF_SHOW_CCTV = "widget_cctv";
 
     static final String PREF_STRETCH = "widget_stretch";
     static final String PREF_ALIGN = "widget_align";
@@ -272,6 +274,10 @@ final class HomeWidgets {
         int rowWidth = r.getWidth() > 0 ? r.getWidth()
                 : activity.getResources().getDisplayMetrics().widthPixels - (int) (132 * density);
         int third = Math.max(0, (rowWidth - 2 * gap) / 3);
+        // The CCTV card lives in the right-hand slot of the row. Reserve that slot so the schedule
+        // cards never stretch underneath it, even when one of them is switched off.
+        int reserve = cctv != null && cctv.view().getVisibility() == View.VISIBLE ? third + gap : 0;
+        if (r.getPaddingRight() != reserve) r.setPadding(0, 0, reserve, 0);
         boolean first = true;
         for (View card : cards) {
             if (card.getVisibility() != View.VISIBLE) continue;
@@ -418,8 +424,8 @@ final class HomeWidgets {
             row.post(() -> music.placeUnder(prayerCard, root));
         }
         if (cctv != null) {
-            cctv.placeBeside(ballCard, root);
-            row.post(() -> cctv.placeBeside(ballCard, root));
+            cctv.placeInSlot(row, root);
+            row.post(() -> cctv.placeInSlot(row, root));
         }
     }
 

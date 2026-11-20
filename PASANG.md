@@ -42,7 +42,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.54-cctv-aligned.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.55-cctv-widget-setting.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -80,7 +80,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.54-cctv-aligned.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.55-cctv-widget-setting.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -96,7 +96,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.54-cctv-aligned.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.55-cctv-widget-setting.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
@@ -139,7 +139,7 @@ Supaya ringan, kecilkan dulu file-nya (misalnya jadi mono 48 kbps) — file bawa
 
 Buka **Launcher settings** dari Home:
 
-- **Widget Home**: gaya kartu, ketebalan latar, tampil/sembunyi tiap kartu, urutan kartu, dan **Lebarkan kartu**. Kalau Lebarkan kartu dimatikan, tiap kartu tetap berukuran normal dan bisa ditaruh di kiri, tengah, atau kanan (rapi kalau cuma satu atau dua kartu yang tampil).
+- **Widget Home**: gaya kartu, ketebalan latar, tampil/sembunyi tiap kartu (termasuk **Kartu CCTV**), urutan kartu, dan **Lebarkan kartu**. Kalau Lebarkan kartu dimatikan, tiap kartu tetap berukuran normal dan bisa ditaruh di kiri, tengah, atau kanan (rapi kalau cuma satu atau dua kartu yang tampil). Kartu CCTV memakai pengaturannya sendiri dan tidak ikut tersembunyi saat jadwal bola dimatikan.
 - **Jadwal sholat & adzan**: lokasi, mode pengingat (banner / nada / suara adzan), waktu sholat mana yang diingatkan, dan tombol **Tes pengingat sekarang**.
 - **Jadwal bola**: tim favorit dan sumber jadwal. FotMob langsung jalan; Gemini butuh API key gratis dari aistudio.google.com/apikey (petunjuknya muncul di layar). Mengetik key paling enak lewat aplikasi Google TV di HP. Saat timmu bertanding, baris jadwal menampilkan **skor dan menit berjalan** (contoh `● 67'  2 - 1` warna merah), dan skor akhir berwarna hijau setelah selesai; otomatis diperbarui tiap 5 menit selama laga berjalan.
 
