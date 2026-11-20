@@ -27,6 +27,10 @@
     <string name="bitchord_name">BitChord</string>
     <string name="bitchord_next">Lagu berikutnya</string>
     <string name="bitchord_lyrics">Tampilkan lirik</string>
+    <string name="cctv_widget">Pratinjau CCTV Reception</string>
+    <string name="cctv_reception">RECEPTION</string>
+    <string name="cctv_waiting">MENUNGGU CCTV…</string>
+    <string name="cctv_live">LIVE</string>
     <string name="cant_open">Can\'t open %1$s</string>
     <string name="date_format">EEEE  d MMMM</string>
     <!-- Date next to the clock on Home; a locale can split it over two lines with \n. -->

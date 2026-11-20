@@ -618,7 +618,7 @@
         android:clickable="true"
         android:descendantFocusability="beforeDescendants"
         android:nextFocusUp="@id/btnWifi"
-        android:nextFocusDown="@+id/grid"
+        android:nextFocusDown="@+id/cctvCard"
         android:nextFocusLeft="@id/bitchordNext"
         android:nextFocusRight="@id/bitchordLyrics"
         android:contentDescription="@string/bitchord_widget">
@@ -737,6 +737,80 @@
                 android:nextFocusRight="@id/bitchordLyrics"
                 android:contentDescription="@string/bitchord_next" />
         </LinearLayout>
+    </LinearLayout>
+
+    <!-- Reception CCTV preview, placed under the football card in code. A small glass frame with the
+         latest JPEG from the PC bridge; OK opens HiLook for the full live view. -->
+    <LinearLayout
+        android:id="@+id/cctvCard"
+        android:layout_width="248dp"
+        android:layout_height="88dp"
+        android:layout_gravity="top|left"
+        android:orientation="vertical"
+        android:background="@drawable/bitchord_bar_bg"
+        android:padding="3dp"
+        android:visibility="gone"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:descendantFocusability="beforeDescendants"
+        android:nextFocusUp="@id/bitchordBar"
+        android:nextFocusDown="@+id/grid"
+        android:contentDescription="@string/cctv_widget">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/cctvPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#FF101820"
+                android:importantForAccessibility="no" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cctv_scrim"
+                android:importantForAccessibility="no" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
+
+                <TextView
+                    android:id="@+id/cctvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cctv_waiting"
+                    android:textColor="#FFFF8A8A"
+                    android:textSize="9sp"
+                    android:fontFamily="@string/font_medium"
+                    android:singleLine="true" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cctv_reception"
+                    android:textColor="#FFF2FFFF"
+                    android:textSize="10sp"
+                    android:fontFamily="@string/font_medium"
+                    android:singleLine="true" />
+            </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 
     <!-- Cinematic top shelf: darkens the edge behind the shelf and the lower half, so the text and the

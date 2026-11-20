@@ -90,6 +90,8 @@ final class HomeWidgets {
     private final View calCard, prayerCard, ballCard;
     /** Compact BitChord control under the prayer card; null when BitChord is not installed. */
     private final BitchordWidget music;
+    /** Reception camera preview under the football card; null when the layout has no CCTV card. */
+    private final CctvWidget cctv;
 
     /** The widget row, or null when home_widgets is off. */
     static HomeWidgets create(Activity activity) {
@@ -104,6 +106,8 @@ final class HomeWidgets {
             row.setVisibility(View.GONE);
             View bar = activity.findViewById(R.id.bitchordBar);
             if (bar != null) bar.setVisibility(View.GONE);
+            View cctvCard = activity.findViewById(R.id.cctvCard);
+            if (cctvCard != null) cctvCard.setVisibility(View.GONE);
             return null;
         }
         return new HomeWidgets(activity, row);
@@ -167,6 +171,7 @@ final class HomeWidgets {
             }
             markBitchordFocus(bar);
         }
+        cctv = CctvWidget.create(activity);
     }
 
     /**
@@ -192,6 +197,7 @@ final class HomeWidgets {
         boolean football = prefs.getBoolean(PREF_SHOW_FOOTBALL, true);
         prayerCard.setVisibility(prayer ? View.VISIBLE : View.GONE);
         ballCard.setVisibility(football ? View.VISIBLE : View.GONE);
+        if (cctv != null) cctv.setVisible(football);
         if (prayer) {
             try {
                 updatePrayer(now);
@@ -387,6 +393,10 @@ final class HomeWidgets {
             music.view().animate().cancel();
             music.view().animate().alpha(away ? 0f : 1f).setDuration(160).start();
         }
+        if (cctv != null) {
+            cctv.view().animate().cancel();
+            cctv.view().animate().alpha(away ? 0f : 1f).setDuration(160).start();
+        }
     }
 
     /** Where the row's bottom edge sits, in root coordinates, once it is placed under the header. */
@@ -407,6 +417,10 @@ final class HomeWidgets {
             // The card gets its final width one layout pass after the row is moved.
             row.post(() -> music.placeUnder(prayerCard, root));
         }
+        if (cctv != null) {
+            cctv.placeUnder(ballCard, root);
+            row.post(() -> cctv.placeUnder(ballCard, root));
+        }
     }
 
     /** The row's height in px, for the grid's top padding before it is laid out. */
@@ -418,6 +432,7 @@ final class HomeWidgets {
         io.shutdownNow();
         main.removeCallbacksAndMessages(null);
         if (music != null) music.shutdown();
+        if (cctv != null) cctv.shutdown();
     }
 
     // ---- prayer -----------------------------------------------------------------------------------
