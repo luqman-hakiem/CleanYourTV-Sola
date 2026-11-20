@@ -603,17 +603,15 @@
     </LinearLayout>
 
     <!-- BitChord control, directly below the prayer card. Styled like the other glass widgets. Reads
-         the BitChord media session so the remote can play/pause, skip, or open lyrics from Home. -->
+         the BitChord media session so the remote can play/pause, skip, or open lyrics from Home.
+         The ECG heartbeat trace sits inside this same glass frame; the card grows downward for it. -->
     <LinearLayout
         android:id="@+id/bitchordBar"
         android:layout_width="248dp"
-        android:layout_height="36dp"
+        android:layout_height="58dp"
         android:layout_gravity="top|left"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:orientation="vertical"
         android:background="@drawable/bitchord_bar_bg"
-        android:paddingStart="8dp"
-        android:paddingEnd="6dp"
         android:visibility="gone"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -625,111 +623,121 @@
         android:nextFocusRight="@id/bitchordLyrics"
         android:contentDescription="@string/bitchord_widget">
 
-        <ImageView
-            android:id="@+id/bitchordArt"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="@null" />
-
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="4dp"
-            android:orientation="vertical">
+            android:id="@+id/bitchordRow"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="6dp">
+
+            <ImageView
+                android:id="@+id/bitchordArt"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@null" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bitchordLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="@string/bitchord_name"
+                    android:textColor="#F2FFFFFF"
+                    android:textSize="10sp"
+                    android:fontFamily="@string/font_medium" />
+
+                <TextView
+                    android:id="@+id/bitchordSub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="#B3FFFFFF"
+                    android:textSize="8.5sp"
+                    android:fontFamily="@string/font_regular" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/bitchordLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:text="@string/bitchord_name"
-                android:textColor="#F2FFFFFF"
+                android:id="@+id/bitchordLyrics"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:gravity="center"
+                android:text="Aa"
+                android:textColor="#FFF2FFFF"
+                android:textSize="9sp"
+                android:fontFamily="@string/font_medium"
+                android:background="@drawable/bitchord_button_bg"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusUp="@id/bitchordBar"
+                android:nextFocusDown="@+id/grid"
+                android:nextFocusLeft="@id/bitchordNext"
+                android:nextFocusRight="@id/bitchordPlay"
+                android:contentDescription="@string/bitchord_lyrics" />
+
+            <TextView
+                android:id="@+id/bitchordPlay"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:text="▶"
+                android:textColor="#FFF2FFFF"
                 android:textSize="10sp"
-                android:fontFamily="@string/font_medium" />
+                android:fontFamily="@string/font_medium"
+                android:background="@drawable/bitchord_button_bg"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusUp="@id/bitchordBar"
+                android:nextFocusDown="@+id/grid"
+                android:nextFocusLeft="@id/bitchordLyrics"
+                android:nextFocusRight="@id/bitchordNext"
+                android:contentDescription="@string/bitchord_widget" />
 
             <TextView
-                android:id="@+id/bitchordSub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:textColor="#B3FFFFFF"
-                android:textSize="8.5sp"
-                android:fontFamily="@string/font_regular" />
+                android:id="@+id/bitchordNext"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:text="⏭"
+                android:textColor="#FFF2FFFF"
+                android:textSize="10sp"
+                android:fontFamily="@string/font_medium"
+                android:background="@drawable/bitchord_button_bg"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusUp="@id/bitchordBar"
+                android:nextFocusDown="@+id/grid"
+                android:nextFocusLeft="@id/bitchordPlay"
+                android:nextFocusRight="@id/bitchordLyrics"
+                android:contentDescription="@string/bitchord_next" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/bitchordLyrics"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:gravity="center"
-            android:text="Aa"
-            android:textColor="#FFF2FFFF"
-            android:textSize="9sp"
-            android:fontFamily="@string/font_medium"
-            android:background="@drawable/bitchord_button_bg"
-            android:focusable="true"
-            android:clickable="true"
-            android:nextFocusUp="@id/bitchordBar"
-            android:nextFocusDown="@+id/grid"
-            android:nextFocusLeft="@id/bitchordNext"
-            android:nextFocusRight="@id/bitchordPlay"
-            android:contentDescription="@string/bitchord_lyrics" />
-
-        <TextView
-            android:id="@+id/bitchordPlay"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="4dp"
-            android:gravity="center"
-            android:text="▶"
-            android:textColor="#FFF2FFFF"
-            android:textSize="10sp"
-            android:fontFamily="@string/font_medium"
-            android:background="@drawable/bitchord_button_bg"
-            android:focusable="true"
-            android:clickable="true"
-            android:nextFocusUp="@id/bitchordBar"
-            android:nextFocusDown="@+id/grid"
-            android:nextFocusLeft="@id/bitchordLyrics"
-            android:nextFocusRight="@id/bitchordNext"
-            android:contentDescription="@string/bitchord_widget" />
-
-        <TextView
-            android:id="@+id/bitchordNext"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="4dp"
-            android:gravity="center"
-            android:text="⏭"
-            android:textColor="#FFF2FFFF"
-            android:textSize="10sp"
-            android:fontFamily="@string/font_medium"
-            android:background="@drawable/bitchord_button_bg"
-            android:focusable="true"
-            android:clickable="true"
-            android:nextFocusUp="@id/bitchordBar"
-            android:nextFocusDown="@+id/grid"
-            android:nextFocusLeft="@id/bitchordPlay"
-            android:nextFocusRight="@id/bitchordLyrics"
-            android:contentDescription="@string/bitchord_next" />
+        <!-- Heartbeat ECG trace inside the same glass frame as the controls. -->
+        <com.gathin.tvhome.BitchordPulseView
+            android:id="@+id/bitchordPulse"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginTop="2dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:importantForAccessibility="no" />
     </LinearLayout>
-
-    <!-- Moving line directly under the BitChord card. BitchordWidget positions it with the card and
-         animates it only while BitChord reports STATE_PLAYING. -->
-    <com.gathin.tvhome.BitchordPulseView
-        android:id="@+id/bitchordPulse"
-        android:layout_width="248dp"
-        android:layout_height="3dp"
-        android:layout_gravity="top|left"
-        android:visibility="gone"
-        android:clickable="false"
-        android:focusable="false"
-        android:importantForAccessibility="no" />
 
     <!-- Cinematic top shelf: darkens the edge behind the shelf and the lower half, so the text and the
          dock stay readable over the artwork. -->

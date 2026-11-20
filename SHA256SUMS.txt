@@ -1,3 +1,4 @@
+SHA-256  CleanYourTV-Sola-3.50-bitchord-heartbeat.apk 20c99ce37c40ff81782a90f18d336845bd631ba39ea3fe67bdddf03f890a80fa
 SHA-256  CleanYourTV-Sola-3.49-bitchord-pulse.apk 9642b3639c576f3a71ca640278aa1d1f4219933f5f97e5d9f2eaffdb741f8027
 SHA-256  CleanYourTV-Sola-3.48-bitchord-focus.apk 2823f6aeb425c78d7852402cacaa24616260bb886367136e16303d7020c68071
 SHA-256  CleanYourTV-Sola-3.47-bitchord-remote.apk f655ca0fdfb6a995033fc1e1c299e639f1267ba3e273d04e3d9ad2198d36cfc9

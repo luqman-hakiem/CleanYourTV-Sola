@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.49-bitchord-pulse.apk   APK saja
-    CleanYourTV-Sola-3.49-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.50-bitchord-heartbeat.apk   APK saja
+    CleanYourTV-Sola-3.50-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -49,7 +49,8 @@ Fitur tambahan dibanding CleanYourTV biasa
     Bisa diklik remot: DPAD Bawah dari bar atas atau Atas dari grid, lalu OK
     memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan
     ke kartu, tepinya menyala putih dan tombol yang difokus berubah biru terang
-  - Garis tipis di bawah kartu BitChord bergerak saat lagu diputar, diam saat dijeda
+  - Grafik detak jantung (ECG) di dalam kartu BitChord: bergerak saat lagu diputar,
+    diam saat dijeda; kartunya diperbesar ke bawah supaya lebih jelas
   - Tanggal Minggu: hanya tanggal yang merah, nama bulan tetap putih
   - pasang.bat: pasang, jadikan Home, reboot, lalu memeriksa hasilnya sendiri
 
@@ -78,6 +79,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.50  animasi detak jantung ECG di dalam kartu BitChord; kartu memanjang ke bawah
   3.49  garis animasi di bawah kartu BitChord saat lagu diputar
   3.48  fokus remot terlihat: tepi kartu BitChord menyala, tombol fokus biru terang
   3.47  kontrol BitChord bisa diputar langsung dari Home lewat remot (Down/Up + OK)

@@ -58,8 +58,6 @@ final class BitchordWidget {
         if (launch == null) launch = pm.getLaunchIntentForPackage(PKG);
         if (launch == null) {
             bar.setVisibility(View.GONE);
-            View pulse = activity.findViewById(R.id.bitchordPulse);
-            if (pulse != null) pulse.setVisibility(View.GONE);
             return null;
         }
         return new BitchordWidget(activity, bar, launch);
@@ -68,7 +66,7 @@ final class BitchordWidget {
     private BitchordWidget(Activity activity, View bar, Intent launch) {
         this.activity = activity;
         this.bar = bar;
-        this.pulse = activity.findViewById(R.id.bitchordPulse);
+        this.pulse = bar.findViewById(R.id.bitchordPulse);
         this.launch = launch;
         this.density = activity.getResources().getDisplayMetrics().density;
         art = bar.findViewById(R.id.bitchordArt);
@@ -86,11 +84,6 @@ final class BitchordWidget {
         next.setOnClickListener(v -> skipNext());
         lyrics.setOnClickListener(v -> open());
         bar.setVisibility(View.VISIBLE);
-        if (pulse != null) {
-            pulse.setVisibility(View.VISIBLE);
-            pulse.bringToFront();
-            pulse.setElevation(1f);
-        }
         // The main content layer is declared after this bar in the XML and would otherwise cover it:
         // bring it to the front so the remote's focus reaches the controls.
         bar.bringToFront();
@@ -275,13 +268,6 @@ final class BitchordWidget {
         if (Math.abs(bar.getX() - x) > 0.5f || Math.abs(bar.getY() - y) > 0.5f) {
             bar.setX(x);
             bar.setY(y);
-        }
-        if (pulse != null) {
-            float py = y + bar.getHeight() + 2 * density;
-            if (Math.abs(pulse.getX() - x) > 0.5f || Math.abs(pulse.getY() - py) > 0.5f) {
-                pulse.setX(x);
-                pulse.setY(py);
-            }
         }
     }
 
