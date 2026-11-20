@@ -1,3 +1,6 @@
+SHA-256  CleanYourTV-Sola-3.54-cctv-aligned.apk 9f4a6ea0465bcc1fe74f17c2a3c3c80d8030a75864645065b2824462f9647e44
+SHA-256  CleanYourTV-Sola-3.54-pasang.zip e90a8756a8d03f13cb83a53162b8dcaf4bb34fd31f7d1e995ae28d6d6136d178
+SHA-256  cctv-aligned-3.54.png 44dbfbf45d994b48e521676263d0903c336c5a668a526a8b424036de2851f0b7
 SHA-256  CleanYourTV-Sola-3.53-cctv-fullscreen.apk e7fc32bf6d796d2752fcc8fd2a33fc5e4a450da7ef71f73d6d0bd47939e27bf7
 SHA-256  CleanYourTV-Sola-3.53-pasang.zip 23010dc3373e581c9467d81beb8bf23e5de1bd9bf18d869ed9d4a5f8af508a4c
 SHA-256  cctv-beside-fullscreen-3.53.png 5ab30e98cd50782dcb4e9cd69ae3c199fbda8778d131c50162f88d31a6a64374

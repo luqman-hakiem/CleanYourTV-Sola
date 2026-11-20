@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.53-cctv-fullscreen.apk   APK saja
-    CleanYourTV-Sola-3.53-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.54-cctv-aligned.apk   APK saja
+    CleanYourTV-Sola-3.54-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -51,12 +51,14 @@ Fitur tambahan dibanding CleanYourTV biasa
     ke kartu, tepinya menyala putih dan tombol yang difokus berubah biru terang
   - Equalizer di bagian atas kartu BitChord: bar-bar naik-turun saat lagu diputar,
     dan turun rata saat dijeda
-  - Pratinjau CCTV Reception di samping kanan jadwal bola: kartu glass besar
-    satu kamera, gambar terbaru tiap dua detik dari jembatan CCTV di PC, status
-    LIVE bila gambar masuk dan MENUNGGU CCTV… bila jembatan belum jalan. Fokus
-    remot menyalakan tepi kartu; OK langsung menampilkan gambar full layar di
-    launcher, OK/BACK untuk kembali. Kartu ikut tersembunyi saat jadwal bola
-    dimatikan. Tidak ada kata sandi yang disimpan di launcher
+  - Pratinjau CCTV Reception di samping kanan jadwal bola: kartu glass satu
+    kamera dengan ukuran sama seperti jadwal sholat dan bola, gambar terbaru
+    tiap dua detik dari jembatan CCTV di PC, status LIVE bila gambar masuk dan
+    MENUNGGU CCTV… bila jembatan belum jalan. Sudut gambar dipangkas mengikuti
+    tepi glass, tidak ada garis yang menonjol. Fokus remot menyalakan tepi
+    kartu; OK langsung menampilkan gambar full layar di launcher, OK/BACK untuk
+    kembali. Kartu ikut tersembunyi saat jadwal bola dimatikan. Tidak ada kata
+    sandi yang disimpan di launcher
   - Tanggal Minggu: hanya tanggal yang merah, nama bulan tetap putih
   - pasang.bat: pasang, jadikan Home, reboot, lalu memeriksa hasilnya sendiri
 
@@ -85,6 +87,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.54  kartu CCTV seukuran jadwal sholat/bola, sudut tepi dirapikan
   3.53  kartu CCTV di samping jadwal bola, OK tampilkan gambar full layar
   3.52  pratinjau CCTV Reception di bawah jadwal bola, OK buka HiLook
   3.51  equalizer di bagian atas kartu BitChord, menggantikan ECG

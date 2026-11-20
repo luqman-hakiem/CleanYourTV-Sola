@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.ViewOutlineProvider;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +54,19 @@ final class CctvWidget {
         this.density = activity.getResources().getDisplayMetrics().density;
         preview = card.findViewById(R.id.cctvPreview);
         status = card.findViewById(R.id.cctvStatus);
+        // The glass rim has 20dp corners, so clip the square camera frame just inside it. Without this,
+        // the dark JPEG and its scrim poke out at all four corners of the rounded card.
+        FrameLayout frame = card.findViewById(R.id.cctvFrame);
+        if (frame != null) {
+            final float radius = 17f * density;   // 20dp card radius minus its 3dp padding
+            frame.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radius);
+                }
+            });
+            frame.setClipToOutline(true);
+        }
         if (status != null) status.setShadowLayer(3 * density, 0, 1f * density, 0x99000000);
         card.setOnClickListener(v -> openFullscreen());
         // Same bright rim as the BitChord card, so the remote's focus is unmistakable on the TV.
@@ -148,14 +164,14 @@ final class CctvWidget {
         }
     }
 
-    /** To the right of the football card, vertically centred on it. */
+    /** Same size as the football card: align its top edge and use the same 14dp gap as the other cards. */
     void placeBeside(View football, View root) {
         int[] r = new int[2];
         int[] f = new int[2];
         root.getLocationInWindow(r);
         football.getLocationInWindow(f);
-        float x = f[0] - r[0] + football.getWidth() + 8 * density;
-        float y = f[1] - r[1] + (football.getHeight() - card.getHeight()) / 2f;
+        float x = f[0] - r[0] + football.getWidth() + 14 * density;
+        float y = f[1] - r[1];
         if (Math.abs(card.getX() - x) > 0.5f || Math.abs(card.getY() - y) > 0.5f) {
             card.setX(x);
             card.setY(y);

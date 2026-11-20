@@ -743,8 +743,8 @@
          latest JPEG from the PC bridge; OK opens a full-screen view of the same live frame. -->
     <LinearLayout
         android:id="@+id/cctvCard"
-        android:layout_width="270dp"
-        android:layout_height="168dp"
+        android:layout_width="266dp"
+        android:layout_height="178dp"
         android:layout_gravity="top|left"
         android:orientation="vertical"
         android:background="@drawable/bitchord_bar_bg"
@@ -759,6 +759,7 @@
         android:contentDescription="@string/cctv_widget">
 
         <FrameLayout
+            android:id="@+id/cctvFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
