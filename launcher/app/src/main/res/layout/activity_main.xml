@@ -604,7 +604,7 @@
 
     <!-- BitChord control, directly below the prayer card. Styled like the other glass widgets. Reads
          the BitChord media session so the remote can play/pause, skip, or open lyrics from Home.
-         The ECG heartbeat trace sits inside this same glass frame; the card grows downward for it. -->
+         The equalizer sits at the top of this same glass frame, above the artwork and buttons. -->
     <LinearLayout
         android:id="@+id/bitchordBar"
         android:layout_width="248dp"
@@ -622,6 +622,18 @@
         android:nextFocusLeft="@id/bitchordNext"
         android:nextFocusRight="@id/bitchordLyrics"
         android:contentDescription="@string/bitchord_widget">
+
+        <!-- Equalizer above the controls, inside the same glass frame. -->
+        <com.gathin.tvhome.BitchordEqualizerView
+            android:id="@+id/bitchordEqualizer"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="2dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:importantForAccessibility="no" />
 
         <LinearLayout
             android:id="@+id/bitchordRow"
@@ -725,18 +737,6 @@
                 android:nextFocusRight="@id/bitchordLyrics"
                 android:contentDescription="@string/bitchord_next" />
         </LinearLayout>
-
-        <!-- Heartbeat ECG trace inside the same glass frame as the controls. -->
-        <com.gathin.tvhome.BitchordPulseView
-            android:id="@+id/bitchordPulse"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginTop="2dp"
-            android:clickable="false"
-            android:focusable="false"
-            android:importantForAccessibility="no" />
     </LinearLayout>
 
     <!-- Cinematic top shelf: darkens the edge behind the shelf and the lower half, so the text and the

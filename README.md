@@ -17,7 +17,7 @@ Tambahan di fork ini:
 - **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik. Pilnya bening seperti pil lain saat diam, dan baru menjadi gelap tembus pandang selama uji kecepatan berjalan supaya angkanya terbaca. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Dock tanpa nama**: deretan ikon aplikasi di bawah tidak menampilkan nama besar aplikasi di atasnya, dan posisi dock tetap seperti semula
-- **Kontrol BitChord** di bawah jadwal sholat: kartu glass mini berisi sampul, judul lagu, dan tiga tombol — **Aa** (buka BitChord untuk lirik), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Gelombang detak jantung (ECG) berada di dalam kartu yang sama dan kartunya diperbesar ke bawah supaya jelas; garisnya bergulir saat lagu diputar dan diam saat dijeda
+- **Kontrol BitChord** di bawah jadwal sholat: kartu glass mini berisi sampul, judul lagu, dan tiga tombol — **Aa** (buka BitChord untuk lirik), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -47,12 +47,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.50-bitchord-heartbeat** (versionCode 60).
+Rilis terbaru: **3.51-bitchord-equalizer** (versionCode 61).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.50-bitchord-heartbeat.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.50-bitchord-heartbeat.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.50-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.50-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.51-bitchord-equalizer.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.51-bitchord-equalizer.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.51-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.51-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

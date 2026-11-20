@@ -11,8 +11,8 @@ android {
         applicationId providers.gradleProperty('launcherApplicationId').getOrElse('com.gathin.tvhome')
         minSdk 26
         targetSdk 34
-        versionCode 60
-        versionName '3.50-bitchord-heartbeat'
+        versionCode 61
+        versionName '3.51-bitchord-equalizer'
     }
 
     buildTypes {

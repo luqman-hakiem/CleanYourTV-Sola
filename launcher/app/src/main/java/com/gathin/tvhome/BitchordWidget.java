@@ -35,7 +35,7 @@ final class BitchordWidget {
 
     private final Activity activity;
     private final View bar;
-    private final BitchordPulseView pulse;
+    private final BitchordEqualizerView equalizer;
     private final ImageView art;
     private final TextView label, sub, play, next, lyrics;
     private final Intent launch;
@@ -66,7 +66,7 @@ final class BitchordWidget {
     private BitchordWidget(Activity activity, View bar, Intent launch) {
         this.activity = activity;
         this.bar = bar;
-        this.pulse = bar.findViewById(R.id.bitchordPulse);
+        this.equalizer = bar.findViewById(R.id.bitchordEqualizer);
         this.launch = launch;
         this.density = activity.getResources().getDisplayMetrics().density;
         art = bar.findViewById(R.id.bitchordArt);
@@ -172,7 +172,7 @@ final class BitchordWidget {
         PlaybackState st = controller == null ? null : controller.getPlaybackState();
         playing = st != null && st.getState() == PlaybackState.STATE_PLAYING;
         play.setText(playing ? "\u23F8" : "\u25B6");
-        if (pulse != null) pulse.setPlaying(playing);
+        if (equalizer != null) equalizer.setPlaying(playing);
     }
 
     private static String text(String s) {
@@ -273,7 +273,7 @@ final class BitchordWidget {
 
     void shutdown() {
         destroyed = true;
-        if (pulse != null) pulse.setPlaying(false);
+        if (equalizer != null) equalizer.setPlaying(false);
         handler.removeCallbacksAndMessages(null);
         if (controller != null) {
             try {
