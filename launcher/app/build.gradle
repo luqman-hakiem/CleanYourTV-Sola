@@ -11,8 +11,8 @@ android {
         applicationId providers.gradleProperty('launcherApplicationId').getOrElse('com.gathin.tvhome')
         minSdk 26
         targetSdk 34
-        versionCode 62
-        versionName '3.52-cctv-reception'
+        versionCode 63
+        versionName '3.53-cctv-fullscreen'
     }
 
     buildTypes {

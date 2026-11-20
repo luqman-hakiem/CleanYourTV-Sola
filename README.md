@@ -18,7 +18,7 @@ Tambahan di fork ini:
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Dock tanpa nama**: deretan ikon aplikasi di bawah tidak menampilkan nama besar aplikasi di atasnya, dan posisi dock tetap seperti semula
 - **Kontrol BitChord** di bawah jadwal sholat: kartu glass mini berisi sampul, judul lagu, dan tiga tombol — **Aa** (buka BitChord untuk lirik), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
-- **Pratinjau CCTV Reception** di bawah jadwal bola: kartu glass satu kamera yang menampilkan gambar terbaru dari jembatan CCTV di PC (snapshots JPEG tiap dua detik), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Bisa difokus dengan remot: dari bar atas tekan **Bawah** sampai kartu BitChord, lalu **Bawah** sekali lagi; tepi kartu menyala saat difokus dan **OK** membuka HiLook untuk tampilan penuh. Kartu ikut disembunyikan bersama jadwal bola. Tidak ada kata sandi yang disimpan di launcher
+- **Pratinjau CCTV Reception** di samping kanan jadwal bola: kartu glass besar satu kamera yang menampilkan gambar terbaru dari jembatan CCTV di PC (snapshots JPEG tiap dua detik), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Bisa difokus dengan remot: dari bar atas tekan **Bawah**, atau dari grid tekan **Atas** dua kali; tepi kartu menyala saat difokus dan **OK** langsung menampilkan gambar **full layar** di launcher (tanpa membuka aplikasi lain). **OK** atau **BACK** untuk kembali. Kartu ikut disembunyikan bersama jadwal bola. Tidak ada kata sandi yang disimpan di launcher
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -34,7 +34,7 @@ Tambahan di fork ini:
 
 <p align="center">
   <img src="screenshots/kartu.png" alt="Kartu jadwal sholat dan jadwal bola" width="880"><br>
-  <img src="screenshots/cctv-reception-3.52.png" alt="Pratinjau CCTV Reception di bawah jadwal bola" width="520"><br>
+  <img src="screenshots/cctv-beside-fullscreen-3.53.png" alt="Pratinjau CCTV Reception di samping jadwal bola" width="880"><br>
   <img src="screenshots/dock-tanpa-nama-3.43.png" alt="Dock aplikasi tanpa nama di atas ikon" width="880">
 </p>
 
@@ -49,12 +49,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.52-cctv-reception** (versionCode 62).
+Rilis terbaru: **3.53-cctv-fullscreen** (versionCode 63).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.52-cctv-reception.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.52-cctv-reception.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.52-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.52-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.53-cctv-fullscreen.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.53-cctv-fullscreen.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.53-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.53-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

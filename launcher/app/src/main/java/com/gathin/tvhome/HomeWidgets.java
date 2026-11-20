@@ -418,8 +418,8 @@ final class HomeWidgets {
             row.post(() -> music.placeUnder(prayerCard, root));
         }
         if (cctv != null) {
-            cctv.placeUnder(ballCard, root);
-            row.post(() -> cctv.placeUnder(ballCard, root));
+            cctv.placeBeside(ballCard, root);
+            row.post(() -> cctv.placeBeside(ballCard, root));
         }
     }
 

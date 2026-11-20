@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Live CCTV frame filling the TV screen, opened with OK from the small card on Home. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <ImageView
+        android:id="@+id/cctvFullImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/cctvFullStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="24dp"
+        android:text="@string/cctv_waiting"
+        android:textColor="#FFFF8A8A"
+        android:textSize="16sp"
+        android:shadowColor="#CC000000"
+        android:shadowRadius="4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:text="@string/cctv_full_hint"
+        android:textColor="#B3FFFFFF"
+        android:textSize="14sp"
+        android:shadowColor="#CC000000"
+        android:shadowRadius="4" />
+
+</FrameLayout>

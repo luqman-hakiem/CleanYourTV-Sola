@@ -18,20 +18,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Small Reception camera preview under the football card. The PC bridge publishes one JPEG every two
- * seconds; the launcher only decodes the latest frame, so the Home stays light. OK opens HiLook for the
- * full live view. No new permission: INTERNET is already used by the other Home widgets.
+ * Reception camera preview beside the football card. The PC bridge publishes one JPEG every two
+ * seconds; the launcher only decodes the latest frame, so the Home stays light. OK opens a
+ * full-screen view of the same frame. No new permission: INTERNET is already used by the other widgets.
  */
 final class CctvWidget {
-    private static final String SNAPSHOT = "http://10.10.10.176:8890/reception.jpg";
-    private static final String HILOOK = "com.mcu.hilook";
+    static final String SNAPSHOT = "http://10.10.10.176:8890/reception.jpg";
     private static final long REFRESH_MS = 2000L;
 
     private final Activity activity;
     private final View card;
     private final ImageView preview;
     private final TextView status;
-    private final Intent launch;
     private final float density;
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final ExecutorService io = Executors.newSingleThreadExecutor();
@@ -54,8 +52,7 @@ final class CctvWidget {
         preview = card.findViewById(R.id.cctvPreview);
         status = card.findViewById(R.id.cctvStatus);
         if (status != null) status.setShadowLayer(3 * density, 0, 1f * density, 0x99000000);
-        launch = activity.getPackageManager().getLaunchIntentForPackage(HILOOK);
-        card.setOnClickListener(v -> openHiLook());
+        card.setOnClickListener(v -> openFullscreen());
         // Same bright rim as the BitChord card, so the remote's focus is unmistakable on the TV.
         Drawable normal = card.getBackground();
         Drawable focused = card.getResources().getDrawable(R.drawable.bitchord_bar_focused, null);
@@ -71,19 +68,29 @@ final class CctvWidget {
         return card;
     }
 
-    /** Hidden with the football card; DOWN from the music card then falls through to the app grid. */
+    /**
+     * Hidden with the football card. The top pills then fall through to the music card again, exactly
+     * as before this widget existed.
+     */
     void setVisible(boolean show) {
         card.setVisibility(show ? View.VISIBLE : View.GONE);
+        int topDown = show ? R.id.cctvCard : R.id.bitchordBar;
+        int[] pills = {R.id.btnInputs, R.id.btnWifi, R.id.btnVpn, R.id.btnReorder,
+                R.id.btnLibraryTop, R.id.btnTimer, R.id.btnSettings};
+        for (int id : pills) {
+            View pill = activity.findViewById(id);
+            if (pill != null) pill.setNextFocusDownId(topDown);
+        }
         View music = activity.findViewById(R.id.bitchordBar);
-        if (music != null) music.setNextFocusDownId(show ? R.id.cctvCard : R.id.grid);
+        if (music != null) music.setNextFocusUpId(show ? R.id.cctvCard : R.id.btnWifi);
     }
 
-    private void openHiLook() {
-        if (launch == null) return;
+    /** OK on the focused card: fill the screen with the same live frame, without leaving the launcher. */
+    private void openFullscreen() {
         try {
-            activity.startActivity(launch);
+            activity.startActivity(new Intent(activity, CctvFullscreenActivity.class));
         } catch (RuntimeException ignored) {
-            // HiLook removed while Home was open: the preview keeps running without an OK action.
+            // Activity not available: the preview on Home keeps running.
         }
     }
 
@@ -94,7 +101,12 @@ final class CctvWidget {
     }
 
     private void load() {
-        Bitmap fresh = null;
+        final Bitmap decoded = fetchSnapshot();
+        handler.post(() -> apply(decoded));
+    }
+
+    /** One snapshot, shared by the Home card and the full-screen viewer. Never throws. */
+    static Bitmap fetchSnapshot() {
         HttpURLConnection connection = null;
         try {
             connection = (HttpURLConnection) new URL(SNAPSHOT).openConnection();
@@ -103,16 +115,15 @@ final class CctvWidget {
             connection.setUseCaches(false);
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 try (InputStream in = connection.getInputStream()) {
-                    fresh = BitmapFactory.decodeStream(in);
+                    return BitmapFactory.decodeStream(in);
                 }
             }
         } catch (Exception ignored) {
-            fresh = null;   // bridge not running (yet): the card keeps the last frame and retries
+            // Bridge not running (yet): the caller keeps its last frame and retries.
         } finally {
             if (connection != null) connection.disconnect();
         }
-        final Bitmap decoded = fresh;
-        handler.post(() -> apply(decoded));
+        return null;
     }
 
     private void apply(Bitmap fresh) {
@@ -137,14 +148,14 @@ final class CctvWidget {
         }
     }
 
-    /** Aligns the card under the football card, centred on its width. */
-    void placeUnder(View football, View root) {
+    /** To the right of the football card, vertically centred on it. */
+    void placeBeside(View football, View root) {
         int[] r = new int[2];
         int[] f = new int[2];
         root.getLocationInWindow(r);
         football.getLocationInWindow(f);
-        float x = f[0] - r[0] + (football.getWidth() - card.getWidth()) / 2f;
-        float y = f[1] - r[1] + football.getHeight() + 8 * density;
+        float x = f[0] - r[0] + football.getWidth() + 8 * density;
+        float y = f[1] - r[1] + (football.getHeight() - card.getHeight()) / 2f;
         if (Math.abs(card.getX() - x) > 0.5f || Math.abs(card.getY() - y) > 0.5f) {
             card.setX(x);
             card.setY(y);

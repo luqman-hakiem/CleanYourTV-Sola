@@ -1,3 +1,6 @@
+SHA-256  CleanYourTV-Sola-3.53-cctv-fullscreen.apk e7fc32bf6d796d2752fcc8fd2a33fc5e4a450da7ef71f73d6d0bd47939e27bf7
+SHA-256  CleanYourTV-Sola-3.53-pasang.zip 23010dc3373e581c9467d81beb8bf23e5de1bd9bf18d869ed9d4a5f8af508a4c
+SHA-256  cctv-beside-fullscreen-3.53.png 5ab30e98cd50782dcb4e9cd69ae3c199fbda8778d131c50162f88d31a6a64374
 SHA-256  CleanYourTV-Sola-3.52-cctv-reception.apk cdfe73a2dfd0544a9ee17a963c8addd9f5a9f759b6e8d5c4f4fbf59726c924db
 SHA-256  CleanYourTV-Sola-3.52-pasang.zip 04819c5115af3922d86cb4ca5627eaa6d911b3912ee34e0972bbe14e60fb10e2
 SHA-256  cctv-reception-3.52.png 123e803b2411519060097239b3ccb0a1589b852d5cda08b019232a3a41303c37

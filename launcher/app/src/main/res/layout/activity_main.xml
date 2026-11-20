@@ -617,8 +617,8 @@
         android:focusableInTouchMode="true"
         android:clickable="true"
         android:descendantFocusability="beforeDescendants"
-        android:nextFocusUp="@id/btnWifi"
-        android:nextFocusDown="@+id/cctvCard"
+        android:nextFocusUp="@id/cctvCard"
+        android:nextFocusDown="@+id/grid"
         android:nextFocusLeft="@id/bitchordNext"
         android:nextFocusRight="@id/bitchordLyrics"
         android:contentDescription="@string/bitchord_widget">
@@ -739,12 +739,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Reception CCTV preview, placed under the football card in code. A small glass frame with the
-         latest JPEG from the PC bridge; OK opens HiLook for the full live view. -->
+    <!-- Reception CCTV preview, placed beside the football card in code. A large glass frame with the
+         latest JPEG from the PC bridge; OK opens a full-screen view of the same live frame. -->
     <LinearLayout
         android:id="@+id/cctvCard"
-        android:layout_width="248dp"
-        android:layout_height="88dp"
+        android:layout_width="270dp"
+        android:layout_height="168dp"
         android:layout_gravity="top|left"
         android:orientation="vertical"
         android:background="@drawable/bitchord_bar_bg"
@@ -754,8 +754,8 @@
         android:focusableInTouchMode="true"
         android:clickable="true"
         android:descendantFocusability="beforeDescendants"
-        android:nextFocusUp="@id/bitchordBar"
-        android:nextFocusDown="@+id/grid"
+        android:nextFocusUp="@id/btnWifi"
+        android:nextFocusDown="@id/bitchordBar"
         android:contentDescription="@string/cctv_widget">
 
         <FrameLayout
@@ -1059,7 +1059,7 @@
                     style="@style/TopButton"
                     android:text="@string/inputs"
                     android:drawableStart="@drawable/ic_input"
-                    android:nextFocusDown="@id/bitchordBar" />
+                    android:nextFocusDown="@id/cctvCard" />
 
                 <TextView
                     android:id="@+id/btnNetSpeed"
@@ -1074,7 +1074,7 @@
                     android:ellipsize="end"
                     android:text="@string/wifi"
                     android:drawableStart="@drawable/ic_wifi"
-                    android:nextFocusDown="@id/bitchordBar" />
+                    android:nextFocusDown="@id/cctvCard" />
 
                 <TextView
                     android:id="@+id/btnVpn"
@@ -1082,14 +1082,14 @@
                     android:visibility="gone"
                     android:singleLine="true"
                     android:text="@string/vpn"
-                    android:nextFocusDown="@id/bitchordBar" />
+                    android:nextFocusDown="@id/cctvCard" />
 
                 <TextView
                     android:id="@+id/btnReorder"
                     style="@style/TopButtonIcon"
                     android:contentDescription="@string/reorder"
                     android:drawableStart="@drawable/ic_swap_vert"
-                    android:nextFocusDown="@id/bitchordBar" />
+                    android:nextFocusDown="@id/cctvCard" />
 
                 <TextView
                     android:id="@+id/btnLibraryTop"
@@ -1097,21 +1097,21 @@
                     android:visibility="gone"
                     android:contentDescription="@string/app_library"
                     android:drawableStart="@drawable/ic_apps_pill"
-                    android:nextFocusDown="@id/bitchordBar" />
+                    android:nextFocusDown="@id/cctvCard" />
 
                 <TextView
                     android:id="@+id/btnTimer"
                     style="@style/TopButton"
                     android:text="@string/sleep_timer"
                     android:drawableStart="@drawable/ic_timer"
-                    android:nextFocusDown="@id/bitchordBar" />
+                    android:nextFocusDown="@id/cctvCard" />
 
                 <TextView
                     android:id="@+id/btnSettings"
                     style="@style/TopButton"
                     android:text="@string/settings"
                     android:drawableStart="@drawable/ic_settings"
-                    android:nextFocusDown="@id/bitchordBar" />
+                    android:nextFocusDown="@id/cctvCard" />
             </LinearLayout>
         </RelativeLayout>
 
