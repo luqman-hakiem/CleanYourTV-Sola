@@ -1,4 +1,7 @@
-﻿SHA-256  CleanYourTV-Sola-3.58-flexible-widgets.apk 36a852648465593cafa62bf47500986d09e523fd80b41876ea63ad2c900c31bd
+﻿SHA-256  CleanYourTV-Sola-3.59-cctv-fullscreen.apk 01e993ef804f4ff54fcca4919733eaec5b1209c902880ec6a98494bb59cc10e4
+SHA-256  CleanYourTV-Sola-3.59-pasang.zip 0b563af7c32cb4616bd9ac01775a24045b84880f1af1a8446ac373d5bd7f3278
+SHA-256  cctv-fullscreen-3.59.png 9d603068841e83ecbe94c81ed3999efb1a67bd4b3defa0b61eed2924d72fdba0
+SHA-256  CleanYourTV-Sola-3.58-flexible-widgets.apk 36a852648465593cafa62bf47500986d09e523fd80b41876ea63ad2c900c31bd
 SHA-256  CleanYourTV-Sola-3.58-pasang.zip e01f2e8fecf4a4dca3650251afcb036aa70d861bb1e8e36c52c7c1bc25bc26ff
 SHA-256  cctv-stb-3.58.png 256b5d0b602177a5b3dafb1905333ece09b704714b60169b5e327e6d93456ad9
 SHA-256  CleanYourTV-Sola-3.57-cctv-stb.apk a1d82210be39edba5ac3f95172bcf961ec274c1fac96659347f74433fc584789

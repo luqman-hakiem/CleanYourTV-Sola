@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Live CCTV frame filling the TV screen, opened with OK from the small card on Home. -->
+<!-- Live CCTV frame filling the TV screen, opened with OK from the small card on Home.
+     The camera is narrower than 16:9, so it is centre-cropped to cover every pixel of the screen
+     instead of leaving letterbox bars. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +11,7 @@
         android:id="@+id/cctvFullImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:importantForAccessibility="no" />
 
     <TextView
