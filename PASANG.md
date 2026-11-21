@@ -42,7 +42,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.56-bitchord-prev.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.57-cctv-stb.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -80,7 +80,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.56-bitchord-prev.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.57-cctv-stb.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -96,7 +96,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.56-bitchord-prev.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.57-cctv-stb.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
@@ -135,11 +135,35 @@ Terakhir, di TV: buka **Setelan → Pengingat adzan**, tekan baris itu sampai te
 
 Supaya ringan, kecilkan dulu file-nya (misalnya jadi mono 48 kbps) — file bawaan paket ini sekitar 1 MB.
 
+## 6a. Data CCTV Reception (opsional, butuh STB rooted)
+
+Kartu CCTV mengambil gambar **langsung dari Hik-Connect di STB**, jadi PC tidak harus menyala.
+Yang perlu disiapkan hanya dua file di PC kamu, **jangan pernah diunggah ke repo atau ke internet**:
+
+- `token.json`: sesi Hik-Connect milikmu (berisi session id, refresh id, dan `feature_code`).
+- `hik_device.json`: identitas kamera, misalnya `{"serial":"<seri NVR>","channel":<channel>}`.
+
+Keduanya harus berada di satu folder, lalu beri tahu pemasang lokasinya:
+
+```
+set CLOUDCAM_HOME=<folder berisi token.json dan hik_device.json>
+pasang.bat
+```
+
+`pasang.bat` menyalin keduanya ke `/data/data/com.gathin.tvhome/files/` dengan nama
+`hik_token.json` dan `hik_device.json`, lalu mengatur izin `600`. Kalau kamu memasang manual,
+salin sendiri kedua file itu ke folder tersebut. Launcher memperbarui sesi memakai refresh token,
+jadi kata sandi tidak perlu disimpan dan tidak pernah diminta. Tanpa kedua file, kartu menampilkan
+**MENUNGGU CCTV…** dan tidak ada yang dikirim ke luar.
+
+Biarkan Magisk **Zygisk** dan **Enforce DenyList** tetap aktif; ini penting supaya HiLook dan
+layanan Google di STB tetap berjalan normal. Akses root hanya dipakai sekali saat menyalin data di atas.
+
 ## 7. Atur di TV
 
 Buka **Launcher settings** dari Home:
 
-- **Widget Home**: gaya kartu, ketebalan latar, tampil/sembunyi tiap kartu (termasuk **Kartu CCTV**), urutan kartu, dan **Lebarkan kartu**. Kalau Lebarkan kartu dimatikan, tiap kartu tetap berukuran normal dan bisa ditaruh di kiri, tengah, atau kanan (rapi kalau cuma satu atau dua kartu yang tampil). Kartu CCTV memakai pengaturannya sendiri dan tidak ikut tersembunyi saat jadwal bola dimatikan. Kartu BitChord kini selebar kartu sholat dan punya tombol **⏮** untuk lagu sebelumnya.
+- **Widget Home**: gaya kartu, ketebalan latar, tampil/sembunyi tiap kartu (termasuk **Kartu CCTV**), urutan kartu, dan **Lebarkan kartu**. Kalau Lebarkan kartu dimatikan, tiap kartu tetap berukuran normal dan bisa ditaruh di kiri, tengah, atau kanan (rapi kalau cuma satu atau dua kartu yang tampil). Kartu CCTV memakai pengaturannya sendiri dan tidak ikut tersembunyi saat jadwal bola dimatikan; saat disembunyikan kartu berhenti mengambil gambar dan fokus remot jatuh ke kartu BitChord. Kartu BitChord kini ada **di bawah kartu CCTV**, selebar kartu sholat, dan punya tombol **⏮** untuk lagu sebelumnya.
 - **Jadwal sholat & adzan**: lokasi, mode pengingat (banner / nada / suara adzan), waktu sholat mana yang diingatkan, dan tombol **Tes pengingat sekarang**.
 - **Jadwal bola**: tim favorit dan sumber jadwal. FotMob langsung jalan; Gemini butuh API key gratis dari aistudio.google.com/apikey (petunjuknya muncul di layar). Mengetik key paling enak lewat aplikasi Google TV di HP. Saat timmu bertanding, baris jadwal menampilkan **skor dan menit berjalan** (contoh `● 67'  2 - 1` warna merah), dan skor akhir berwarna hijau setelah selesai; otomatis diperbarui tiap 5 menit selama laga berjalan.
 
@@ -166,6 +190,7 @@ adb shell pm uninstall com.gathin.tvhome
 - Data jadwal bola dari FotMob memakai API tidak resmi, jadi suatu saat bisa berhenti. Pindah ke Gemini di Launcher settings kalau itu terjadi.
 - Cuaca diambil dari Open-Meteo memakai koordinat lokasi sholat; diperbarui tiap 20 menit dan tetap menampilkan bacaan terakhir saat TV offline. Kalau lokasi sholat diganti, cuaca ikut pindah.
 - Key Gemini, lokasi sholat, dan tim favorit disimpan di TV-mu sendiri, tidak dikirim ke mana pun selain ke layanan yang kamu pilih (FotMob/Gemini dan Open-Meteo).
+- Sesi CCTV dan nomor seri kamera juga hanya ada di penyimpanan privat launcher di STB. Tidak ada kata sandi, alamat PC, atau jembatan CCTV yang dibutuhkan lagi.
 
 ## Lisensi
 

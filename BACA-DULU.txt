@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.56-bitchord-prev.apk   APK saja
-    CleanYourTV-Sola-3.56-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.57-cctv-stb.apk   APK saja
+    CleanYourTV-Sola-3.57-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -44,7 +44,7 @@ Fitur tambahan dibanding CleanYourTV biasa
   - Tombol mic di remote membuka suara Google; pemasang menyalakan lagi
     aplikasi suara Google yang dimatikan TV (SDMC/AX810)
   - Nama Wi-Fi lengkap di pil atas; sapaan + nama diatur di config.xml
-  - Kontrol BitChord glass mini di bawah jadwal sholat, kini selebar kartu
+  - Kontrol BitChord glass mini di bawah kartu CCTV, kini selebar kartu
     sholat: sampul + judul lagu dan tombol Aa (buka BitChord untuk lirik),
     ⏮ (lagu sebelumnya), ▶/⏸ (putar/jeda), ⏭ (lagu berikutnya).
     Bisa diklik remot: DPAD Bawah dari bar atas atau Atas dari grid, lalu OK
@@ -54,13 +54,15 @@ Fitur tambahan dibanding CleanYourTV biasa
     dan turun rata saat dijeda
   - Pratinjau CCTV Reception di samping kanan jadwal bola: kartu glass satu
     kamera dengan ukuran sama seperti jadwal sholat dan bola, gambar terbaru
-    tiap dua detik dari jembatan CCTV di PC, status LIVE bila gambar masuk dan
-    MENUNGGU CCTV… bila jembatan belum jalan. Sudut gambar dipangkas mengikuti
-    tepi glass, tidak ada garis yang menonjol. Fokus remot menyalakan tepi
-    kartu; OK langsung menampilkan gambar full layar di launcher, OK/BACK untuk
-    kembali. Kartu bisa ditampilkan atau disembunyikan lewat Setelan → Widget
-    Home → Kartu CCTV, terpisah dari jadwal bola. Tidak ada kata sandi yang
-    disimpan di launcher
+    tiap enam detik langsung dari Hik-Connect di STB (PC tidak perlu menyala),
+    status LIVE bila gambar masuk dan MENUNGGU CCTV… bila sesi belum disiapkan.
+    Sudut gambar dipangkas mengikuti tepi glass, tidak ada garis yang menonjol.
+    Fokus remot menyalakan tepi kartu; OK langsung menampilkan gambar full layar
+    di launcher, OK/BACK untuk kembali. Kartu bisa ditampilkan atau
+    disembunyikan lewat Setelan → Widget Home → Kartu CCTV, terpisah dari jadwal
+    bola; saat disembunyikan, pengambilan gambar berhenti. Sesi dan identitas
+    kamera hanya di penyimpanan privat launcher di STB. Tidak ada kata sandi
+    yang disimpan di launcher maupun di repo
   - Tanggal Minggu: hanya tanggal yang merah, nama bulan tetap putih
   - pasang.bat: pasang, jadikan Home, reboot, lalu memeriksa hasilnya sendiri
 
@@ -74,6 +76,14 @@ Cara pasang cepat (Windows)
      dan menyimpan screenshot home-setelah-reboot.png
 
 Cara manual: ikuti PASANG.md.
+
+Data CCTV (opsional)
+--------------------
+  Siapkan token.json dan hik_device.json di PC kamu (jangan di repo), lalu
+  set CLOUDCAM_HOME=<folder itu> sebelum menjalankan pasang.bat. Skrip
+  menyalinnya ke penyimpanan privat launcher di STB; kata sandi tidak disimpan.
+  Tanpa kedua file, kartu CCTV menampilkan MENUNGGU CCTV…. Biarkan Zygisk dan
+  Enforce DenyList di Magisk tetap aktif.
 
 Build sendiri
 -------------
@@ -89,6 +99,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.57  CCTV langsung dari STB tanpa PC, kartu BitChord dipindah di bawahnya
   3.56  kartu BitChord selebar jadwal sholat, tombol ⏮ lagu sebelumnya
   3.55  kartu CCTV bisa ditampil/disembunyikan di Setelan → Widget Home
   3.54  kartu CCTV seukuran jadwal sholat/bola, sudut tepi dirapikan

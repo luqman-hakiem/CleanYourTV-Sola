@@ -106,6 +106,42 @@ if ($grantWifi -match 'Error|Exception') {
     Write-Host "Izin diberikan (lokasi, untuk membaca nama Wi-Fi yang tersambung)."
 }
 
+Step "Menyiapkan data CCTV di STB (tanpa kata sandi)"
+# CCTV mengambil gambar langsung dari Hik-Connect, jadi tidak perlu PC yang menyala.
+# Token sesi dan identitas kamera disalin sekali dari PC; launcher memperbarui tokennya sendiri.
+$cctvHome = $env:CLOUDCAM_HOME
+if (-not $cctvHome) { $cctvHome = Join-Path $env:USERPROFILE 'CCTV\cloudcam-home' }
+$cctvFiles = @(
+    @{ Local = Join-Path $cctvHome 'token.json'; Remote = 'hik_token.json' },
+    @{ Local = Join-Path $cctvHome 'hik_device.json'; Remote = 'hik_device.json' }
+)
+$missing = @($cctvFiles | Where-Object { -not (Test-Path -LiteralPath $_.Local) })
+if ($missing.Count -gt 0) {
+    Write-Host "Lewati: data CCTV belum lengkap di $cctvHome" -ForegroundColor Yellow
+    Write-Host "CCTV akan menampilkan 'MENUNGGU CCTV…' sampai token.json dan hik_device.json disalin." -ForegroundColor Yellow
+} else {
+    $uidLine = Invoke-Adb @('shell', 'stat', '-c', '%u', "/data/data/$pkg")
+    $appUid = ($uidLine -split "`n")[-1].Trim()
+    if ($appUid -notmatch '^\d+$') {
+        Write-Host "Peringatan: UID launcher tidak terbaca; data CCTV belum disalin." -ForegroundColor Yellow
+    } else {
+        $copied = 0
+        foreach ($file in $cctvFiles) {
+            $staging = "/sdcard/$($file.Remote)"
+            Invoke-Adb @('push', $file.Local, $staging) | Out-Null
+            $copy = "mkdir -p /data/data/$pkg/files; cp $staging /data/data/$pkg/files/$($file.Remote); chown ${appUid}:${appUid} /data/data/$pkg/files/$($file.Remote); chmod 600 /data/data/$pkg/files/$($file.Remote); rm -f $staging"
+            $result = Invoke-Adb @('shell', "su -c '$copy'")
+            if ($result -match 'not found|Permission denied|denied') { break }
+            $copied++
+        }
+        if ($copied -ne $cctvFiles.Count) {
+            Write-Host "Peringatan: STB tidak mengizinkan su -c. Salin token.json dan hik_device.json manual ke /data/data/$pkg/files/" -ForegroundColor Yellow
+        } else {
+            Write-Host "OK    Data CCTV ada di STB; CCTV jalan tanpa PC." -ForegroundColor Green
+        }
+    }
+}
+
 Step "Mengaktifkan kembali suara Google (tombol mic di remote)"
 foreach ($voicePkg in @('com.google.android.katniss', 'com.google.android.tts')) {
     $listed = Invoke-Adb @('shell', 'pm', 'list', 'packages', $voicePkg)

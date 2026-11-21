@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The green "NOW PLAYING" card, modelled on the home bitchord example. The focused item gets a
+     brighter outline so the TV remote's DPAD selection is visible. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <gradient android:angle="270" android:startColor="#00E622" android:endColor="#00B41C" />
+            <stroke android:width="2dp" android:color="#FFFFFFFF" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="270" android:startColor="#00D41E" android:endColor="#00A818" />
+            <stroke android:width="1dp" android:color="#66FFFFFF" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</selector>

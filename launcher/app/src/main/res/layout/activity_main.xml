@@ -602,7 +602,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- BitChord control, directly below the prayer card. Styled like the other glass widgets. Reads
+    <!-- BitChord control, directly below the CCTV card. Styled like the other glass widgets. Reads
          the BitChord media session so the remote can play/pause, go back or forward a track, or open
          lyrics from Home. The equalizer sits at the top of this same glass frame, above the controls. -->
     <LinearLayout
@@ -759,7 +759,7 @@
     </LinearLayout>
 
     <!-- Reception CCTV preview, placed beside the football card in code. A large glass frame with the
-         latest JPEG from the PC bridge; OK opens a full-screen view of the same live frame. -->
+         latest JPEG from Hik-Connect; OK opens a full-screen view of the same frame. -->
     <LinearLayout
         android:id="@+id/cctvCard"
         android:layout_width="266dp"

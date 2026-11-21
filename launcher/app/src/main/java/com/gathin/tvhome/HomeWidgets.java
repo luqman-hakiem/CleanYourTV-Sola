@@ -88,7 +88,7 @@ final class HomeWidgets {
     private final TextView[] ballDates = new TextView[4], ballOpponents = new TextView[4], ballTags = new TextView[4];
     private final android.widget.ImageView[] ballLogos = new android.widget.ImageView[4];
     private final View calCard, prayerCard, ballCard;
-    /** Compact BitChord control under the prayer card; null when BitChord is not installed. */
+    /** Compact BitChord control under the CCTV card; null when BitChord is not installed. */
     private final BitchordWidget music;
     /** Reception camera preview beside the football card; null when the layout has no CCTV card. */
     private final CctvWidget cctv;
@@ -419,14 +419,14 @@ final class HomeWidgets {
         header.getLocationInWindow(h);
         float y = h[1] - r[1] + header.getHeight() + 14 * density;
         if (Math.abs(row.getY() - y) > 0.5f) row.setY(y);
-        if (music != null) {
-            music.placeUnder(prayerCard, root);
-            // The card gets its final width one layout pass after the row is moved.
-            row.post(() -> music.placeUnder(prayerCard, root));
-        }
         if (cctv != null) {
             cctv.placeInSlot(row, root);
             row.post(() -> cctv.placeInSlot(row, root));
+        }
+        if (music != null) {
+            // The CCTV card gets its final width one layout pass after the row is moved.
+            music.placeUnder(row, cctv == null ? prayerCard : cctv.view(), root);
+            row.post(() -> music.placeUnder(row, cctv == null ? prayerCard : cctv.view(), root));
         }
     }
 

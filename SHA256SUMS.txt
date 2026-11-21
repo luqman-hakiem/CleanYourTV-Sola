@@ -1,3 +1,6 @@
+SHA-256  CleanYourTV-Sola-3.57-cctv-stb.apk a1d82210be39edba5ac3f95172bcf961ec274c1fac96659347f74433fc584789
+SHA-256  CleanYourTV-Sola-3.57-pasang.zip ea490377ea4cb8adc907f4840c50666db2d76351188368cfbffcfb3874756d0a
+SHA-256  cctv-stb-3.57.png 9c5c9f857ca86ca47058e6ac3bf496b8b69e0d6967b51138de9b558161b5a034
 SHA-256  CleanYourTV-Sola-3.56-bitchord-prev.apk 5359808c357e1b4d945ed7168f76eba05d2a0cfb1a229f4081e6c6d9ae2ca2bf
 SHA-256  CleanYourTV-Sola-3.56-pasang.zip 56df6ccdf6b7b3196b4a44d699a48f4c5d350e8685f19d468405e646a85c6cbf
 SHA-256  bitchord-prev-3.56.png 92937f7cf96d300f19bdf12053e752c19ee70f5d485de3004fdf1ed854757548

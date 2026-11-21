@@ -17,8 +17,8 @@ Tambahan di fork ini:
 - **Kecepatan internet** kecil berhuruf tebal di kiri nama Wi-Fi: unduh dan unggah dalam Mbps, diperbarui tiap detik. Pilnya bening seperti pil lain saat diam, dan baru menjadi gelap tembus pandang selama uji kecepatan berjalan supaya angkanya terbaca. Tekan OK di pil itu untuk **uji kecepatan** (Ping, Unduh, Unggah) lewat server publik Cloudflare; hasilnya tertinggal di pil 10 detik
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Dock tanpa nama**: deretan ikon aplikasi di bawah tidak menampilkan nama besar aplikasi di atasnya, dan posisi dock tetap seperti semula
-- **Kontrol BitChord** di bawah jadwal sholat: kartu glass mini selebar kartu sholat, berisi sampul, judul lagu, dan empat tombol — **Aa** (buka BitChord untuk lirik), **⏮** (lagu sebelumnya), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
-- **Pratinjau CCTV Reception** di samping kanan jadwal bola: kartu glass satu kamera dengan **ukuran sama persis** dengan kartu jadwal sholat dan bola (266 × 178 dp), menampilkan gambar terbaru dari jembatan CCTV di PC (snapshot JPEG tiap dua detik), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Sudut gambar dipangkas mengikuti tepi glass sehingga tidak ada garis yang menonjol. Bisa difokus dengan remot: dari bar atas tekan **Bawah**, atau dari grid tekan **Atas** dua kali; tepi kartu menyala saat difokus dan **OK** langsung menampilkan gambar **full layar** di launcher (tanpa membuka aplikasi lain). **OK** atau **BACK** untuk kembali. Kartu ini punya pengaturan sendiri di **Launcher settings → Widget Home → Kartu CCTV** (Tampil/Sembunyi), terpisah dari kartu jadwal bola. Saat disembunyikan, fokus remot dari pil atas langsung jatuh ke kartu BitChord dan kartu tidak memuat gambar. Tidak ada kata sandi yang disimpan di launcher
+- **Kontrol BitChord** di bawah kartu CCTV: kartu glass mini selebar kartu sholat, berisi sampul, judul lagu, dan empat tombol — **Aa** (buka BitChord untuk lirik), **⏮** (lagu sebelumnya), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
+- **Pratinjau CCTV Reception** di samping kanan jadwal bola: kartu glass satu kamera dengan **ukuran sama persis** dengan kartu jadwal sholat dan bola (266 × 178 dp), mengambil gambar **langsung dari Hik-Connect di STB** (tanpa PC yang menyala), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Sudut gambar dipangkas mengikuti tepi glass sehingga tidak ada garis yang menonjol. Bisa difokus dengan remot: dari bar atas tekan **Bawah**, atau dari grid tekan **Atas** dua kali; tepi kartu menyala saat difokus dan **OK** langsung menampilkan gambar **full layar** di launcher (tanpa membuka aplikasi lain). **OK** atau **BACK** untuk kembali. Kartu ini punya pengaturan sendiri di **Launcher settings → Widget Home → Kartu CCTV** (Tampil/Sembunyi), terpisah dari kartu jadwal bola. Saat disembunyikan, fokus remot dari pil atas langsung jatuh ke kartu BitChord dan kartu berhenti memuat gambar. Sesi dan identitas kamera disimpan hanya di penyimpanan privat aplikasi di STB; **kata sandi tidak pernah disimpan di launcher maupun di repo**
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -34,7 +34,7 @@ Tambahan di fork ini:
 
 <p align="center">
   <img src="screenshots/kartu.png" alt="Kartu jadwal sholat dan jadwal bola" width="880"><br>
-  <img src="screenshots/cctv-aligned-3.54.png" alt="Pratinjau CCTV Reception seukuran jadwal sholat dan bola" width="880"><br>
+  <img src="screenshots/cctv-stb-3.57.png" alt="Kartu CCTV langsung dari STB dengan kartu BitChord di bawahnya" width="880"><br>
   <img src="screenshots/widget-setting-3.55.png" alt="Pengaturan Widget Home dengan baris Kartu CCTV" width="880"><br>
   <img src="screenshots/bitchord-prev-3.56.png" alt="Kartu BitChord selebar jadwal sholat dengan tombol lagu sebelumnya" width="880"><br>
   <img src="screenshots/dock-tanpa-nama-3.43.png" alt="Dock aplikasi tanpa nama di atas ikon" width="880">
@@ -51,16 +51,24 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.56-bitchord-prev** (versionCode 66).
+Rilis terbaru: **3.57-cctv-stb** (versionCode 67).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.56-bitchord-prev.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.56-bitchord-prev.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.56-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.56-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.57-cctv-stb.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.57-cctv-stb.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.57-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.57-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang
 suara adzan tanpa root). Panduan langkah demi langkah: [PASANG.md](PASANG.md).
+
+Untuk kartu CCTV, siapkan di PC kamu sendiri dua file kecil yang **tidak ikut dimasukkan ke repo**:
+`token.json` (sesi Hik-Connect milikmu) dan `hik_device.json` (nomor seri serta channel kamera).
+`pasang.bat` menyalinnya ke penyimpanan privat launcher di STB bila keduanya ada; launcher
+memperbarui sesinya sendiri memakai refresh token. Tanpa kedua file itu kartu tetap tampil
+dengan status **MENUNGGU CCTV…**. Kata sandi akun tidak pernah diminta atau disimpan.
+Penyalinan data ini memakai akses root di STB; biarkan pengaturan Magisk **Zygisk** dan
+**Enforce DenyList** tetap aktif supaya aplikasi HiLook/Play Protect tidak terganggu.
 
 > APK memakai tanda tangan debug. Kalau TV sudah memakai CleanYourTV resmi
 > (tanda tangan berbeda), hapus dulu versi itu sebelum memasang; data aplikasi

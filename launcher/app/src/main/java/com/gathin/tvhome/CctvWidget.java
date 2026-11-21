@@ -1,9 +1,9 @@
 package com.gathin.tvhome;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Outline;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -14,20 +14,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Reception camera preview beside the football card. The PC bridge publishes one JPEG every two
- * seconds; the launcher only decodes the latest frame, so the Home stays light. OK opens a
- * full-screen view of the same frame. No new permission: INTERNET is already used by the other widgets.
+ * Reception camera preview beside the football card. One small JPEG is fetched straight from
+ * Hik-Connect, so the widget works when the PC is off. OK opens a full-screen view of the same frame.
+ * No new permission: INTERNET is already used by the other widgets.
  */
 final class CctvWidget {
-    static final String SNAPSHOT = "http://10.10.10.176:8890/reception.jpg";
-    private static final long REFRESH_MS = 2000L;
+    private static final long REFRESH_MS = 6000L;
 
     private final Activity activity;
     private final View card;
@@ -117,29 +113,13 @@ final class CctvWidget {
     }
 
     private void load() {
-        final Bitmap decoded = fetchSnapshot();
+        final Bitmap decoded = fetchSnapshot(activity);
         handler.post(() -> apply(decoded));
     }
 
     /** One snapshot, shared by the Home card and the full-screen viewer. Never throws. */
-    static Bitmap fetchSnapshot() {
-        HttpURLConnection connection = null;
-        try {
-            connection = (HttpURLConnection) new URL(SNAPSHOT).openConnection();
-            connection.setConnectTimeout(1800);
-            connection.setReadTimeout(1800);
-            connection.setUseCaches(false);
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                try (InputStream in = connection.getInputStream()) {
-                    return BitmapFactory.decodeStream(in);
-                }
-            }
-        } catch (Exception ignored) {
-            // Bridge not running (yet): the caller keeps its last frame and retries.
-        } finally {
-            if (connection != null) connection.disconnect();
-        }
-        return null;
+    static Bitmap fetchSnapshot(Context context) {
+        return HikCctv.get(context).capture();
     }
 
     private void apply(Bitmap fresh) {

@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Full-screen view of the Reception camera, opened with OK on the Home card. It reads the same
- * PC snapshot as the card, so OK is instant: no app switch, no login, no second stream.
+ * Hik-Connect snapshot as the card, so OK is instant: no app switch, no login, no second stream.
  * OK or BACK returns to Home.
  */
 public class CctvFullscreenActivity extends Activity {
@@ -50,7 +50,7 @@ public class CctvFullscreenActivity extends Activity {
     private void tick() {
         if (destroyed) return;
         io.execute(() -> {
-            final Bitmap fresh = CctvWidget.fetchSnapshot();
+            final Bitmap fresh = CctvWidget.fetchSnapshot(CctvFullscreenActivity.this);
             handler.post(() -> apply(fresh));
         });
         handler.postDelayed(this::tick, REFRESH_MS);

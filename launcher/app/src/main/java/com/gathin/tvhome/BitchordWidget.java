@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Compact glass control for BitChord TV, placed under the prayer card. It reads BitChord's own media
+ * Compact glass control for BitChord TV, placed under the CCTV card. It reads BitChord's own media
  * session so the remote can play/pause, skip to the previous or next track, or open the app from Home.
  * "Lyrics" opens BitChord, which is where lyrics are shown (the session exposes no lyric intent).
  *
@@ -273,14 +273,21 @@ final class BitchordWidget {
         }
     }
 
-    /** Sits directly below the left side of the prayer card. */
-    void placeUnder(View card, View root) {
-        if (bar.getVisibility() != View.VISIBLE || card.getWidth() == 0) return;
-        int[] r = new int[2], c = new int[2];
+    /** Sits directly below the CCTV card in the same right-hand slot of the widget row. */
+    void placeUnder(View row, View card, View root) {
+        if (bar.getVisibility() != View.VISIBLE || row.getWidth() == 0) return;
+        int[] r = new int[2], at = new int[2], c = new int[2];
         root.getLocationInWindow(r);
+        row.getLocationInWindow(at);
         card.getLocationInWindow(c);
-        int x = c[0] - r[0];
-        int y = c[1] - r[1] + card.getHeight() + (int) (4 * density);
+        int gap = (int) (14 * density);
+        int rowWidth = row.getWidth() > 0 ? row.getWidth()
+                : activity.getResources().getDisplayMetrics().widthPixels - (int) (132 * density);
+        int slot = Math.max(0, (rowWidth - 2 * gap) / 3);
+        int x = at[0] - r[0] + 2 * (slot + gap);
+        int bottom = card.getVisibility() == View.VISIBLE
+                ? c[1] - r[1] + card.getHeight() : at[1] - r[1] + row.getHeight();
+        int y = bottom + (int) (4 * density);
         if (Math.abs(bar.getX() - x) > 0.5f || Math.abs(bar.getY() - y) > 0.5f) {
             bar.setX(x);
             bar.setY(y);
