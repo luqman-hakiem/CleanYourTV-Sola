@@ -79,7 +79,8 @@ final class FootballSource {
 
     static String teamLeague(Context c) {
         String league = prefs(c).getString(PREF_TEAM_LEAGUE, "");
-        return league.isEmpty() && prefs(c).getString(PREF_TEAM_ID, "").isEmpty() ? "Super League Indonesia" : league;
+        return league.isEmpty() && prefs(c).getString(PREF_TEAM_ID, "").isEmpty()
+                ? c.getString(R.string.football_team_league).trim() : league;
     }
 
     static String badge(String fotmobTeamId) {

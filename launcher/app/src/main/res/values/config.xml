@@ -536,7 +536,9 @@
          in Launcher settings, times computed on the TV), a month calendar with the Hijri date, and a football
          team's fixtures from FotMob or Gemini (Launcher settings → Sumber jadwal). -->
     <bool name="home_widgets">true</bool>
-    <!-- The default team: its FotMob id and name (Launcher settings → Tim favorit changes it). Persib Bandung is 165196. -->
-    <string name="football_team_id" translatable="false">165196</string>
-    <string name="football_team_name" translatable="false">Persib Bandung</string>
+    <!-- The default team: its FotMob id and name (Launcher settings → Tim favorit changes it).
+         Manchester United is 10260. The league is only the hint used by the Gemini source. -->
+    <string name="football_team_id" translatable="false">10260</string>
+    <string name="football_team_name" translatable="false">Manchester United</string>
+    <string name="football_team_league" translatable="false">Premier League</string>
 </resources>

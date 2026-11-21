@@ -47,15 +47,15 @@ import java.util.concurrent.Executors;
  */
 final class HomeWidgets {
 
-    // Prayer location, chosen in Launcher settings (PrayerLocationPicker). Default: Kota Bandung.
+    // Prayer location, chosen in Launcher settings (PrayerLocationPicker). Default: Belian, Batam.
     static final String PREF_LAT = "prayer_lat";
     static final String PREF_LON = "prayer_lon";
     static final String PREF_ELEV = "prayer_elev";
     static final String PREF_NAME = "prayer_name";
-    static final double DEFAULT_LAT = -6.9175;
-    static final double DEFAULT_LON = 107.6191;
-    static final double DEFAULT_ELEV = 768;
-    static final String DEFAULT_NAME = "Kota Bandung";
+    static final double DEFAULT_LAT = 1.1317969;
+    static final double DEFAULT_LON = 104.0740846;
+    static final double DEFAULT_ELEV = 0;
+    static final String DEFAULT_NAME = "Belian, Batam";
 
     private static final Locale ID = new Locale("id", "ID");
     private static final String[] HIJRI_MONTHS = {"Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir",
@@ -691,22 +691,22 @@ final class HomeWidgets {
             if (over && !m.score.isEmpty()) {
                 ballTags[i].setText(m.score);
                 ballTags[i].setTextColor(0xFF8CF0B4);
-                ballTags[i].setTextSize(13f);
+                WidgetStyle.autoSize(ballTags[i], 6f, 13f);
             } else if (live) {
                 // The score is the point of the line while the match runs: "● 67'  2 - 1", a step up in size.
                 String clock = m.minute.isEmpty() ? "LIVE" : m.minute;
                 ballTags[i].setText(m.score.isEmpty() ? "● " + clock : "● " + clock + "  " + m.score);
                 ballTags[i].setTextColor(MonthView.RED);
-                ballTags[i].setTextSize(15f);
+                WidgetStyle.autoSize(ballTags[i], 6f, 15f);
             } else if (i == next) {
                 // The nearest kick-off counts down: "9 HARI 6 JAM", "5 JAM 12 MNT", "SEGERA".
                 ballTags[i].setText(countdown(m.start, now));
                 ballTags[i].setTextColor(0xFFFFCF6B);
-                ballTags[i].setTextSize(11.5f);
+                WidgetStyle.autoSize(ballTags[i], 6f, 11.5f);
             } else {
                 ballTags[i].setText(tag(m.league));
                 ballTags[i].setTextColor(0xD9FFFFFF);
-                ballTags[i].setTextSize(11.5f);
+                WidgetStyle.autoSize(ballTags[i], 6f, 11.5f);
             }
             // Played matches step back a little; the eye goes to what is next.
             float alpha = over ? 0.7f : 1f;

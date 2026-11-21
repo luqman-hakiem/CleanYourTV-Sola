@@ -141,7 +141,11 @@
                 android:ellipsize="end"
                 android:textColor="#FF8CF0B4"
                 android:textSize="16.5sp"
-                android:fontFamily="@string/font_medium" />
+                android:fontFamily="@string/font_medium"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="11sp"
+                android:autoSizeMaxTextSize="16.5sp"
+                android:autoSizeStepGranularity="1sp" />
 
             <TextView
                 android:id="@+id/prayerDate"
@@ -152,7 +156,11 @@
                 android:ellipsize="end"
                 android:textColor="#E6FFFFFF"
                 android:textSize="12sp"
-                android:fontFamily="@string/font_medium" />
+                android:fontFamily="@string/font_medium"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="7sp"
+                android:autoSizeMaxTextSize="12sp"
+                android:autoSizeStepGranularity="1sp" />
 
             <TextView
                 android:id="@+id/prayerCountdown"
@@ -163,7 +171,11 @@
                 android:ellipsize="end"
                 android:textColor="#FFFFFFFF"
                 android:textSize="14.5sp"
-                android:fontFamily="@string/font_medium" />
+                android:fontFamily="@string/font_medium"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14.5sp"
+                android:autoSizeStepGranularity="1sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -320,34 +332,46 @@
 
                 <TextView
                     android:id="@+id/calWeekday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:textColor="#FFFF453A"
                     android:textSize="11sp"
                     android:fontFamily="@string/font_medium"
-                    android:letterSpacing="0.14" />
+                    android:letterSpacing="0.14"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="11sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/calDay"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:includeFontPadding="false"
                     android:singleLine="true"
                     android:textColor="#FFFFFFFF"
                     android:textSize="38sp"
-                    android:fontFamily="@string/font_light" />
+                    android:fontFamily="@string/font_light"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="33sp"
+                    android:autoSizeMaxTextSize="38sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/calHijri"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:maxLines="2"
                     android:textColor="#A6FFFFFF"
                     android:textSize="10sp"
-                    android:fontFamily="@string/font_regular" />
+                    android:fontFamily="@string/font_regular"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="7sp"
+                    android:autoSizeMaxTextSize="10sp"
+                    android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <com.gathin.tvhome.MonthView
@@ -407,18 +431,23 @@
 
                 <TextView
                     android:id="@+id/ballDate0"
-                    android:layout_width="104dp"
+                    android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:ellipsize="end"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <ImageView
                     android:id="@+id/ballLogo0"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="6dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
@@ -431,18 +460,28 @@
                     android:ellipsize="end"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="13.5sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag0"
-                    android:layout_width="wrap_content"
+                    android:layout_width="52dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:singleLine="true"
+                    android:ellipsize="end"
+                    android:gravity="end"
                     android:textColor="#D9FFFFFF"
                     android:textSize="11.5sp"
                     android:fontFamily="@string/font_medium"
-                    android:letterSpacing="0.06" />
+                    android:letterSpacing="0.06"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMaxTextSize="11.5sp"
+                    android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -455,18 +494,23 @@
 
                 <TextView
                     android:id="@+id/ballDate1"
-                    android:layout_width="104dp"
+                    android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:ellipsize="end"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <ImageView
                     android:id="@+id/ballLogo1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="6dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
@@ -479,18 +523,28 @@
                     android:ellipsize="end"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="13.5sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="52dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:singleLine="true"
+                    android:ellipsize="end"
+                    android:gravity="end"
                     android:textColor="#D9FFFFFF"
                     android:textSize="11.5sp"
                     android:fontFamily="@string/font_medium"
-                    android:letterSpacing="0.06" />
+                    android:letterSpacing="0.06"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMaxTextSize="11.5sp"
+                    android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -503,18 +557,23 @@
 
                 <TextView
                     android:id="@+id/ballDate2"
-                    android:layout_width="104dp"
+                    android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:ellipsize="end"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <ImageView
                     android:id="@+id/ballLogo2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="6dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
@@ -527,18 +586,28 @@
                     android:ellipsize="end"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="13.5sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="52dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:singleLine="true"
+                    android:ellipsize="end"
+                    android:gravity="end"
                     android:textColor="#D9FFFFFF"
                     android:textSize="11.5sp"
                     android:fontFamily="@string/font_medium"
-                    android:letterSpacing="0.06" />
+                    android:letterSpacing="0.06"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMaxTextSize="11.5sp"
+                    android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -551,18 +620,23 @@
 
                 <TextView
                     android:id="@+id/ballDate3"
-                    android:layout_width="104dp"
+                    android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:ellipsize="end"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <ImageView
                     android:id="@+id/ballLogo3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="6dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
@@ -575,18 +649,28 @@
                     android:ellipsize="end"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="13.5sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="52dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:singleLine="true"
+                    android:ellipsize="end"
+                    android:gravity="end"
                     android:textColor="#D9FFFFFF"
                     android:textSize="11.5sp"
                     android:fontFamily="@string/font_medium"
-                    android:letterSpacing="0.06" />
+                    android:letterSpacing="0.06"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMaxTextSize="11.5sp"
+                    android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <TextView
@@ -598,7 +682,11 @@
                 android:textColor="#CCFFFFFF"
                 android:textSize="14sp"
                 android:fontFamily="@string/font_regular"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14sp"
+                android:autoSizeStepGranularity="1sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -668,7 +756,11 @@
                     android:text="@string/bitchord_name"
                     android:textColor="#F2FFFFFF"
                     android:textSize="10sp"
-                    android:fontFamily="@string/font_medium" />
+                    android:fontFamily="@string/font_medium"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="7sp"
+                    android:autoSizeMaxTextSize="10sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/bitchordSub"
@@ -678,7 +770,11 @@
                     android:ellipsize="end"
                     android:textColor="#B3FFFFFF"
                     android:textSize="8.5sp"
-                    android:fontFamily="@string/font_regular" />
+                    android:fontFamily="@string/font_regular"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="8.5sp"
+                    android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <TextView
@@ -697,7 +793,11 @@
                 android:nextFocusDown="@+id/grid"
                 android:nextFocusLeft="@id/bitchordNext"
                 android:nextFocusRight="@id/bitchordPrev"
-                android:contentDescription="@string/bitchord_lyrics" />
+                android:contentDescription="@string/bitchord_lyrics"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="6sp"
+                android:autoSizeMaxTextSize="9sp"
+                android:autoSizeStepGranularity="1sp" />
 
             <TextView
                 android:id="@+id/bitchordPrev"
@@ -716,7 +816,11 @@
                 android:nextFocusDown="@+id/grid"
                 android:nextFocusLeft="@id/bitchordLyrics"
                 android:nextFocusRight="@id/bitchordPlay"
-                android:contentDescription="@string/bitchord_prev" />
+                android:contentDescription="@string/bitchord_prev"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="7sp"
+                android:autoSizeMaxTextSize="10sp"
+                android:autoSizeStepGranularity="1sp" />
 
             <TextView
                 android:id="@+id/bitchordPlay"
@@ -735,7 +839,11 @@
                 android:nextFocusDown="@+id/grid"
                 android:nextFocusLeft="@id/bitchordPrev"
                 android:nextFocusRight="@id/bitchordNext"
-                android:contentDescription="@string/bitchord_widget" />
+                android:contentDescription="@string/bitchord_widget"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="7sp"
+                android:autoSizeMaxTextSize="10sp"
+                android:autoSizeStepGranularity="1sp" />
 
             <TextView
                 android:id="@+id/bitchordNext"
@@ -754,7 +862,11 @@
                 android:nextFocusDown="@+id/grid"
                 android:nextFocusLeft="@id/bitchordPlay"
                 android:nextFocusRight="@id/bitchordLyrics"
-                android:contentDescription="@string/bitchord_next" />
+                android:contentDescription="@string/bitchord_next"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="7sp"
+                android:autoSizeMaxTextSize="10sp"
+                android:autoSizeStepGranularity="1sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -808,13 +920,18 @@
 
                 <TextView
                     android:id="@+id/cctvStatus"
+                    android:maxWidth="110dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cctv_waiting"
                     android:textColor="#FFFF8A8A"
                     android:textSize="9sp"
                     android:fontFamily="@string/font_medium"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="9sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <View
                     android:layout_width="0dp"
@@ -824,11 +941,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxWidth="110dp"
                     android:text="@string/cctv_reception"
                     android:textColor="#FFF2FFFF"
                     android:textSize="10sp"
                     android:fontFamily="@string/font_medium"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="7sp"
+                    android:autoSizeMaxTextSize="10sp"
+                    android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

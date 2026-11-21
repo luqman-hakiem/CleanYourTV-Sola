@@ -2,9 +2,10 @@
 
 Launcher Android TV / Google TV bergaya Apple TV, berbasis [CleanYourTV](https://github.com/Gathin23/cleanyourtv) karya Gathin, dengan tambahan:
 
-- Kartu **jadwal sholat** (lokasi dipilih dari kode pos, dihitung langsung di TV)
+- Kartu **jadwal sholat** (lokasi dipilih dari kode pos, dihitung langsung di TV). Bawaan: **Belian, Batam** (WIB)
 - **Pengingat adzan**: banner di atas aplikasi apa pun, bisa dengan suara adzan
-- **Jadwal bola** tim favorit (FotMob atau Gemini), lengkap dengan **skor dan menit berjalan** saat pertandingan berlangsung
+- **Jadwal bola** tim favorit (FotMob atau Gemini), lengkap dengan **skor dan menit berjalan** saat pertandingan berlangsung. Bawaan: **Manchester United**
+- **Teks widget fleksibel**: otomatis mengecil saat ukuran tampilan atau ukuran huruf TV diubah, supaya tetap muat di kartu 266 × 178 dp
 - **Timer tidur** di samping tombol Setelan (TV mati sendiri, ada banner peringatan 1 menit sebelum mati). Kalau layanan pembantu belum aktif saat waktunya habis, timer mencoba ulang otomatis tiap 15 detik sampai 6 menit, jadi tidak gagal diam-diam
 - Kartu jadwal sholat dan jadwal bola dibuat **lebih besar**; kartu kalender disembunyikan secara bawaan (bisa dimunculkan lagi di Setelan)
 - Kartu bergaya **kaca bening (tembus pandang)**: wallpaper tetap terlihat di balik latar buram, dengan kilau tipis di atas, tepi terang, dan teks putih tebal yang mudah dibaca dari sofa
@@ -42,7 +43,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.57-cctv-stb.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.58-flexible-widgets.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -80,7 +81,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.57-cctv-stb.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.58-flexible-widgets.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -96,7 +97,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.57-cctv-stb.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.58-flexible-widgets.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
@@ -164,8 +165,8 @@ layanan Google di STB tetap berjalan normal. Akses root hanya dipakai sekali saa
 Buka **Launcher settings** dari Home:
 
 - **Widget Home**: gaya kartu, ketebalan latar, tampil/sembunyi tiap kartu (termasuk **Kartu CCTV**), urutan kartu, dan **Lebarkan kartu**. Kalau Lebarkan kartu dimatikan, tiap kartu tetap berukuran normal dan bisa ditaruh di kiri, tengah, atau kanan (rapi kalau cuma satu atau dua kartu yang tampil). Kartu CCTV memakai pengaturannya sendiri dan tidak ikut tersembunyi saat jadwal bola dimatikan; saat disembunyikan kartu berhenti mengambil gambar dan fokus remot jatuh ke kartu BitChord. Kartu BitChord kini ada **di bawah kartu CCTV**, selebar kartu sholat, dan punya tombol **⏮** untuk lagu sebelumnya.
-- **Jadwal sholat & adzan**: lokasi, mode pengingat (banner / nada / suara adzan), waktu sholat mana yang diingatkan, dan tombol **Tes pengingat sekarang**.
-- **Jadwal bola**: tim favorit dan sumber jadwal. FotMob langsung jalan; Gemini butuh API key gratis dari aistudio.google.com/apikey (petunjuknya muncul di layar). Mengetik key paling enak lewat aplikasi Google TV di HP. Saat timmu bertanding, baris jadwal menampilkan **skor dan menit berjalan** (contoh `● 67'  2 - 1` warna merah), dan skor akhir berwarna hijau setelah selesai; otomatis diperbarui tiap 5 menit selama laga berjalan.
+- **Jadwal sholat & adzan**: lokasi (bawaan Belian, Batam), mode pengingat (banner / nada / suara adzan), waktu sholat mana yang diingatkan, dan tombol **Tes pengingat sekarang**.
+- **Jadwal bola**: tim favorit (bawaan Manchester United) dan sumber jadwal. FotMob langsung jalan; Gemini butuh API key gratis dari aistudio.google.com/apikey (petunjuknya muncul di layar). Mengetik key paling enak lewat aplikasi Google TV di HP. Saat timmu bertanding, baris jadwal menampilkan **skor dan menit berjalan** (contoh `● 67'  2 - 1` warna merah), dan skor akhir berwarna hijau setelah selesai; otomatis diperbarui tiap 5 menit selama laga berjalan.
 
 Pengingat adzan hanya bunyi saat TV menyala. Tekan **Home** untuk menghentikan adzan yang sedang diputar.
 

@@ -47,7 +47,7 @@ final class PrayerLocationPicker {
                 .setMessage("Masukkan kode pos, lalu pilih desa atau kelurahan.")
                 .setView(box)
                 .setPositiveButton("Cari", (d, w) -> search(activity, input.getText().toString().trim(), onChanged))
-                .setNeutralButton("Pakai Kota Bandung", (d, w) -> {
+                .setNeutralButton("Pakai Belian, Batam", (d, w) -> {
                     save(activity, HomeWidgets.DEFAULT_NAME, HomeWidgets.DEFAULT_LAT, HomeWidgets.DEFAULT_LON,
                             HomeWidgets.DEFAULT_ELEV);
                     onChanged.run();

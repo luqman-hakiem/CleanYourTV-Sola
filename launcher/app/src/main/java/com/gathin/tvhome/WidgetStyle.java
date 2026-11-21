@@ -17,9 +17,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * The look of the home widget cards (Launcher settings → Widget Home):
@@ -47,6 +49,17 @@ final class WidgetStyle {
     private static final float SCALE = 0.2f;
 
     private WidgetStyle() {
+    }
+
+    /**
+     * Lets a widget label shrink instead of clipping when the TV's display size or font size changes.
+     * Called from code for labels whose emphasis changes with the match state: TextView ignores a normal
+     * setTextSize() while auto-size is on, so the maximum has to be updated through this method.
+     */
+    static void autoSize(TextView view, float minSp, float maxSp) {
+        int min = Math.max(6, Math.round(minSp));
+        int max = Math.max(min, Math.round(maxSp));
+        view.setAutoSizeTextTypeUniformWithConfiguration(min, max, 1, TypedValue.COMPLEX_UNIT_SP);
     }
 
     static int index(String style) {

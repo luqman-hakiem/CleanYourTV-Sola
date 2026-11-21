@@ -2,11 +2,12 @@
 
 Fork dari [CleanYourTV](https://github.com/Gathin23/cleanyourtv) karya Gathin, dengan widget di layar Home:
 
-- **Jadwal sholat** dengan hitung mundur, lokasi dipilih dari kode pos
+- **Jadwal sholat** dengan hitung mundur, lokasi dipilih dari kode pos. Bawaan: **Belian, Batam** (WIB)
 - **Pengingat adzan**: banner di atas aplikasi apa pun, bisa dengan suara adzan pilihanmu
 - **Kalender** dengan tanggal Hijriah
-- **Jadwal bola** tim favorit, lengkap dengan skor (FotMob atau Gemini)
+- **Jadwal bola** tim favorit, lengkap dengan skor (FotMob atau Gemini). Bawaan: **Manchester United**
 - Kartu bergaya kaca buram, dan tiap kartu bisa disembunyikan dari Launcher settings
+- **Teks widget fleksibel**: otomatis mengecil kalau ukuran tampilan atau ukuran huruf di TV diubah, sehingga nama tim, nama lokasi, dan skor tetap muat di dalam kartu 266 × 178 dp
 
 Tambahan di fork ini:
 
@@ -34,7 +35,7 @@ Tambahan di fork ini:
 
 <p align="center">
   <img src="screenshots/kartu.png" alt="Kartu jadwal sholat dan jadwal bola" width="880"><br>
-  <img src="screenshots/cctv-stb-3.57.png" alt="Kartu CCTV langsung dari STB dengan kartu BitChord di bawahnya" width="880"><br>
+  <img src="screenshots/cctv-stb-3.58.png" alt="Widget Home: jadwal sholat, jadwal bola, CCTV langsung dari STB, dan kontrol BitChord" width="880"><br>
   <img src="screenshots/widget-setting-3.55.png" alt="Pengaturan Widget Home dengan baris Kartu CCTV" width="880"><br>
   <img src="screenshots/bitchord-prev-3.56.png" alt="Kartu BitChord selebar jadwal sholat dengan tombol lagu sebelumnya" width="880"><br>
   <img src="screenshots/dock-tanpa-nama-3.43.png" alt="Dock aplikasi tanpa nama di atas ikon" width="880">
@@ -51,12 +52,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.57-cctv-stb** (versionCode 67).
+Rilis terbaru: **3.58-flexible-widgets** (versionCode 68).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.57-cctv-stb.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.57-cctv-stb.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.57-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.57-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.58-flexible-widgets.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.58-flexible-widgets.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.58-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.58-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

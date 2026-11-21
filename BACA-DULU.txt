@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.57-cctv-stb.apk   APK saja
-    CleanYourTV-Sola-3.57-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.58-flexible-widgets.apk   APK saja
+    CleanYourTV-Sola-3.58-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -33,6 +33,11 @@ Unduh paket siap pakai
 Fitur tambahan dibanding CleanYourTV biasa
 ------------------------------------------
   - Kartu jadwal sholat dan jadwal bola di bawah jam, gaya kaca permanen
+  - Bawaan Home: jadwal sholat Belian, Batam (WIB) dan jadwal bola Manchester
+    United; keduanya bisa diganti di Setelan. Cache jadwal lama otomatis dimuat
+    ulang untuk tim bawaan yang baru
+  - Teks widget otomatis mengecil saat ukuran tampilan atau huruf TV diubah,
+    supaya nama lokasi, nama tim, dan skor tetap muat di kartu 266 x 178 dp
   - Cuaca hari ini + kualitas udara (AQI) di bawah tanggal, ikon berwarna;
     saat jam berjalan berisi hujan, teks dan ikon ikut data per jam
     (Gerimis / Hujan Ringan), tidak lagi "Berawan"
@@ -99,6 +104,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.58  teks widget fleksibel; bawaan Home Belian Batam + Manchester United
   3.57  CCTV langsung dari STB tanpa PC, kartu BitChord dipindah di bawahnya
   3.56  kartu BitChord selebar jadwal sholat, tombol ⏮ lagu sebelumnya
   3.55  kartu CCTV bisa ditampil/disembunyikan di Setelan → Widget Home
