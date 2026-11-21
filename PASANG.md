@@ -43,7 +43,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.60-hd-cctv.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.61-hd-stream.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -81,7 +81,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.60-hd-cctv.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.61-hd-stream.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -97,7 +97,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.60-hd-cctv.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.61-hd-stream.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.
@@ -164,7 +164,7 @@ layanan Google di STB tetap berjalan normal. Akses root hanya dipakai sekali saa
 
 Buka **Launcher settings** dari Home:
 
-- **Widget Home**: gaya kartu, ketebalan latar, tampil/sembunyi tiap kartu (termasuk **Kartu CCTV**), urutan kartu, dan **Lebarkan kartu**. Kalau Lebarkan kartu dimatikan, tiap kartu tetap berukuran normal dan bisa ditaruh di kiri, tengah, atau kanan (rapi kalau cuma satu atau dua kartu yang tampil). Kartu CCTV memakai pengaturannya sendiri dan tidak ikut tersembunyi saat jadwal bola dimatikan; saat disembunyikan kartu berhenti mengambil gambar dan fokus remot jatuh ke kartu BitChord. Kartu BitChord kini ada **di bawah kartu CCTV**, selebar kartu sholat, dan punya tombol **⏮** untuk lagu sebelumnya. Saat **OK** di kartu CCTV, gambar kamera dipangkas tengahnya, dipertajam, lalu diperbesar ke 720p dan ditampilkan penuh di layar tanpa bar hitam; **OK** atau **BACK** untuk kembali. Snapshot cloud dari kamera tetap 352 × 288, jadi yang berubah adalah ketajaman tampilan, bukan resolusi sensor kamera.
+- **Widget Home**: gaya kartu, ketebalan latar, tampil/sembunyi tiap kartu (termasuk **Kartu CCTV**), urutan kartu, dan **Lebarkan kartu**. Kalau Lebarkan kartu dimatikan, tiap kartu tetap berukuran normal dan bisa ditaruh di kiri, tengah, atau kanan (rapi kalau cuma satu atau dua kartu yang tampil). Kartu CCTV memakai pengaturannya sendiri dan tidak ikut tersembunyi saat jadwal bola dimatikan; saat disembunyikan kartu berhenti mengambil gambar dan fokus remot jatuh ke kartu BitChord. Kartu BitChord kini ada **di bawah kartu CCTV**, selebar kartu sholat, dan punya tombol **⏮** untuk lagu sebelumnya. Saat **OK** di kartu CCTV, launcher mengambil stream utama kamera dari Hik-Connect (H.265, **960 × 1080** di STB ini), mendekode satu frame asli, lalu menampilkannya penuh di layar tanpa bar hitam; **OK** atau **BACK** untuk kembali. Kalau stream utama belum tersedia, gambar sementara memakai snapshot cloud 352 × 288 yang dipangkas, dipertajam, lalu diperbesar ke 720p. Kartu di Home tetap memakai snapshot ringan.
 - **Jadwal sholat & adzan**: lokasi (bawaan Belian, Batam), mode pengingat (banner / nada / suara adzan), waktu sholat mana yang diingatkan, dan tombol **Tes pengingat sekarang**.
 - **Jadwal bola**: tim favorit (bawaan Manchester United) dan sumber jadwal. FotMob langsung jalan; Gemini butuh API key gratis dari aistudio.google.com/apikey (petunjuknya muncul di layar). Mengetik key paling enak lewat aplikasi Google TV di HP. Saat timmu bertanding, baris jadwal menampilkan **skor dan menit berjalan** (contoh `● 67'  2 - 1` warna merah), dan skor akhir berwarna hijau setelah selesai; otomatis diperbarui tiap 5 menit selama laga berjalan.
 

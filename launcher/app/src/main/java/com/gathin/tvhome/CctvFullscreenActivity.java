@@ -15,9 +15,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Full-screen view of the Reception camera, opened with OK on the Home card. It reads the same
- * Hik-Connect snapshot as the card, so OK is instant: no app switch, no login, no second stream.
- * OK or BACK returns to Home.
+ * Full-screen view of the Reception camera, opened with OK on the Home card. It prefers a decoded
+ * frame of the cloud main stream (960x1080 here), falling back to the lightweight 352x288 snapshot
+ * when the stream is unavailable. OK or BACK returns to Home.
  */
 public class CctvFullscreenActivity extends Activity {
     private static final long REFRESH_MS = 2000L;
@@ -30,6 +30,7 @@ public class CctvFullscreenActivity extends Activity {
     private Bitmap current;
     private boolean destroyed;
     private boolean live;
+    private volatile long lastLive;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -49,9 +50,16 @@ public class CctvFullscreenActivity extends Activity {
 
     private void tick() {
         if (destroyed) return;
+        boolean wantLive = System.currentTimeMillis() - lastLive > 15000L;
         io.execute(() -> {
-            final Bitmap fresh = CctvWidget.fetchSnapshot(CctvFullscreenActivity.this);
-            handler.post(() -> apply(fresh));
+            Bitmap fresh = null;
+            if (wantLive) {
+                fresh = HikCctv.get(CctvFullscreenActivity.this).captureLive();
+                if (fresh != null) lastLive = System.currentTimeMillis();
+            }
+            if (fresh == null) fresh = CctvWidget.fetchSnapshot(CctvFullscreenActivity.this);
+            final Bitmap next = fresh;
+            handler.post(() -> apply(next));
         });
         handler.postDelayed(this::tick, REFRESH_MS);
     }

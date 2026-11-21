@@ -104,6 +104,35 @@ final class HikCctv {
         }
     }
 
+    /** Package-private helpers for the optional high-resolution stream snapshot. */
+    synchronized boolean liveReady() {
+        return serial != null && channel > 0 && ensureSession(false);
+    }
+
+    String liveApiHost() { return apiHost; }
+
+    String liveSessionId() { return sessionId; }
+
+    String liveFeatureCode() { return featureCode; }
+
+    String liveSerial() { return serial; }
+
+    int liveChannel() { return channel; }
+
+    byte[] apiRequest(String url, String method, byte[] body, boolean withSession)
+            throws Exception {
+        return request(url, method, body, withSession);
+    }
+
+    /** Highest-resolution still the cloud can give: a decoded frame of the main stream. */
+    synchronized Bitmap captureLive() {
+        if (!liveReady()) {
+            Log.w(TAG, "live stream skipped: session/identity not ready");
+            return null;
+        }
+        return HikCloudLive.capture(this);
+    }
+
     /**
      * The cloud capture endpoint only returns the camera's 352x288 snapshot, even when a
      * higher video level is requested. Centre-crop it to 16:9, apply a light sharpen, then
