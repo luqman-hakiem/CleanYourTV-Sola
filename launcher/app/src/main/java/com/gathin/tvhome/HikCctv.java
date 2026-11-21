@@ -93,12 +93,82 @@ final class HikCctv {
             if (containsImageHeader(jpeg)) jpeg = decryptImage(jpeg, verification);
             if (jpeg == null) return null;
             Bitmap bitmap = BitmapFactory.decodeByteArray(jpeg, 0, jpeg.length);
-            if (bitmap == null) Log.w(TAG, "snapshot did not decode");
-            return bitmap;
+            if (bitmap == null) {
+                Log.w(TAG, "snapshot did not decode");
+                return null;
+            }
+            return toHd(bitmap);
         } catch (Exception e) {
             Log.w(TAG, "capture failed: " + e.getMessage());
             return null;
         }
+    }
+
+    /**
+     * The cloud capture endpoint only returns the camera's 352x288 snapshot, even when a
+     * higher video level is requested. Centre-crop it to 16:9, apply a light sharpen, then
+     * upscale to 720p so the full-screen view is no longer a soft, blocky 4:3 thumbnail.
+     * This is display-side processing only: no second stream, no extra network call and no
+     * claim that the camera itself sends more detail than it does.
+     */
+    private static Bitmap toHd(Bitmap source) {
+        int width = source.getWidth();
+        int height = source.getHeight();
+        int cropWidth = width;
+        int cropHeight = width * 9 / 16;
+        if (cropHeight > height) {
+            cropHeight = height;
+            cropWidth = height * 16 / 9;
+        }
+        int left = (width - cropWidth) / 2;
+        int top = (height - cropHeight) / 2;
+        Bitmap cropped = Bitmap.createBitmap(source, left, top, cropWidth, cropHeight);
+        Bitmap sharpened = sharpen(cropped);
+        Bitmap hd = Bitmap.createScaledBitmap(sharpened, 1280, 720, true);
+        Log.i(TAG, "snapshot " + width + "x" + height + " -> HD " + hd.getWidth()
+                + "x" + hd.getHeight());
+        if (sharpened != cropped) sharpened.recycle();
+        if (cropped != source) cropped.recycle();
+        return hd;
+    }
+
+    /** Mild 3x3 unsharp mask, applied before scaling so it stays cheap on the TV. */
+    private static Bitmap sharpen(Bitmap source) {
+        int width = source.getWidth();
+        int height = source.getHeight();
+        int[] pixels = new int[width * height];
+        source.getPixels(pixels, 0, width, 0, 0, width, height);
+        int[] result = new int[pixels.length];
+        for (int y = 0; y < height; y++) {
+            int y0 = Math.max(0, y - 1);
+            int y2 = Math.min(height - 1, y + 1);
+            for (int x = 0; x < width; x++) {
+                int x0 = Math.max(0, x - 1);
+                int x2 = Math.min(width - 1, x + 1);
+                int r = 0, g = 0, b = 0;
+                for (int ny = y0; ny <= y2; ny++) {
+                    for (int nx = x0; nx <= x2; nx++) {
+                        boolean centre = ny == y && nx == x;
+                        int weight = centre ? 10 : -1;
+                        int pixel = pixels[ny * width + nx];
+                        r += (pixel & 0xFF) * weight;
+                        g += ((pixel >> 8) & 0xFF) * weight;
+                        b += ((pixel >> 16) & 0xFF) * weight;
+                    }
+                }
+                result[y * width + x] = 0xFF000000
+                        | (clamp(r / 2) << 16)
+                        | (clamp(g / 2) << 8)
+                        | clamp(b / 2);
+            }
+        }
+        Bitmap out = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        out.setPixels(result, 0, width, 0, 0, width, height);
+        return out;
+    }
+
+    private static int clamp(int value) {
+        return value < 0 ? 0 : (value > 255 ? 255 : value);
     }
 
     private void load() {

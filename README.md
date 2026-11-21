@@ -19,7 +19,7 @@ Tambahan di fork ini:
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Dock tanpa nama**: deretan ikon aplikasi di bawah tidak menampilkan nama besar aplikasi di atasnya, dan posisi dock tetap seperti semula
 - **Kontrol BitChord** di bawah kartu CCTV: kartu glass mini selebar kartu sholat, berisi sampul, judul lagu, dan empat tombol — **Aa** (buka BitChord untuk lirik), **⏮** (lagu sebelumnya), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
-- **Pratinjau CCTV Reception** di samping kanan jadwal bola: kartu glass satu kamera dengan **ukuran sama persis** dengan kartu jadwal sholat dan bola (266 × 178 dp), mengambil gambar **langsung dari Hik-Connect di STB** (tanpa PC yang menyala), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Sudut gambar dipangkas mengikuti tepi glass sehingga tidak ada garis yang menonjol. Bisa difokus dengan remot: dari bar atas tekan **Bawah**, atau dari grid tekan **Atas** dua kali; tepi kartu menyala saat difokus dan **OK** langsung menampilkan gambar **full layar** di launcher (tanpa membuka aplikasi lain). Gambar kamera dipangkas tengahnya supaya benar-benar memenuhi layar 16:9 tanpa bar hitam di atas/bawah. **OK** atau **BACK** untuk kembali. Kartu ini punya pengaturan sendiri di **Launcher settings → Widget Home → Kartu CCTV** (Tampil/Sembunyi), terpisah dari kartu jadwal bola. Saat disembunyikan, fokus remot dari pil atas langsung jatuh ke kartu BitChord dan kartu berhenti memuat gambar. Sesi dan identitas kamera disimpan hanya di penyimpanan privat aplikasi di STB; **kata sandi tidak pernah disimpan di launcher maupun di repo**
+- **Pratinjau CCTV Reception** di samping kanan jadwal bola: kartu glass satu kamera dengan **ukuran sama persis** dengan kartu jadwal sholat dan bola (266 × 178 dp), mengambil gambar **langsung dari Hik-Connect di STB** (tanpa PC yang menyala), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Sudut gambar dipangkas mengikuti tepi glass sehingga tidak ada garis yang menonjol. Bisa difokus dengan remot: dari bar atas tekan **Bawah**, atau dari grid tekan **Atas** dua kali; tepi kartu menyala saat difokus dan **OK** langsung menampilkan gambar **full layar** di launcher (tanpa membuka aplikasi lain). Gambar kamera dipangkas tengahnya supaya benar-benar memenuhi layar 16:9 tanpa bar hitam di atas/bawah, lalu dipertajam dan diperbesar ke **720p** agar tampilan full layar tidak buram. Sumber snapshot cloud tetap 352 × 288 dari kamera; ini peningkatan tampilan, bukan penambahan detail sensor kamera. **OK** atau **BACK** untuk kembali. Kartu ini punya pengaturan sendiri di **Launcher settings → Widget Home → Kartu CCTV** (Tampil/Sembunyi), terpisah dari kartu jadwal bola. Saat disembunyikan, fokus remot dari pil atas langsung jatuh ke kartu BitChord dan kartu berhenti memuat gambar. Sesi dan identitas kamera disimpan hanya di penyimpanan privat aplikasi di STB; **kata sandi tidak pernah disimpan di launcher maupun di repo**
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
   bahwa Home kembali normal dan tidak ada crash
@@ -36,7 +36,7 @@ Tambahan di fork ini:
 <p align="center">
   <img src="screenshots/kartu.png" alt="Kartu jadwal sholat dan jadwal bola" width="880"><br>
   <img src="screenshots/cctv-stb-3.58.png" alt="Widget Home: jadwal sholat, jadwal bola, CCTV langsung dari STB, dan kontrol BitChord" width="880"><br>
-  <img src="screenshots/cctv-fullscreen-3.59.png" alt="CCTV Reception tampil penuh di layar tanpa bar hitam" width="880"><br>
+  <img src="screenshots/cctv-fullscreen-3.60.png" alt="CCTV Reception tampil penuh di layar tanpa bar hitam, dengan hasil perbesaran 720p" width="880"><br>
   <img src="screenshots/widget-setting-3.55.png" alt="Pengaturan Widget Home dengan baris Kartu CCTV" width="880"><br>
   <img src="screenshots/bitchord-prev-3.56.png" alt="Kartu BitChord selebar jadwal sholat dengan tombol lagu sebelumnya" width="880"><br>
   <img src="screenshots/dock-tanpa-nama-3.43.png" alt="Dock aplikasi tanpa nama di atas ikon" width="880">
@@ -53,12 +53,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.59-cctv-fullscreen** (versionCode 69).
+Rilis terbaru: **3.60-hd-cctv** (versionCode 70).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.59-cctv-fullscreen.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.59-cctv-fullscreen.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.59-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.59-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.60-hd-cctv.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.60-hd-cctv.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.60-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.60-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang
