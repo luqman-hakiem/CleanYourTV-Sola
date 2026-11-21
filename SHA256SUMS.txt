@@ -1,4 +1,7 @@
-﻿SHA-256  CleanYourTV-Sola-3.62-widget-text.apk e93473c9ce804b730ceeb9cf7da1eeb6492690a82f36d00e3e1793a337cce5fe
+﻿SHA-256  CleanYourTV-Sola-3.63-countdown-text.apk 004b09201f841f3c0a5bd1f86398df566ea6144dd8c33a9e99c3200cbf3b8e24
+SHA-256  CleanYourTV-Sola-3.63-pasang.zip f9f9ee964ccc7b66e3e1415804187cfecce9a38f25fa36b675c59cb69b5a219c
+SHA-256  countdown-text-3.63.png 4fcbeba1f90fbfaa0c3435392725401e3afe6c95f755c361d30c6878636e663b
+SHA-256  CleanYourTV-Sola-3.62-widget-text.apk e93473c9ce804b730ceeb9cf7da1eeb6492690a82f36d00e3e1793a337cce5fe
 SHA-256  CleanYourTV-Sola-3.62-pasang.zip b75ff83275dc3144312e7ec009f88d2a0f7c24d09753ae1362dd5321c89ccbb7
 SHA-256  widget-text-3.62.png 9cb90e57b5da7d15ce4ae198008b50273b6d5ccdd7ace58ba7b8a02841d6de7b
 SHA-256  CleanYourTV-Sola-3.61-hd-stream.apk 970c9f6a4db6e8323c93a28e8009bc87da9fd416d4c2a008e530a27a45c8f824

@@ -24,8 +24,8 @@ Isi repo
 Unduh paket siap pakai
 ----------------------
   Buka tab "Releases" repo ini. Ada dua berkas:
-    CleanYourTV-Sola-3.62-widget-text.apk   APK saja
-    CleanYourTV-Sola-3.62-pasang.zip  paket lengkap
+    CleanYourTV-Sola-3.63-countdown-text.apk   APK saja
+    CleanYourTV-Sola-3.63-pasang.zip  paket lengkap
   Zip berisi APK, adzan.mp3, pasang.bat, pasang-adzan.bat, PASANG.md,
   screenshot, dan checksum. Kalau memakai pasang.bat, ekstrak zip dulu,
   lalu taruh APK di folder yang sama dengan pasang.bat.
@@ -37,8 +37,8 @@ Fitur tambahan dibanding CleanYourTV biasa
     United; keduanya bisa diganti di Setelan. Cache jadwal lama otomatis dimuat
     ulang untuk tim bawaan yang baru
   - Teks widget tidak terpotong: otomatis mengecil sampai muat di kartu
-    266 x 178 dp; kolom tanggal, logo, lawan, dan liga jadwal bola dirapikan
-    supaya hitung mundur dan nama tim tetap terbaca
+    266 x 178 dp; kolom tanggal, logo, lawan, dan liga jadwal bola dirapikan;
+    hitung mundur kuning pertandingan terdekat satu baris, lebih besar, di tengah
   - Cuaca hari ini + kualitas udara (AQI) di bawah tanggal, ikon berwarna;
     saat jam berjalan berisi hujan, teks dan ikon ikut data per jam
     (Gerimis / Hujan Ringan), tidak lagi "Berawan"
@@ -108,6 +108,7 @@ Build sendiri
 
 Riwayat build (ringkas)
 -----------------------
+  3.63  hitung mundur kuning jadwal bola diperbesar, satu baris di tengah
   3.62  teks widget tidak terpotong; kolom jadwal bola dirapikan
   3.61  CCTV full layar dari stream utama 960x1080, fallback snapshot 720p
   3.60  tampilan CCTV full layar dipertajam dan diperbesar ke 720p

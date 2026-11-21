@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -689,21 +690,25 @@ final class HomeWidgets {
             boolean over = m.ended(now);
             boolean live = m.live(now);
             if (over && !m.score.isEmpty()) {
+                setBallTagStyle(ballTags[i], false);
                 ballTags[i].setText(m.score);
                 ballTags[i].setTextColor(0xFF8CF0B4);
                 WidgetStyle.autoSize(ballTags[i], 6f, 13f);
             } else if (live) {
                 // The score is the point of the line while the match runs: "● 67'  2 - 1", a step up in size.
+                setBallTagStyle(ballTags[i], false);
                 String clock = m.minute.isEmpty() ? "LIVE" : m.minute;
                 ballTags[i].setText(m.score.isEmpty() ? "● " + clock : "● " + clock + "  " + m.score);
                 ballTags[i].setTextColor(MonthView.RED);
                 WidgetStyle.autoSize(ballTags[i], 6f, 15f);
             } else if (i == next) {
-                // The nearest kick-off counts down: "9 HARI 6 JAM", "5 JAM 12 MNT", "SEGERA".
+                // The nearest kick-off is the yellow callout: one line, wider and centred so it reads at a glance.
+                setBallTagStyle(ballTags[i], true);
                 ballTags[i].setText(countdown(m.start, now));
                 ballTags[i].setTextColor(0xFFFFCF6B);
-                WidgetStyle.autoSize(ballTags[i], 6f, 11.5f);
+                WidgetStyle.autoSize(ballTags[i], 8f, 12.5f);
             } else {
+                setBallTagStyle(ballTags[i], false);
                 ballTags[i].setText(tag(m.league));
                 ballTags[i].setTextColor(0xD9FFFFFF);
                 WidgetStyle.autoSize(ballTags[i], 6f, 11.5f);
@@ -742,6 +747,18 @@ final class HomeWidgets {
         if (minutes >= 60) return minutes / 60 + " JAM " + minutes % 60 + " MNT";
         if (minutes >= 1) return minutes + " MNT LAGI";
         return "SEGERA";
+    }
+
+    /** Gives the yellow countdown a wider, centred slot; league/score tags keep the compact right slot. */
+    private void setBallTagStyle(TextView view, boolean countdown) {
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        if (params != null) {
+            params.width = Math.round((countdown ? 78 : 52) * activity.getResources().getDisplayMetrics().density);
+            view.setLayoutParams(params);
+        }
+        view.setGravity(countdown ? Gravity.CENTER : Gravity.END | Gravity.CENTER_VERTICAL);
+        view.setLetterSpacing(countdown ? 0f : 0.06f);
+        view.setMaxLines(1);
     }
 
     private void maybeFetch(Instant now) {
