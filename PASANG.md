@@ -5,7 +5,7 @@ Launcher Android TV / Google TV bergaya Apple TV, berbasis [CleanYourTV](https:/
 - Kartu **jadwal sholat** (lokasi dipilih dari kode pos, dihitung langsung di TV). Bawaan: **Belian, Batam** (WIB)
 - **Pengingat adzan**: banner di atas aplikasi apa pun, bisa dengan suara adzan
 - **Jadwal bola** tim favorit (FotMob atau Gemini), lengkap dengan **skor dan menit berjalan** saat pertandingan berlangsung. Bawaan: **Manchester United**
-- **Teks widget fleksibel**: otomatis mengecil saat ukuran tampilan atau ukuran huruf TV diubah, supaya tetap muat di kartu 266 × 178 dp
+- **Teks widget tidak terpotong**: otomatis mengecil sampai muat di kartu 266 × 178 dp; kolom tanggal, logo, lawan, dan liga pada jadwal bola dirapikan supaya hitung mundur serta nama tim tetap terbaca
 - **Timer tidur** di samping tombol Setelan (TV mati sendiri, ada banner peringatan 1 menit sebelum mati). Kalau layanan pembantu belum aktif saat waktunya habis, timer mencoba ulang otomatis tiap 15 detik sampai 6 menit, jadi tidak gagal diam-diam
 - Kartu jadwal sholat dan jadwal bola dibuat **lebih besar**; kartu kalender disembunyikan secara bawaan (bisa dimunculkan lagi di Setelan)
 - Kartu bergaya **kaca bening (tembus pandang)**: wallpaper tetap terlihat di balik latar buram, dengan kilau tipis di atas, tepi terang, dan teks putih tebal yang mudah dibaca dari sofa
@@ -43,7 +43,7 @@ Izinkan akses penyimpanan saat diminta. File yang kamu unduh ada di `~/storage/d
 
 **Pakai komputer.** Pasang [Android platform-tools](https://developer.android.com/tools/releases/platform-tools), lalu buka Terminal / Command Prompt di folder tempat APK diunduh.
 
-Unduh/salin `CleanYourTV-Sola-3.61-hd-stream.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
+Unduh/salin `CleanYourTV-Sola-3.62-widget-text.apk` (ada di folder yang sama dengan panduan ini) ke HP atau komputer.
 
 ## 3. Sambungkan dan cari launcher bawaan
 
@@ -81,7 +81,7 @@ Di Termux (ganti path-nya kalau pakai komputer), jalankan berurutan:
 ```
 adb shell pm enable <launcher-bawaan>
 adb uninstall com.gathin.tvhome
-adb install ~/storage/downloads/CleanYourTV-Sola-3.61-hd-stream.apk
+adb install ~/storage/downloads/CleanYourTV-Sola-3.62-widget-text.apk
 adb shell cmd package set-home-activity --user 0 com.gathin.tvhome/.MainActivity
 adb shell pm disable-user --user 0 <launcher-bawaan>
 ```
@@ -97,7 +97,7 @@ Tekan tombol **Home** di remote untuk mengecek, lalu lanjut ke langkah 5.
 Kalau TV-mu sudah memakai build khusus ini (kunci debug yang sama) dan cuma ingin memasang versi baru, semua pengaturan tetap aman:
 
 ```
-adb install -r ~/storage/downloads/CleanYourTV-Sola-3.61-hd-stream.apk
+adb install -r ~/storage/downloads/CleanYourTV-Sola-3.62-widget-text.apk
 ```
 
 Selesai, langkah 5 dan 6 tidak perlu diulang. Kalau gagal dengan pesan `INSTALL_FAILED_UPDATE_INCOMPATIBLE` atau `signatures do not match`, berarti yang terpasang adalah CleanYourTV versi resmi (kunci berbeda); pakai **A. Pasang baru**.

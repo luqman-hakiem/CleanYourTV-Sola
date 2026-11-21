@@ -19,6 +19,7 @@ Tambahan di fork ini:
 - **Menu Jaringan** saat tombol Wi-Fi ditekan lama: Wi-Fi dan **Bluetooth**, langsung ke layar "Tambahkan aksesori" bawaan TV
 - **Dock tanpa nama**: deretan ikon aplikasi di bawah tidak menampilkan nama besar aplikasi di atasnya, dan posisi dock tetap seperti semula
 - **Kontrol BitChord** di bawah kartu CCTV: kartu glass mini selebar kartu sholat, berisi sampul, judul lagu, dan empat tombol — **Aa** (buka BitChord untuk lirik), **⏮** (lagu sebelumnya), **▶/⏸** (putar/jeda), **⏭** (lagu berikutnya). Bisa diklik dengan remot: arahkan fokus dengan DPAD dari bar atas (Bawah) atau dari grid aplikasi (Atas), lalu **OK** memutar/jeda langsung di Home tanpa membuka aplikasi. Saat remot diarahkan ke kartu, tepi kartu menyala putih; tombol yang sedang difokus berubah biru terang supaya jelas terlihat di TV. Equalizer 26 bar di bagian atas kartu yang sama: naik-turun saat lagu diputar dan turun rata saat dijeda
+- **Teks widget tidak terpotong**: jadwal bola, jadwal sholat, kalender, cuaca, dan judul lagu BitChord kini mengecil otomatis sampai muat di kartu 266 × 178 dp. Kolom tanggal/logo/liga pada jadwal bola juga dirapikan supaya nama lawan dan hitung mundur tetap terbaca
 - **Pratinjau CCTV Reception** di samping kanan jadwal bola: kartu glass satu kamera dengan **ukuran sama persis** dengan kartu jadwal sholat dan bola (266 × 178 dp), mengambil gambar **langsung dari Hik-Connect di STB** (tanpa PC yang menyala), lengkap dengan label **RECEPTION** dan status **LIVE** / **MENUNGGU CCTV…**. Sudut gambar dipangkas mengikuti tepi glass sehingga tidak ada garis yang menonjol. Bisa difokus dengan remot: dari bar atas tekan **Bawah**, atau dari grid tekan **Atas** dua kali; tepi kartu menyala saat difokus dan **OK** langsung menampilkan gambar **full layar** di launcher (tanpa membuka aplikasi lain). Saat full layar, launcher mengambil **stream utama Hik-Connect** kamera (H.265, **960 × 1080** di STB ini), mendekode satu frame asli, lalu menampilkannya memenuhi layar 16:9 tanpa bar hitam. Kalau stream utama belum tersedia, gambar sementara tetap memakai snapshot cloud 352 × 288 yang dipangkas, dipertajam, dan diperbesar ke 720p. Kartu di Home tetap memakai snapshot ringan supaya STB tidak dibebani stream terus-menerus. **OK** atau **BACK** untuk kembali. Kartu ini punya pengaturan sendiri di **Launcher settings → Widget Home → Kartu CCTV** (Tampil/Sembunyi), terpisah dari kartu jadwal bola. Saat disembunyikan, fokus remot dari pil atas langsung jatuh ke kartu BitChord dan kartu berhenti memuat gambar. Sesi dan identitas kamera disimpan hanya di penyimpanan privat aplikasi di STB; **kata sandi tidak pernah disimpan di launcher maupun di repo**
 - **Nama Wi-Fi lengkap** di pil atas, tidak dipotong
 - **Pemasang Windows** yang memasang, menjadikan Home, me-reboot, lalu memeriksa sendiri
@@ -34,6 +35,7 @@ Tambahan di fork ini:
 </p>
 
 <p align="center">
+  <img src="screenshots/widget-text-3.62.png" alt="Widget Home: teks jadwal bola, sholat, dan BitChord tidak terpotong" width="880"><br>
   <img src="screenshots/kartu.png" alt="Kartu jadwal sholat dan jadwal bola" width="880"><br>
   <img src="screenshots/cctv-stb-3.58.png" alt="Widget Home: jadwal sholat, jadwal bola, CCTV langsung dari STB, dan kontrol BitChord" width="880"><br>
   <img src="screenshots/cctv-fullscreen-3.61.png" alt="CCTV Reception tampil penuh di layar dari stream utama 960x1080, tanpa bar hitam" width="880"><br>
@@ -53,12 +55,12 @@ Tambahan di fork ini:
 
 ### Unduh dan pasang
 
-Rilis terbaru: **3.61-hd-stream** (versionCode 71).
+Rilis terbaru: **3.62-widget-text** (versionCode 72).
 
 | Berkas | Isi |
 |---|---|
-| [`CleanYourTV-Sola-3.61-hd-stream.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.61-hd-stream.apk) | APK launcher saja |
-| [`CleanYourTV-Sola-3.61-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.61-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
+| [`CleanYourTV-Sola-3.62-widget-text.apk`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.62-widget-text.apk) | APK launcher saja |
+| [`CleanYourTV-Sola-3.62-pasang.zip`](https://github.com/luqman-hakiem/CleanYourTV-Sola/releases/latest/download/CleanYourTV-Sola-3.62-pasang.zip) | Paket lengkap: APK + `adzan.mp3` + pemasang Windows + panduan + screenshot |
 
 Unduh zip kalau ingin semua sekaligus; di dalamnya ada `pasang.bat` (memasang APK,
 menjadikan Home, me-reboot, lalu memeriksa sendiri) dan `pasang-adzan.bat` (memasang

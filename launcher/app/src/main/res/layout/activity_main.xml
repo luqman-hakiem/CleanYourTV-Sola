@@ -63,7 +63,7 @@
                 android:id="@+id/raceKicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="#B3FFFFFF"
                 android:textSize="12sp"
                 android:fontFamily="@string/font_medium"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColor="#FFFFFFFF"
             android:textSize="34sp"
             android:fontFamily="@string/font_light"
@@ -88,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColor="#99FFFFFF"
             android:textSize="12sp"
             android:fontFamily="@string/font_medium"
@@ -136,44 +136,47 @@
             <TextView
                 android:id="@+id/prayerPlace"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:layout_height="22dp"
+                android:maxLines="1"
                 android:ellipsize="end"
+                android:includeFontPadding="false"
                 android:textColor="#FF8CF0B4"
                 android:textSize="16.5sp"
                 android:fontFamily="@string/font_medium"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="11sp"
+                android:autoSizeMinTextSize="8sp"
                 android:autoSizeMaxTextSize="16.5sp"
                 android:autoSizeStepGranularity="1sp" />
 
             <TextView
                 android:id="@+id/prayerDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="18dp"
                 android:layout_marginTop="2dp"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:ellipsize="end"
+                android:includeFontPadding="false"
                 android:textColor="#E6FFFFFF"
                 android:textSize="12sp"
                 android:fontFamily="@string/font_medium"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="7sp"
+                android:autoSizeMinTextSize="6sp"
                 android:autoSizeMaxTextSize="12sp"
                 android:autoSizeStepGranularity="1sp" />
 
             <TextView
                 android:id="@+id/prayerCountdown"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="22dp"
                 android:layout_marginTop="4dp"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:ellipsize="end"
+                android:includeFontPadding="false"
                 android:textColor="#FFFFFFFF"
                 android:textSize="14.5sp"
                 android:fontFamily="@string/font_medium"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMinTextSize="7sp"
                 android:autoSizeMaxTextSize="14.5sp"
                 android:autoSizeStepGranularity="1sp" />
 
@@ -333,43 +336,48 @@
                 <TextView
                     android:id="@+id/calWeekday"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_height="16dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#FFFF453A"
                     android:textSize="11sp"
                     android:fontFamily="@string/font_medium"
                     android:letterSpacing="0.14"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMinTextSize="7sp"
                     android:autoSizeMaxTextSize="11sp"
                     android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/calDay"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="46dp"
                     android:layout_marginTop="2dp"
                     android:includeFontPadding="false"
-                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="#FFFFFFFF"
                     android:textSize="38sp"
                     android:fontFamily="@string/font_light"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="33sp"
+                    android:autoSizeMinTextSize="28sp"
                     android:autoSizeMaxTextSize="38sp"
                     android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/calHijri"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28dp"
                     android:layout_marginTop="4dp"
                     android:maxLines="2"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#A6FFFFFF"
                     android:textSize="10sp"
                     android:fontFamily="@string/font_regular"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="7sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="10sp"
                     android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
@@ -431,10 +439,11 @@
 
                 <TextView
                     android:id="@+id/ballDate0"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_width="72dp"
+                    android:layout_height="18dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
                     android:fontFamily="@string/font_medium"
@@ -445,33 +454,34 @@
 
                 <ImageView
                     android:id="@+id/ballLogo0"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="4dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
                 <TextView
                     android:id="@+id/ballOpponent0"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
                     android:fontFamily="@string/font_medium"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="13.5sp"
                     android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag0"
-                    android:layout_width="52dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:singleLine="true"
+                    android:layout_width="44dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="4dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
                     android:gravity="end"
                     android:textColor="#D9FFFFFF"
@@ -479,7 +489,7 @@
                     android:fontFamily="@string/font_medium"
                     android:letterSpacing="0.06"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="11.5sp"
                     android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
@@ -494,10 +504,11 @@
 
                 <TextView
                     android:id="@+id/ballDate1"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_width="72dp"
+                    android:layout_height="18dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
                     android:fontFamily="@string/font_medium"
@@ -508,33 +519,34 @@
 
                 <ImageView
                     android:id="@+id/ballLogo1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="4dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
                 <TextView
                     android:id="@+id/ballOpponent1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
                     android:fontFamily="@string/font_medium"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="13.5sp"
                     android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag1"
-                    android:layout_width="52dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:singleLine="true"
+                    android:layout_width="44dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="4dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
                     android:gravity="end"
                     android:textColor="#D9FFFFFF"
@@ -542,7 +554,7 @@
                     android:fontFamily="@string/font_medium"
                     android:letterSpacing="0.06"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="11.5sp"
                     android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
@@ -557,10 +569,11 @@
 
                 <TextView
                     android:id="@+id/ballDate2"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_width="72dp"
+                    android:layout_height="18dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
                     android:fontFamily="@string/font_medium"
@@ -571,33 +584,34 @@
 
                 <ImageView
                     android:id="@+id/ballLogo2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="4dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
                 <TextView
                     android:id="@+id/ballOpponent2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
                     android:fontFamily="@string/font_medium"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="13.5sp"
                     android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag2"
-                    android:layout_width="52dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:singleLine="true"
+                    android:layout_width="44dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="4dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
                     android:gravity="end"
                     android:textColor="#D9FFFFFF"
@@ -605,7 +619,7 @@
                     android:fontFamily="@string/font_medium"
                     android:letterSpacing="0.06"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="11.5sp"
                     android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
@@ -620,10 +634,11 @@
 
                 <TextView
                     android:id="@+id/ballDate3"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_width="72dp"
+                    android:layout_height="18dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
                     android:fontFamily="@string/font_medium"
@@ -634,33 +649,34 @@
 
                 <ImageView
                     android:id="@+id/ballLogo3"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="6dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="4dp"
                     android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
 
                 <TextView
                     android:id="@+id/ballOpponent3"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#FFFFFFFF"
                     android:textSize="13.5sp"
                     android:fontFamily="@string/font_medium"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="13.5sp"
                     android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/ballTag3"
-                    android:layout_width="52dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:singleLine="true"
+                    android:layout_width="44dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="4dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
                     android:gravity="end"
                     android:textColor="#D9FFFFFF"
@@ -668,7 +684,7 @@
                     android:fontFamily="@string/font_medium"
                     android:letterSpacing="0.06"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="11.5sp"
                     android:autoSizeStepGranularity="1sp" />
             </LinearLayout>
@@ -676,15 +692,17 @@
             <TextView
                 android:id="@+id/ballEmpty"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="22dp"
                 android:layout_marginTop="10dp"
-                android:singleLine="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
                 android:textColor="#CCFFFFFF"
                 android:textSize="14sp"
                 android:fontFamily="@string/font_regular"
                 android:visibility="gone"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMinTextSize="7sp"
                 android:autoSizeMaxTextSize="14sp"
                 android:autoSizeStepGranularity="1sp" />
         </LinearLayout>
@@ -734,8 +752,8 @@
 
             <ImageView
                 android:id="@+id/bitchordArt"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:scaleType="centerCrop"
                 android:contentDescription="@null" />
 
@@ -743,31 +761,33 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="2dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/bitchordLabel"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_height="16dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:text="@string/bitchord_name"
                     android:textColor="#F2FFFFFF"
                     android:textSize="10sp"
                     android:fontFamily="@string/font_medium"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="7sp"
+                    android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="10sp"
                     android:autoSizeStepGranularity="1sp" />
 
                 <TextView
                     android:id="@+id/bitchordSub"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_height="14dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:textColor="#B3FFFFFF"
                     android:textSize="8.5sp"
                     android:fontFamily="@string/font_regular"
@@ -779,8 +799,8 @@
 
             <TextView
                 android:id="@+id/bitchordLyrics"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:gravity="center"
                 android:text="Aa"
                 android:textColor="#FFF2FFFF"
@@ -801,9 +821,9 @@
 
             <TextView
                 android:id="@+id/bitchordPrev"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="4dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="2dp"
                 android:gravity="center"
                 android:text="⏮"
                 android:textColor="#FFF2FFFF"
@@ -824,9 +844,9 @@
 
             <TextView
                 android:id="@+id/bitchordPlay"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="4dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="2dp"
                 android:gravity="center"
                 android:text="▶"
                 android:textColor="#FFF2FFFF"
@@ -847,9 +867,9 @@
 
             <TextView
                 android:id="@+id/bitchordNext"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="4dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="2dp"
                 android:gravity="center"
                 android:text="⏭"
                 android:textColor="#FFF2FFFF"
@@ -922,12 +942,14 @@
                     android:id="@+id/cctvStatus"
                     android:maxWidth="110dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="14dp"
                     android:text="@string/cctv_waiting"
                     android:textColor="#FFFF8A8A"
                     android:textSize="9sp"
                     android:fontFamily="@string/font_medium"
-                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="6sp"
                     android:autoSizeMaxTextSize="9sp"
@@ -940,13 +962,15 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="16dp"
                     android:maxWidth="110dp"
                     android:text="@string/cctv_reception"
                     android:textColor="#FFF2FFFF"
                     android:textSize="10sp"
                     android:fontFamily="@string/font_medium"
-                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMinTextSize="7sp"
                     android:autoSizeMaxTextSize="10sp"
@@ -982,7 +1006,7 @@
             android:fontFamily="@string/font_light"
             android:letterSpacing="-0.02"
             android:includeFontPadding="false"
-            android:singleLine="true" />
+            android:maxLines="1" />
 
         <!-- Cinematic shelf only: when the app was last opened, and the dock position dots. -->
         <TextView
@@ -991,7 +1015,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="12dp"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColor="#B3FFFFFF"
             android:textSize="15sp"
             android:fontFamily="@string/font_light"
@@ -1040,15 +1064,20 @@
                     android:id="@+id/greeting"
                     android:gravity="left"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:layout_height="20dp"
+                    android:maxLines="1"
                     android:ellipsize="end"
+                    android:includeFontPadding="false"
                     android:layout_marginStart="4dp"
                     android:textColor="#8CFFFFFF"
                     android:textSize="12sp"
                     android:fontFamily="@string/font_medium"
                     android:letterSpacing="0.22"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeStepGranularity="1sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1107,7 +1136,7 @@
                             android:gravity="left"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:singleLine="true"
+                            android:maxLines="1"
                             android:ellipsize="end"
                             android:textColor="#E6FFFFFF"
                             android:textSize="17sp"
@@ -1139,9 +1168,9 @@
                             android:id="@+id/weather"
                             android:gravity="left"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="22dp"
                             android:layout_marginTop="2dp"
-                            android:singleLine="true"
+                            android:maxLines="1"
                             android:ellipsize="end"
                             android:drawablePadding="6dp"
                             android:textColor="#CCFFFFFF"
@@ -1149,7 +1178,11 @@
                             android:fontFamily="@string/font_medium"
                             android:letterSpacing="0.02"
                             android:includeFontPadding="false"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:autoSizeTextType="uniform"
+                            android:autoSizeMinTextSize="9sp"
+                            android:autoSizeMaxTextSize="13sp"
+                            android:autoSizeStepGranularity="1sp" />
 
                         <!-- Lunar date ("Lunar 13/9 · Year of the Horse"), shown when lunar_date is on. -->
                         <TextView
@@ -1158,7 +1191,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:singleLine="true"
+                            android:maxLines="1"
                             android:ellipsize="end"
                             android:textColor="#80FFFFFF"
                             android:textSize="14sp"
@@ -1212,7 +1245,7 @@
                     android:id="@+id/btnWifi"
                     style="@style/TopButton"
                     android:maxWidth="180dp"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:ellipsize="end"
                     android:text="@string/wifi"
                     android:drawableStart="@drawable/ic_wifi"
@@ -1222,7 +1255,7 @@
                     android:id="@+id/btnVpn"
                     style="@style/TopButton"
                     android:visibility="gone"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:text="@string/vpn"
                     android:nextFocusDown="@id/cctvCard" />
 
